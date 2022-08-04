@@ -1,0 +1,191 @@
+openapi: 3.0.3
+info:
+  title: INFO_TITLE
+  version: INFO_VERSION
+  description: INFO_DESCRIPTION
+  contact:
+    name: INFO_CONTACT_NAME
+    url: INFO_CONTACT_URL
+  termsOfService: INFO_TERMSOFSERVICE
+  license:
+    name: INFO_LICENSE_NAME
+    url: INFO_LICENSE_URL
+servers:
+  - description: SERVER_DESCRIPTION
+    url: SERVER_URL
+tags:
+  - name: API_TAG_1_NAME
+    description: API_TAG_1_DESCRIPTION
+  - name: API_TAG_2_NAME
+    description: API_TAG_2_DESCRIPTION
+paths:
+  /LIST_RESOURCES:
+    get:
+      operationId: SEARCH_OPERATION_ID
+      summary: SEARCH_OPERATION_SUMMARY
+      description: SEARCH_OPERATION_DESCRIPTION
+      tags:
+        - SEARCH_OPERATION_TAG_NAME
+      parameters:
+        - name: SEARCH_OPERATION_FILTER_PARAMETER_NAME
+          in: query
+          required: SEARCH_OPERATION_FILTER_PARAMETER_REQUIRED
+          schema: SEARCH_OPERATION_FILTER_PARAMETER_SCHEMA
+          examples: SEARCH_OPERATION_FILTER_PARAMETER_EXAMPLES
+      responses:
+        '200':
+          description: SEARCH_OPERATION_SUCCESS_DESCRIPTION
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/RESOURCEForbiddenErrorResponse'
+        '500':
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+    post:
+      operationId: CREATE_OPERATION_ID
+      summary: CREATE_OPERATION_SUMMARY
+      description: CREATE_OPERATION_DESCRIPTION
+      tags:
+        - CREATE_OPERATION_TAG_NAME
+      requestBody:
+          content:
+      responses:
+        '201':
+          description: CREATE_OPERATION_SUCCESS_DESCRIPTION
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RESOURCE'
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/RESOURCEForbiddenErrorResponse'
+        '500':
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  '/LIST_RESOURCES/{RESOURCE_ID_PATH_PARAMETER}':
+    parameters:
+      - $ref: '#/components/parameters/RESOURCE_ID_PATH_PARAMETER'
+    get:
+      summary: READ_RESOURCE_SUMMARY
+      tags: []
+      responses:
+        '200':
+          description: READ_RESOURCE_SUCCESS_DESCRIPTION
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SCHEMA_RESOURCE'
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/RESOURCEForbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/RESOURCENotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+      operationId: get-LIST_RESOURCES-RESOURCE_ID_PATH_PARAMETER
+    put:
+      operationId: REPLACE_RESOURCE_OPERATION_ID
+      summary: REPLACE_RESOURCE_OPERATION_SUMMARY
+      tags: []
+      responses:
+        '200':
+          description: REPLACE_RESOURCE_OPERATION_SUCCESS_DESCRIPTION
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SCHEMA_RESOURCE'
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/RESOURCEForbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/RESOURCENotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+    patch:
+      operationId: UPDATE_RESOURCE_OPERATION_ID
+      summary: UPDATE_RESOURCE_OPERATION_SUMMARY
+      tags: []
+      responses:
+        '200':
+          description: UPDATE_RESOURCE_OPERATION_SUCCESS_DESCRIPTION
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SCHEMA_RESOURCE'
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/RESOURCEForbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/RESOURCENotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+    delete:
+      operationId: DELETE_RESOURCE_OPERATION_ID
+      summary: DELETE_RESOURCE_OPERATION_SUMMARY
+      tags: []
+      responses:
+        '204':
+          description: DELETE_RESOURCE_OPERATION_SUCESS_DESCRIPTION
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/RESOURCEForbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/RESOURCENotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+components:
+  schemas:
+    Errors:
+      type: object
+    SCHEMA_RESOURCES:
+      type: object
+      properties:
+        data:
+          type: array
+          minItems: 0
+          maxItems: 100
+          items:
+            schema:
+              $ref: '#/components/schemas/SCHEMA_RESOURCE'
+    SCHEMA_RESOURCE:
+      type: object
+      properties:
+        id:
+          type: string
+  responses:
+    UnexpectedErrorResponse:
+      description: An unepected error occured
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    UnauthorizedErrorResponse:
+      description: 'Missing, expired or invalid access token'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    RESOURCEForbiddenErrorResponse:
+      description: RESOURCE_FORBIDDEN_DESCRIPTION
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    RESOURCENotFoundErrorResponse:
+      description: RESOURCE_NOT_FOUND_DESCRIPTION
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+  parameters:
+    RESOURCE_ID_PATH_PARAMETER:
+      name: RESOURCE_ID_PATH_PARAMETER_NAME
+      in: path
+      required: true
+      schema:
+        type: string
+      description: RESOURCE_ID_PATH_PARAMETER_DESCRIPTION

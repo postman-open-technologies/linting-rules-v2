@@ -1,0 +1,81 @@
+info:
+  title: Bookshop
+  x-generator-values-version:
+    - name: semantic versioning
+      value: "1.0"
+      default: true
+    - name: date
+      value: 2022-02-01
+    - name: name
+      value: fluffy unicorn
+  x-generator-values-description:
+    - name: text
+      value: The Dummy Bookshop API is a fictitious API aiming to demonstrate the OpenAPI Specification's features.
+    - name: text multiline
+      value: |
+        The Dummy Bookshop API is a fictitious API aiming to demonstrate
+        the OpenAPI Specification's features.
+
+        How to get an access token?
+
+        Go to the consumer settings page at this address https://www.dummy-book.shop/consumer-settings
+        and follow the instructions.
+
+        Concepts
+
+        The Dummy Bookshop API deals with book, authors and many other book related topics.
+    - name: markdown
+      value: The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+      default: true
+    - name: markdown multiline
+      value: |
+        The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate
+        the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+
+        Go to the [consumer settings page](https://www.dummy-book.shop/consumer-settings)
+        and follow the instructions.
+    - name: markdown with sections
+      value: |
+        The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate
+        the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+
+        # How to get an access token?
+
+        Go to the [consumer settings page](https://www.dummy-book.shop/consumer-settings)
+        and follow the instructions.
+
+        # Concepts
+
+        The Dummy Bookshop API deals with book, authors and many other book related topics.
+  contact:
+    name: "Bookshop Support team"
+    url: "https://www.dummy-book.shop/support"
+    email: "support@dummy-book.shop"
+  termsOfServices: https://www.dummy-book.shop/support
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+components:
+  Book:
+    x-generator-resource: true
+    type: object
+    required:
+      - id
+      - name
+      - price
+    properties:
+      id:
+        description: The ISBN of the book
+        type: string
+        x-generator-generated: true
+      name:
+        type: string
+        description: The name of the spaceship
+      price:
+        description: The price of a book
+        type: number
+        format: float
+      comment:
+        description: What the bookshop thinks about this book
+        type: string
