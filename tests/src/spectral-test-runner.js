@@ -27,13 +27,24 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
 
     // 4 - Testing the ruleset
     describe(`Testing ruleset ${item.test.ruleset}`, function() {
-      it('must have spectral wrapper loaded with ruleset', function() {
-        assert.equal(spectralWrapper !== undefined, true, 'spectral wrapper is undefined');
+      // x - Checking testsuite content
+      describe('Checking ruleset configuration', function() {
+        it('all rules of ruleset must have tests', function() {
+          // TODO put test loader stuff in a class
+          const foundTestedRules = SpectralTestLoader.getRuleNames(item.test);
+          const expectedTestedRules = spectralWrapper.getRuleNames();
+          assert.deepEqual(foundTestedRules, expectedTestedRules, 'some rules have no tests');
+        });
+        
+        it('a spectral wrapper is successfully loaded with targeted ruleset', function() {
+          assert.equal(spectralWrapper !== undefined, true, 'spectral wrapper is undefined');
+        });
       });
 
       // 5 - Looping on rule test in ruleset test
       for (const [rulename, ruleTest] of Object.entries(item.test.tests)){
         describe(`Testing rule ${rulename}`, function() {
+          // TODO add checks on given and then content (checking coverage is enough)
           let documentValidator;
 
           before(async function() {
@@ -100,5 +111,7 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
         });
       }
     });
+
+
   });
 });

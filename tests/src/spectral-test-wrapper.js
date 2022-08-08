@@ -42,6 +42,10 @@ export default class SpectralTestWrapper {
     return this.rulesetRaw.rules[rulename];
   }
 
+  getRuleNames() {
+    return Object.keys(this.spectral.ruleset.rules);
+  }
+
 
   /*********************/
   /* JSON Path Methods */

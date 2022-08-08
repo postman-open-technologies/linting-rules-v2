@@ -36,6 +36,10 @@ export function mapTestsAndRulesets(testFilenamePattern, rulesetFilenamePattern)
   return results;
 }
 
+export function getRuleNames(testSuite) {
+  return Object.keys(testSuite.tests);
+}
+
 export function getAllVersionsDocuments(document, versions) {
   const documentVersion = OpenApiUtils.getOpenApiVersionFromDocument(document);
   const documents = [];
