@@ -1,6 +1,7 @@
 import assert from 'assert';
 import * as SpectralTestLoader from './spectral-test-loader.js';
 import SpectralTestWrapper from './spectral-test-wrapper.js';
+import DocumentValidator from './document-validator.js';
 
 const tests = '**/*.rule-test.yaml';
 const rulesets = '**/*.spectral-v6.yaml';
@@ -33,6 +34,12 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
       // 5 - Looping on rule test in ruleset test
       for (const [rulename, ruleTest] of Object.entries(item.test.tests)){
         describe(`Testing rule ${rulename}`, function() {
+          let documentValidator;
+
+          before(async function() {
+            documentValidator = await DocumentValidator.getValidator(ruleTest.format);
+          });
+
           // 6 - Testing formats
           const formatsString = `${ruleTest.format} [${ruleTest.versions.join(',')}]`; 
           it(`must target format(s) ${formatsString}`, function() {
@@ -53,7 +60,14 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
             ruleTest.given.forEach(givenTest => {
               const documents = SpectralTestLoader.getAllVersionsDocuments(givenTest.document, ruleTest.versions);
               documents.forEach(document => {
-                it(`${givenTest.description} (OpenAPI ${document.version})`, function() {
+                it(`${givenTest.description} (OpenAPI ${document.version})`, async function() {
+
+                  // 8.1 Checking test document is valid
+                  const formatFoundProblems = await documentValidator.validate(document.document);
+                  const formatExpectedProblems = [];
+                  assert.deepEqual(formatFoundProblems, formatExpectedProblems, `test document is not a valid ${ruleTest.format} document`);
+
+                  // 8.2 Checking what is found by path
                   const foundPathsAndValues = spectralWrapper.getGivenPathsAndValues(rulename, document.document);
                   const expectedPathsAndValues = givenTest.paths;
                   // TODO split assert and add message
@@ -68,6 +82,13 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
               const documents = SpectralTestLoader.getAllVersionsDocuments(thenTest.document, ruleTest.versions);
               documents.forEach(document => {
                 it(`${thenTest.description} (OpenAPI ${document.version})`, async function() {
+
+                  // 9.1 Checking test document is valid
+                  const formatFoundProblems = await documentValidator.validate(document.document);
+                  const formatExpectedProblems = [];
+                  assert.deepEqual(formatFoundProblems, formatExpectedProblems, `test document is not a valid ${ruleTest.format} document`);
+
+                  // 9.2 Checking expected problems are found by the rules
                   const foundProblems = await spectralWrapper.lint(rulename, document.document, thenTest.description);
                   const expectedProblems = thenTest.problems;
                   // TODO split assert and add message

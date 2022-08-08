@@ -1,0 +1,7 @@
+swagger: "2.0"
+info:
+  title: an api name
+  version: '1.0'
+  contacte:
+    name: a contact name
+paths: {}
