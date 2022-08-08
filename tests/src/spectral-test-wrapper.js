@@ -11,7 +11,8 @@ import Parsers from "@stoplight/spectral-parsers"; // make sure to install the p
 
 // JSON Path Plus
 import {JSONPath} from 'jsonpath-plus';
-
+// to load pure rule without parsing
+import * as fileUtils from './file.js';
 
 export default class SpectralTestWrapper {
 
@@ -19,6 +20,7 @@ export default class SpectralTestWrapper {
 
   async initialize(rulesetFilename){
     this.absolutePath = resolve(rulesetFilename);
+    this.rulesetRaw = fileUtils.loadYaml(this.absolutePath);
     const ruleset = await bundleAndLoadRuleset(this.absolutePath, { fs, fetch })
     this.spectral = new Spectral();
     this.spectral.setRuleset(ruleset);
@@ -32,12 +34,18 @@ export default class SpectralTestWrapper {
   }
 
 
-  /*********************/
-  /* JSON Path Methods */
-  /*********************/
   getRuleDefinition(rulename) {
     return this.spectral.ruleset.rules[rulename].definition;
   }
+
+  getRawRuleDefinition(rulename) {
+    return this.rulesetRaw.rules[rulename];
+  }
+
+
+  /*********************/
+  /* JSON Path Methods */
+  /*********************/
 
   getRuleGivens(rulename) {
     const rule = this.getRuleDefinition(rulename);
@@ -82,17 +90,40 @@ export default class SpectralTestWrapper {
     // TODO enable a single then testing with a thenIndex optional argument
     const document = SpectralTestWrapper.getSpectralDocument(documentJson, documentName);
     const problems = await this.spectral.run(document);
-    //console.log('problems', problems);
     const simplifiedProblems = problems
                                   .filter(problem => (problem.code === rulename))
                                   .map(problem => ({ path: '/'+problem.path.join('/')}));
-    //console.log('simplifiedProblems', simplifiedProblems);
     return simplifiedProblems;
   }
 
   /* Severity */
   getRuleSeverity(rulename){
     return this.getRuleDefinition(rulename).severity;
+  }
+
+  /* Format and Versions of spec targeted */
+  // TODO do not take for granted that a rule works on a single format
+  getRuleFormatAndVersions(rulename){
+    const rule = this.getRawRuleDefinition(rulename);
+    //console.log(rule);
+    const formats = {
+      'oas2':   { format: 'openapi', versions: [ '2.0' ] },
+      'oas3':   { format: 'openapi', versions: [ '3.0', '3.1' ]},
+      'oas3_0': { format: 'openapi', versions: [ '3.0'] },
+      'oas3_1': { format: 'openapi', versions: [ '3.1' ]}
+    }
+    let format;
+    let versions = []
+    rule.formats.forEach(item => {
+      format = formats[item].format;
+      versions = Array.from(new Set(versions.concat(formats[item].versions))); 
+    });
+    const result = {
+      format: format,
+      versions: versions
+    };
+    //console.log(result);
+    return result;
   }
 
 }

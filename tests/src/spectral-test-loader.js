@@ -1,7 +1,6 @@
-import fs from 'fs';
-import yaml from 'js-yaml';
 import glob from 'glob';
 import {resolve} from 'path';
+import * as fileUtils from './file.js';
 
 import * as OpenApiUtils from './openapi.js';
 
@@ -12,16 +11,8 @@ function listFiles(pattern) {
   return absolutePaths;
 }
 
-function loadYaml(filename) {
-  // Will add JSON Schema validation
-  const fileContents = fs.readFileSync(filename, 'utf8');
-  const data = yaml.load(fileContents);
-  return data;
-}
-
-
 function loadTest(filename) {
-  const data = loadYaml(filename);
+  const data = fileUtils.loadYaml(filename);
   // Will add JSON Schema validation
   return data;
 }

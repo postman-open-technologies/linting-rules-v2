@@ -33,7 +33,15 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
       // 5 - Looping on rule test in ruleset test
       for (const [rulename, ruleTest] of Object.entries(item.test.tests)){
         describe(`Testing rule ${rulename}`, function() {
-          // 6 - Testing version
+          // 6 - Testing formats
+          const formatsString = `${ruleTest.format} [${ruleTest.versions.join(',')}]`; 
+          it(`must target format(s) ${formatsString}`, function() {
+            const foundFormatVersions = spectralWrapper.getRuleFormatAndVersions(rulename);
+            const expectedVersions = ruleTest.versions;
+            const expectedFormat = ruleTest.format;
+            assert.deepEqual(foundFormatVersions.format, expectedFormat, 'Wrong format found');
+            assert.deepEqual(foundFormatVersions.versions, expectedVersions, 'Wrong format version(s) found');
+          });
           // 7 - Testing severity
           it(`must have severity ${ruleTest.severity}`, function() {
             const foundSeverity = spectralWrapper.getRuleSeverity(rulename);
@@ -46,9 +54,9 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
               const documents = SpectralTestLoader.getAllVersionsDocuments(givenTest.document, ruleTest.versions);
               documents.forEach(document => {
                 it(`${givenTest.description} (OpenAPI ${document.version})`, function() {
-                  //console.log(`${givenTest.description} (OpenAPI ${document.version})`, document);
                   const foundPathsAndValues = spectralWrapper.getGivenPathsAndValues(rulename, document.document);
                   const expectedPathsAndValues = givenTest.paths;
+                  // TODO split assert and add message
                   assert.deepEqual(foundPathsAndValues, expectedPathsAndValues);
                 })  
               });
@@ -62,6 +70,7 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
                 it(`${thenTest.description} (OpenAPI ${document.version})`, async function() {
                   const foundProblems = await spectralWrapper.lint(rulename, document.document, thenTest.description);
                   const expectedProblems = thenTest.problems;
+                  // TODO split assert and add message
                   assert.deepEqual(foundProblems, expectedProblems);
                 });  
               });

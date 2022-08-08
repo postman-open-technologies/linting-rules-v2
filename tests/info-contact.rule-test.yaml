@@ -1,6 +1,7 @@
 ruleset: info-contact.spectral-v6.yaml
 tests:
   info-contact:  
+    format: openapi
     versions:
       - "2.0"
       - "3.0"
