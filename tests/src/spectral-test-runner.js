@@ -12,10 +12,23 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
   // Some try/catch hecks to add here about no test founds
   //const mappedTestsRulesets = mapTestsAndRulesets('**/*.rule-test.yaml', '**/*.spectral-v6.yaml');
   const mappedTestsRulesets = SpectralTestLoader.mapTestsAndRulesets(tests, rulesets);
-  it('must have mapped tests and rulesets', function() {
-    assert.equal(mappedTestsRulesets !== undefined, true);
-    assert.equal(mappedTestsRulesets.length>0, true);
+  const mapper = new SpectralTestLoader.SpectralTestMapper(tests, rulesets);
+
+  describe('Checking ruleset vs test coverage', function() {
+    it('must have mapped tests and rulesets', function() {
+      assert.equal(mappedTestsRulesets !== undefined, true);
+      assert.equal(mappedTestsRulesets.length>0, true);
+    });
+
+    it('must find a test suite for each rule', function() {
+      assert.deepEqual(mapper.getRulesetsWithoutTest(), [], 'Some rulesets don\'t have test suites');
+    });
+
+    it('must find a rule for each test suite', function() {
+      assert.deepEqual(mapper.getTestsWithoutRuleset(), [], 'Some test suites target non-existing rulesets');
+    });
   });
+
   // 2 - Looping on (ruleset/testfile)
   mappedTestsRulesets.forEach(item => {
     let spectralWrapper;
@@ -26,7 +39,7 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
     });
 
     // 4 - Testing the ruleset
-    describe(`Testing ruleset ${item.test.ruleset}`, function() {
+    describe(`🗂  Testing ruleset ${item.test.ruleset}`, function() {
       // x - Checking testsuite content
       describe('Checking ruleset configuration', function() {
         it('all rules of ruleset must have tests', function() {
@@ -39,11 +52,12 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
         it('a spectral wrapper is successfully loaded with targeted ruleset', function() {
           assert.equal(spectralWrapper !== undefined, true, 'spectral wrapper is undefined');
         });
+
       });
 
       // 5 - Looping on rule test in ruleset test
       for (const [rulename, ruleTest] of Object.entries(item.test.tests)){
-        describe(`Testing rule ${rulename}`, function() {
+        describe(`📏 Testing rule [${rulename}]`, function() {
           // TODO add checks on given and then content (checking coverage is enough)
           let documentValidator;
 

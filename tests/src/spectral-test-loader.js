@@ -4,6 +4,61 @@ import * as fileUtils from './file.js';
 
 import * as OpenApiUtils from './openapi.js';
 
+
+function mapTestsAndRulesetsV2(testFilenamePattern, rulesetFilenamePattern){
+  const testFilenames = listFiles(testFilenamePattern);
+  const rulesetFilenames = listFiles(rulesetFilenamePattern);
+  const results = {
+    ok: [],
+    noTest: rulesetFilenames,
+    noRuleset: []
+  }
+  testFilenames.forEach(testFilename => {
+    const test = loadTest(testFilename);
+    const rulesetFilename = rulesetFilenames.find(item => item.endsWith(test.ruleset));
+    if(rulesetFilename){
+      const rulesetFilenameIndex = rulesetFilenames.findIndex(item => item.endsWith(test.ruleset));
+      rulesetFilenames.splice(rulesetFilenameIndex, 1);
+      results.ok.push({
+        rulesetFilename: rulesetFilename,
+        testFilename: testFilename,
+        test: test
+      });
+    }
+    else {
+      results.noRuleset.push({
+        testFilename: testFilename,
+        testRuleset: test.ruleset
+      });
+    }
+  });
+  // Will add unmapped test
+  return results;
+}
+export class SpectralTestMapper {
+
+  constructor(testFilenamePattern, rulesetFilenamePattern) {
+    this.testFilenamePattern = testFilenamePattern;
+    this.rulesetFilenamePattern = rulesetFilenamePattern;
+    this.testFilenames = listFiles(testFilenamePattern);
+    this.rulesetFilenames = listFiles(rulesetFilenamePattern);  
+    this.mapping = mapTestsAndRulesetsV2(testFilenamePattern, rulesetFilenamePattern);
+  }
+
+  getTests() {
+    return this.mapping.ok;
+  }
+
+  getRulesetsWithoutTest(){
+    return this.mapping.noTest;
+  }
+
+  getTestsWithoutRuleset(){
+    return this.mapping.noRuleset;
+  }
+
+}
+
 function listFiles(pattern) {
   const paths = glob.sync(pattern);
   // Turning relative path in absolute ones
