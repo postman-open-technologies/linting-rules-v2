@@ -35,6 +35,11 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
         describe(`Testing rule ${rulename}`, function() {
           // 6 - Testing version
           // 7 - Testing severity
+          it(`must have severity ${ruleTest.severity}`, function() {
+            const foundSeverity = spectralWrapper.getRuleSeverity(rulename);
+            const expectedSeverity = ruleTest.severity;
+            assert.equal(foundSeverity, expectedSeverity);
+          });
           // 8 - Testing given
           describe(`Testing rule ${rulename} given`, function() {
             ruleTest.given.forEach(givenTest => {

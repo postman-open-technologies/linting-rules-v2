@@ -90,4 +90,9 @@ export default class SpectralTestWrapper {
     return simplifiedProblems;
   }
 
+  /* Severity */
+  getRuleSeverity(rulename){
+    return this.getRuleDefinition(rulename).severity;
+  }
+
 }
