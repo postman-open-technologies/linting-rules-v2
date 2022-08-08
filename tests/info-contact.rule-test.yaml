@@ -2,9 +2,9 @@ ruleset: info-contact.spectral-v6.yaml
 tests:
   info-contact:  
     versions:
-      - 2.0
-      - 3.0
-      - 3.1
+      - "2.0"
+      - "3.0"
+      - "3.1"
     severity: error
     given:
       - description: must find the info object
@@ -14,7 +14,7 @@ tests:
               title: an api name
               version: '1.0'
         document:
-          openapi: "3.1.0"
+          openapi: "{{versions}}"
           info:
             title: an api name
             version: '1.0'
@@ -24,7 +24,7 @@ tests:
         problems:
           - path: /info
         document:
-          openapi: "3.1.0"
+          openapi: "{{versions}}"
           info:
             title: an api name
             version: '1.0'
@@ -32,7 +32,7 @@ tests:
       - description: must return no problem if there's contact property in info
         problems: []
         document:
-          openapi: "3.1.0"
+          openapi: "{{versions}}"
           info:
             title: an api name
             version: '1.0'

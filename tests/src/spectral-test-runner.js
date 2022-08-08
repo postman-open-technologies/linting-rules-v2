@@ -1,5 +1,5 @@
 import assert from 'assert';
-import mapTestsAndRulesets from './spectral-test-loader.js';
+import * as SpectralTestLoader from './spectral-test-loader.js';
 import SpectralTestWrapper from './spectral-test-wrapper.js';
 
 const tests = '**/*.rule-test.yaml';
@@ -10,7 +10,7 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
   // TODO: Need to add mapping control, all ruleset have test files, all test files have ruleset
   // Some try/catch hecks to add here about no test founds
   //const mappedTestsRulesets = mapTestsAndRulesets('**/*.rule-test.yaml', '**/*.spectral-v6.yaml');
-  const mappedTestsRulesets = mapTestsAndRulesets(tests, rulesets);
+  const mappedTestsRulesets = SpectralTestLoader.mapTestsAndRulesets(tests, rulesets);
   it('must have mapped tests and rulesets', function() {
     assert.equal(mappedTestsRulesets !== undefined, true);
     assert.equal(mappedTestsRulesets.length>0, true);
@@ -38,20 +38,27 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
           // 8 - Testing given
           describe(`Testing rule ${rulename} given`, function() {
             ruleTest.given.forEach(givenTest => {
-              it(givenTest.description, function() {
-                const foundPathsAndValues = spectralWrapper.getGivenPathsAndValues(rulename, givenTest.document);
-                const expectedPathsAndValues = givenTest.paths;
-                assert.deepEqual(foundPathsAndValues, expectedPathsAndValues);
-              })
+              const documents = SpectralTestLoader.getAllVersionsDocuments(givenTest.document, ruleTest.versions);
+              documents.forEach(document => {
+                it(`${givenTest.description} (OpenAPI ${document.version})`, function() {
+                  //console.log(`${givenTest.description} (OpenAPI ${document.version})`, document);
+                  const foundPathsAndValues = spectralWrapper.getGivenPathsAndValues(rulename, document.document);
+                  const expectedPathsAndValues = givenTest.paths;
+                  assert.deepEqual(foundPathsAndValues, expectedPathsAndValues);
+                })  
+              });
             });
           });
           // 9 - Testing then
           describe(`Testing rule ${rulename} then`, function() {
             ruleTest.then.forEach(thenTest => {
-              it(thenTest.description, async function() {
-                const foundProblems = await spectralWrapper.lint(rulename, thenTest.document, thenTest.description);
-                const expectedProblems = thenTest.problems;
-                assert.deepEqual(foundProblems, expectedProblems);
+              const documents = SpectralTestLoader.getAllVersionsDocuments(thenTest.document, ruleTest.versions);
+              documents.forEach(document => {
+                it(`${thenTest.description} (OpenAPI ${document.version})`, async function() {
+                  const foundProblems = await spectralWrapper.lint(rulename, document.document, thenTest.description);
+                  const expectedProblems = thenTest.problems;
+                  assert.deepEqual(foundProblems, expectedProblems);
+                });  
               });
             });
           });

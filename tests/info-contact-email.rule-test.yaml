@@ -2,9 +2,9 @@ ruleset: info-contact-email.spectral-v6.yaml
 tests:
   info-contact-email:
     versions:
-      - 2.0
-      - 3.0
-      - 3.1
+      - "2.0"
+      - "3.0"
+      - "3.1"
     severity: error
     given:
       - description: must find the contact object
@@ -13,7 +13,7 @@ tests:
             value:
               name: a contact name
         document:
-          openapi: "3.1.0"
+          openapi: "{{versions}}"
           info:
             title: an api name
             version: '1.0'
@@ -25,7 +25,7 @@ tests:
         problems:
           - path: /info/contact
         document:
-          openapi: "3.1.0"
+          openapi: "{{versions}}"
           info:
             title: an api name
             version: '1.0'
@@ -35,7 +35,7 @@ tests:
       - description: must return no problem if there's an email in contact
         problems: []
         document:
-          openapi: "3.1.0"
+          openapi: "{{versions}}"
           info:
             title: an api name
             version: '1.0'
@@ -45,7 +45,7 @@ tests:
       - description: must return no problem if there's no contact
         problems: []
         document:
-          openapi: "3.1.0"
+          openapi: "{{versions}}"
           info:
             title: an api name
             version: '1.0'
