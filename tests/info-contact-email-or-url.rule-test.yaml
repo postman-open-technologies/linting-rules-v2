@@ -1,0 +1,62 @@
+rule: info-contact.spectral-v6.yaml
+tests:
+  spectralVersions:
+    - "6"
+  openApiVersions:
+    - "2.0"
+    - "3.0"
+    - "3.1"
+  severity: error
+  given:
+    - description: must find the info object
+      paths:
+        - path: /info
+          value:
+            title: an api name
+            version: '1.0'
+      document:
+        openapi: "3.1.0"
+        info:
+          title: an api name
+          version: '1.0'
+        paths: {} 
+  then:
+    - description: must return a problem if there's no email or url in contact
+      problems:
+        - path: /info/contact
+      document:
+        openapi: "3.1.0"
+        info:
+          title: an api name
+          version: '1.0'
+          contact:
+            name: a contact name
+        paths: {}
+    - description: must return no problem if there's an email in contact
+      problems: []
+      document:
+        openapi: "3.1.0"
+        info:
+          title: an api name
+          version: '1.0'
+          contact: 
+            email: email@contact.com
+        paths: {}
+    - description: must return no problem if there's a url in contact
+      problems: []
+      document:
+        openapi: "3.1.0"
+        info:
+          title: an api name
+          version: '1.0'
+          contact: 
+            url: https://domain.com/contact
+        paths: {}  
+    - description: must return no problem if there's no contact
+      problems: []
+      document:
+        openapi: "3.1.0"
+        info:
+          title: an api name
+          version: '1.0'
+        paths: {} 

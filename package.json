@@ -12,7 +12,15 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "js-yaml": "^4.1.0"
+  "devDependencies": {
+    "@stoplight/spectral-core": "^1.13.0",
+    "@stoplight/spectral-functions": "^1.7.0",
+    "@stoplight/spectral-parsers": "^1.0.1",
+    "@stoplight/spectral-ruleset-bundler": "^1.3.1",
+    "@stoplight/spectral-runtime": "^1.1.2",
+    "glob": "^8.0.3",
+    "js-yaml": "^4.1.0",
+    "jsonpath-plus": "^7.0.0",
+    "mocha": "^10.0.0"
   }
 }

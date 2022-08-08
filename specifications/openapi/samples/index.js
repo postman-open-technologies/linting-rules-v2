@@ -140,11 +140,6 @@ const options = {
     contact: true,
     license: false,
     termsOfServices: false
-  },
-  components: {
-    Book: {
-      'x-generator-resource': [search]
-    }
   }
 }
 

@@ -57,25 +57,26 @@ info:
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 
 components:
-  Book:
-    x-generator-resource: true
-    type: object
-    required:
-      - id
-      - name
-      - price
-    properties:
-      id:
-        description: The ISBN of the book
-        type: string
-        x-generator-generated: true
-      name:
-        type: string
-        description: The name of the spaceship
-      price:
-        description: The price of a book
-        type: number
-        format: float
-      comment:
-        description: What the bookshop thinks about this book
-        type: string
+  schemas:
+    Book:
+      x-generator-schema-type: resource
+      type: object
+      required:
+        - id
+        - name
+        - price
+      properties:
+        id:
+          description: The ISBN of the book
+          type: string
+          x-generator-generated: true
+        name:
+          type: string
+          description: The name of the spaceship
+        price:
+          description: The price of a book
+          type: number
+          format: float
+        comment:
+          description: What the bookshop thinks about this book
+          type: string

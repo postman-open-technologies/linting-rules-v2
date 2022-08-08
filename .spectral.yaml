@@ -1,5 +1,5 @@
 rules:
-  openapi-v3X-info-contact:
+  "info-contact":
     description: Ensures that all APIs have contact information.
     message: API must have a contact information available.
     given: $.info
@@ -7,6 +7,7 @@ rules:
     recommended: true
     type: style
     formats:
+      - oas2
       - oas3
     then:
       field: contact
