@@ -1,141 +1,85 @@
-import glob from 'glob';
-import {resolve} from 'path';
-import * as fileUtils from './file.js';
+import * as FileUtils from './file.js';
+import SpectralTestValidator from './spectral-test-validator.js';
 
-import * as OpenApiUtils from './openapi.js';
-
-
-function mapTestsAndRulesetsV2(testFilenamePattern, rulesetFilenamePattern){
-  const testFilenames = listFiles(testFilenamePattern);
-  const rulesetFilenames = listFiles(rulesetFilenamePattern);
+function mapTestsAndRulesets(testFilenames, rulesetFilenames){
+  const validator = new SpectralTestValidator();
   const results = {
-    ok: [],
-    noTest: rulesetFilenames,
-    noRuleset: []
+    runnableTests: [],
+    withoutTestRulesets: [],
+    withoutRulesetTests: [],
+    invalidTests: []
   }
+  const notFoundRulesetFilenames = JSON.parse(JSON.stringify(rulesetFilenames));
   testFilenames.forEach(testFilename => {
-    const test = loadTest(testFilename);
-    const rulesetFilename = rulesetFilenames.find(item => item.endsWith(test.ruleset));
-    if(rulesetFilename){
-      const rulesetFilenameIndex = rulesetFilenames.findIndex(item => item.endsWith(test.ruleset));
-      rulesetFilenames.splice(rulesetFilenameIndex, 1);
-      results.ok.push({
-        rulesetFilename: rulesetFilename,
+    const test = FileUtils.loadYaml(testFilename);
+    const testValidatorProblems = validator.validate(test);
+    if(testValidatorProblems.length > 0){
+      results.invalidTests.push({
         testFilename: testFilename,
-        test: test
-      });
+        problems: testValidatorProblems
+      })
     }
     else {
-      results.noRuleset.push({
-        testFilename: testFilename,
-        testRuleset: test.ruleset
-      });
+      const rulesetFilename = notFoundRulesetFilenames.find(item => item.endsWith(test.ruleset));
+      if(rulesetFilename){
+        const rulesetFilenameIndex = notFoundRulesetFilenames.findIndex(item => item.endsWith(test.ruleset));
+        notFoundRulesetFilenames.splice(rulesetFilenameIndex, 1);
+        results.runnableTests.push({
+          rulesetFilename: rulesetFilename,
+          testFilename: testFilename,
+          test: test
+        });
+      }
+      else {
+        results.withoutRulesetTests.push({
+          testFilename: testFilename,
+          testRuleset: test.ruleset
+        });
+      }
     }
+  });
+  notFoundRulesetFilenames.forEach(rulesetFilename => {
+    results.withoutTestRulesets.push({rulesetFilename: rulesetFilename});
   });
   // Will add unmapped test
   return results;
 }
-export class SpectralTestMapper {
+
+export default class SpectralTestLoader {
 
   constructor(testFilenamePattern, rulesetFilenamePattern) {
     this.testFilenamePattern = testFilenamePattern;
     this.rulesetFilenamePattern = rulesetFilenamePattern;
-    this.testFilenames = listFiles(testFilenamePattern);
-    this.rulesetFilenames = listFiles(rulesetFilenamePattern);  
-    this.mapping = mapTestsAndRulesetsV2(testFilenamePattern, rulesetFilenamePattern);
+    this.testFilenames = FileUtils.listFiles(testFilenamePattern);
+    this.rulesetFilenames = FileUtils.listFiles(rulesetFilenamePattern);  
+    this.mapping = mapTestsAndRulesets(this.testFilenames, this.rulesetFilenames);
   }
 
-  getTests() {
-    return this.mapping.ok;
+  getRunnableTests() {
+    return this.mapping.runnableTests;
   }
 
-  getRulesetsWithoutTest(){
-    return this.mapping.noTest;
+  getWithoutTestRulesets(){
+    return this.mapping.withoutTestRulesets;
   }
 
-  getTestsWithoutRuleset(){
-    return this.mapping.noRuleset;
+  getWithoutRulesetTests(){
+    return this.mapping.withoutRulesetTests;
+  }
+
+  getInvalidTests() {
+    return this.mapping.invalidTests;
   }
 
 }
 
-function listFiles(pattern) {
-  const paths = glob.sync(pattern);
-  // Turning relative path in absolute ones
-  const absolutePaths = paths.map(path => resolve(path));
-  return absolutePaths;
-}
 
-function loadTest(filename) {
-  const data = fileUtils.loadYaml(filename);
-  // Will add JSON Schema validation
-  return data;
-}
-
-export function mapTestsAndRulesets(testFilenamePattern, rulesetFilenamePattern){
-  const results = []
-  const testFilenames = listFiles(testFilenamePattern);
-  const rulesetFilenames = listFiles(rulesetFilenamePattern);
-  testFilenames.forEach(testFilename => {
-    const test = loadTest(testFilename);
-    const rulesetFilename = rulesetFilenames.find(item => item.endsWith(test.ruleset));
-    if(rulesetFilename){
-      results.push({
-        rulesetFilename: rulesetFilename,
-        testFilename: testFilename,
-        test: test
-      });
-    }
-  });
-  // Will add unmapped test
-  return results;
-}
-
-export function getRuleNames(testSuite) {
-  return Object.keys(testSuite.tests);
-}
-
-export function getAllVersionsDocuments(document, versions) {
-  const documentVersion = OpenApiUtils.getOpenApiVersionFromDocument(document);
-  const documents = [];
-  if(documentVersion === "{{versions}}"){
-    versions.forEach(version => {
-      documents.push({
-        version: OpenApiUtils.getShortVersionValue(version),
-        document: OpenApiUtils.getDocumentWithVersion(document, version)
-      }
-      )
-    });
-  }
-  else {
-    documents.push({
-      version: OpenApiUtils.getShortVersionValue(documentVersion), 
-      document: document
-    });
-  }
-  return documents;
-}
-
+//const tests = '**/*.rule-test.yaml';
+//const rulesets = '**/*.spectral-v6.yaml';
 /*
-let document = {
-  "openapi": "3.1.0",
-  "info": {
-    "title": "an api name",
-    "version": "1.0"
-  },
-  "paths": {}
-}
-
-console.log('getAllVersionsDocuments', getAllVersionsDocuments(document, ["2.0", "3.0", "3.1"]));
-
-document = {
-  "openapi": "{{versions}}",
-  "info": {
-    "title": "an api name",
-    "version": "1.0"
-  },
-  "paths": {}
-}
-
-console.log('getAllVersionsDocuments', getAllVersionsDocuments(document, ["2.0", "3.0", "3.1"]));
+const loader = new SpectralTestLoader(tests, rulesets);
+console.log('runnable tests', loader.getRunnableTests());
+console.log('tests without rulesets', loader.getWithoutRulesetTests());
+console.log('rulesets without tests', loader.getWithoutTestRulesets());
+console.log('invalid tests', loader.getInvalidTests());
 */

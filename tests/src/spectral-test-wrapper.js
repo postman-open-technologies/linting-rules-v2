@@ -71,7 +71,7 @@ export default class SpectralTestWrapper {
     const given = this.getRuleGiven(rulename, givenIndex);
     // TODO handle aliases by hacking Spectral inner code/functions
     const results = JSONPath({ resultType: 'all', path: given, json: document });
-    const pathsAndValues = results.map( result => ({ path: result.pointer, value: result.value}));
+    const pathsAndValues = results.map( result => ({ path: `#${result.pointer}`, value: result.value}));
     return pathsAndValues;
   }
 
@@ -96,7 +96,7 @@ export default class SpectralTestWrapper {
     const problems = await this.spectral.run(document);
     const simplifiedProblems = problems
                                   .filter(problem => (problem.code === rulename))
-                                  .map(problem => ({ path: '/'+problem.path.join('/')}));
+                                  .map(problem => ({ path: `#/${problem.path.join('/')}`}));
     return simplifiedProblems;
   }
 

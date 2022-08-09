@@ -1,1 +1,1 @@
-Spectral Testing libraries, all this should go into a dedicated repository
+Experimental Spectral Testing libraries, all this should go into a dedicated repository

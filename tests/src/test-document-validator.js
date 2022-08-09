@@ -15,7 +15,7 @@ import { fileURLToPath } from 'url';
 
 function getRulesetFilename(format) {
   const formats = {
-    openapi: 'document-validator-openapi.yaml'
+    openapi: 'test-document-validator-openapi.yaml'
   }
   const directory = dirname(fileURLToPath(import.meta.url));
   const filename = directory+'/'+formats[format];

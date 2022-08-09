@@ -1,5 +1,6 @@
+testSuiteVersion: spectral-v1.0
 ruleset: info-contact.spectral-v6.yaml
-tests:
+rules:
   info-contact:  
     format: openapi
     versions:
@@ -9,31 +10,31 @@ tests:
     severity: error
     given:
       - description: must find the info object
-        paths:
-          - path: /info
+        expected:
+          - path: "#/info"
             value:
               title: an api name
               version: '1.0'
-        document:
-          openapi: "{{versions}}"
+        documentTemplate:
+          openapi: "3.1.0"
           info:
             title: an api name
             version: '1.0'
           paths: {} 
     then:
       - description: must return a problem if there's no contact property in info
-        problems:
-          - path: /info
-        document:
-          openapi: "{{versions}}"
+        expected:
+          - path: "#/info"
+        documentTemplate:
+          openapi: "3.1.0"
           info:
             title: an api name
             version: '1.0'
           paths: {}
       - description: must return no problem if there's contact property in info
-        problems: []
-        document:
-          openapi: "{{versions}}"
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
           info:
             title: an api name
             version: '1.0'
