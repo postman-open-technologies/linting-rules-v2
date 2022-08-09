@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx mocha tests/src/spectral-test-runner.js  "
   },
   "author": "",
   "license": "ISC",

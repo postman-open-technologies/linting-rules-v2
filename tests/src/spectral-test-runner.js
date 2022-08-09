@@ -4,10 +4,9 @@ import SpectralTestWrapper from './spectral-test-wrapper.js';
 import DocumentValidator from './test-document-validator.js';
 import * as SpectralTest from './spectral-test.js';
 
+// TODO fix pattern to only get the "rules" not the other ones
 const tests = '**/*.rule-test.yaml';
 const rulesets = '**/*.spectral-v6.yaml';
-
-
 
 describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
   // 1 - Loading test and rule files and mapping them
@@ -35,7 +34,7 @@ describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
       assert.deepEqual(testLoader.getWithoutRulesetTests(), [], 'Some tests target non-existing rulesets');
     });
   });
-  console.log('testLoader', testLoader.getRunnableTests());
+
   // 2 - Looping on (ruleset/testfile)
   testLoader.getRunnableTests().forEach(rulesetTest => {
     let spectralWrapper;
