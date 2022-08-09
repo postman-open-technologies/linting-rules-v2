@@ -1,0 +1,77 @@
+id: response-delete-500-status-code
+name: Response DELETE 500 Status Code
+description: Ensures DELETE operations have a 500 status code response.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response DELETE 500 Status Code
+      slug: openapi-v3-response-delete-500-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that DELETE methods all
+        have a 500 status code response in an OpenAPI. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures DELETE operations have a 500 status code response.
+        message: A DELETE operation should have a 500 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas3
+        given: $.paths[*].delete.responses
+        then:
+          field: '500'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-delete-500-status-code.md?ref=main
+      github_sha: 96bb06a83aa6d7596b6e5d6ed8b4211fb12e1e83
+      collection_id: 12959542-1d50102e-8dc2-4d8c-9a0c-5e5e6829433b
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more DELETE operation objects in your
+        API schema doesn't contain the 500 status code.
+      fixDescription: Make sure that DELETE methods all have a 500 status code response.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Response DELETE 500 Status Code
+      slug: swagger-v2-response-delete-500-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that DELETE methods all
+        have a 500 status code response in an Swagger. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures DELETE operations have a 500 status code response.
+        message: A DELETE operation should have a 500 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas2
+        given: $.paths[*].delete.responses
+        then:
+          field: '500'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-response-delete-500-status-code.md?ref=main
+      github_sha: 3a26b0f147486b53a4a88637c1b7857d4c703fee
+      collection_id: 12959542-c61e2db1-bfef-4763-8727-8fbd8352bb64
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more DELETE operation objects in your
+        API schema doesn't contain the 500 status code.
+      fixDescription: Make sure that DELETE methods all have a 500 status code response.
+identicalSources: false
+selected: true
+identicalDocumentation: true

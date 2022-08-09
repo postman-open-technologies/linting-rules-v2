@@ -1,0 +1,79 @@
+id: operations-tags-one
+name: Operations Tags One
+description: Ensures that each of the operations have at least one tag.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Operations Tags One
+      slug: openapi-v3-operations-tags-one
+      summary: >-
+        This is a Spectral governance rule to make sure that all operations have
+        at least one tag. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Tags
+      rule:
+        description: Ensures that each of the operations have at least one tag.
+        message: All of your operations need to have at least one tag.
+        given: $
+        severity: error
+        then:
+          field: tags
+          function: length
+          functionOptions:
+            min: 1
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-tags-one.md?ref=main
+      github_sha: 9e5423e801dc0e3511a6e9f1ec41a9b54b572acc
+      collection_id: 12959542-8d6b759c-38f5-4525-90f7-ce96fac65b1f
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more operation objects in your API schema contains a tags array,
+        but the array does not contain any items.
+      fixDescription: >-
+        Operation tags can be used to create logical groupings of operations in
+        API documentation. Add at least one tag to the tags array for each
+        operation object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Tags One
+      slug: swagger-v2-operations-tags-one
+      summary: >-
+        This is a Spectral governance rule to make sure that all operations have
+        at least one tag. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Tags
+      rule:
+        description: Ensures that each of the operations have at least one tag.
+        message: All of your operations need to have at least one tag.
+        given: $
+        severity: error
+        then:
+          field: tags
+          function: length
+          functionOptions:
+            min: 1
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-tags-one.md?ref=main
+      github_sha: 5267caf7ff68ef89441d27cc825122a245b67df8
+      collection_id: 12959542-2e7e56d9-24aa-4928-94a1-d1c2751f259d
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more operation objects in your API schema contains a tags array,
+        but the array does not contain any items.
+      fixDescription: >-
+        Operation tags can be used to create logical groupings of operations in
+        API documentation. Add at least one tag to the tags array for each
+        operation object.
+identicalSources: true
+selected: true
+identicalDocumentation: true

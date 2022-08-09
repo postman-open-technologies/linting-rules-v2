@@ -1,0 +1,9 @@
+rules:
+  info-x-api-id:
+    description: Ensures that all Swaggers have a information object API ID extension.
+    message: The info object should have an API ID extension.
+    given: $.info
+    severity: error
+    then:
+      field: x-api-id
+      function: truthy

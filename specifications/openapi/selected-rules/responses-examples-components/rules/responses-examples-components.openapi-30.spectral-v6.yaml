@@ -1,0 +1,13 @@
+rules:
+  responses-examples-components:
+    description: >-
+      Check response examples to ensure that they only have references to
+      components.
+    message: Response examples should only reference components.
+    given:
+      - $..responses.*.content..*.examples.$ref
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '#/components/'

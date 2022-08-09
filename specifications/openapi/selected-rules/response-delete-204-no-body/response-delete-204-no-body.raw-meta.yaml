@@ -1,0 +1,71 @@
+id: response-delete-204-no-body
+name: Response DELETE 204 No Body
+description: Ensures DELETE operations do not have a response body.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response DELETE 204 No Body
+      slug: openapi-v3-response-delete-204-no-body
+      summary: >-
+        This is a Spectral governance rule to make sure that DELETE methods do
+        not have a response body in an OpenAPI. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures DELETE operations do not have a response body.
+        message: A DELETE operation should not have a response body.
+        severity: error
+        given: $paths.delete.responses.204
+        then:
+          field: content
+          function: falsy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-delete-204-no-body.md?ref=main
+      github_sha: 5168ff9e2b7caa817eb089e468e149566997c27a
+      collection_id: 12959542-cb379d15-e509-49dd-831b-7f473dec123e
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more DELETE operation objects in your API schema contains a
+        response body.
+      fixDescription: Make sure that DELETE methods do not have a response body.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Response DELETE 204 No Body
+      slug: swagger-v2-response-delete-204-no-body
+      summary: >-
+        This is a Spectral governance rule to make sure that DELETE methods do
+        not have a response body in an Swagger. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures DELETE operations do not have a response body.
+        message: A DELETE operation should not have a response body.
+        severity: error
+        given: $paths.delete.responses.204
+        then:
+          field: schema
+          function: falsy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-response-delete-204-no-body.md?ref=main
+      github_sha: 9915c677b3ed4eddfc16a3a15ce1fe1d94181006
+      collection_id: 12959542-38cb2ff5-4cb3-41b8-a9f7-5f19931c97ea
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more DELETE operation objects in your API schema contains a
+        response body.
+      fixDescription: Make sure that DELETE methods do not have a response body.
+identicalSources: false
+selected: true
+identicalDocumentation: true

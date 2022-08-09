@@ -1,0 +1,81 @@
+id: info-description
+name: OpenAPI V3 Info Description
+description: Ensures that all OpenAPIs have a information description.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Info Description
+      slug: openapi-v3-info-description
+      summary: >-
+        This is a Spectral governance rule to enforce that an OpenAPI has a
+        description included as part of the information object, making sure
+        there is as much detail about what an API does available for consumers.
+        Here is a JSON version of the rule that can be applied using this
+        API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Info
+        - Documentation
+      rule:
+        description: Ensures that all OpenAPIs have a information description.
+        message: The info object should have a description.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas3
+        then:
+          field: description
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-description.md?ref=main
+      github_sha: 716238325222cace729d13d6c42e7b0b29fc572f
+      collection_id: 12959542-6fc8abf4-783d-471f-b967-841f431e9f97
+    documentation:
+      category: API Information
+      issueDescription: Your API schema's info object doesn't contain a description.
+      fixDescription: >-
+        Although a description isn't required, including it allows you to
+        provide your users with information about what the API does. Add a
+        description to your API schema's info object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 Info Description
+      slug: swagger-v2-info-description
+      summary: >-
+        This is a Spectral governance rule to enforce that an Swagger has a
+        description included as part of the information object, making sure
+        there is as much detail about what an API does available for consumers.
+        Here is a JSON version of the rule that can be applied using this
+        API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Info
+        - Documentation
+      rule:
+        description: Ensures that all Swaggers have a information description.
+        message: The info object should have a description.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas2
+        then:
+          field: description
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-description.md?ref=main
+      github_sha: cdb0b11fc87dd7cdc543e052c90c15ad1f9e8c88
+      collection_id: 12959542-bcd6f925-0ac7-481b-a942-8042ce60b719
+    documentation:
+      category: API Information
+      issueDescription: Your API schema's info object doesn't contain a description.
+      fixDescription: >-
+        Although a description isn't required, including it allows you to
+        provide your users with information about what the API does. Add a
+        description to your API schema's info object.
+identicalSources: false
+selected: true
+identicalDocumentation: true

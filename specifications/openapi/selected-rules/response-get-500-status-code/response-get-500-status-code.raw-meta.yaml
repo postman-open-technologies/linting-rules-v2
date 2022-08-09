@@ -1,0 +1,77 @@
+id: response-get-500-status-code
+name: Response GET 500 Status Code
+description: Ensures GET operations have a 500 status code response.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response GET 500 Status Code
+      slug: openapi-v3-response-get-500-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that GET methods all
+        have a 500 status code response in an OpenAPI. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures GET operations have a 500 status code response.
+        message: A GET operation should have a 500 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas3
+        given: $.paths[*].get.responses
+        then:
+          field: '500'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-get-500-status-code.md?ref=main
+      github_sha: 13aecd7c87ffe6a79ed2a10f37cbcf5f3595a5a2
+      collection_id: 12959542-aef2b3fa-9440-4984-bc03-e646e18046de
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more GET operation objects in your API
+        schema doesn't contain the 500 status code.
+      fixDescription: Make sure that GET methods all have a 500 status code response.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Response GET 500 Status Code
+      slug: swagger-v2-response-get-500-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that GET methods all
+        have a 500 status code response in an Swagger. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures GET operations have a 500 status code response.
+        message: A GET operation should have a 500 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas2
+        given: $.paths[*].get.responses
+        then:
+          field: '500'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-response-get-500-status-code.md?ref=main
+      github_sha: c29157f397b1f7d1c9b5f87e27de75b455607471
+      collection_id: 12959542-9a78fce7-9d13-41ee-93c1-8e62b1f76ca6
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more GET operation objects in your API
+        schema doesn't contain the 500 status code.
+      fixDescription: Make sure that GET methods all have a 500 status code response.
+identicalSources: false
+selected: true
+identicalDocumentation: true

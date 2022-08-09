@@ -1,0 +1,81 @@
+id: no-empty-paths
+name: No Empty Paths
+description: Ensures that there are no empty paths.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - No Empty Paths
+      slug: openapi-v3-no-empty-paths
+      summary: >-
+        This is a Spectral governance rule to make sure that there are no empty
+        paths in an OpenAPI. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that there are no empty paths.
+        message: There should be no empty paths.
+        documentationUrl: https://opensource.zalando.com/restful-api-guidelines/#136
+        severity: error
+        given: $.paths.*~
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: //
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-no-empty-paths.md?ref=main
+      github_sha: d729b1fb227743759361c6be0e52a4940c095f76
+      collection_id: 12959542-af720453-764e-4e88-987b-16e3bb4b8db2
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema contains one or more empty path item objects in the
+        paths object. <!-- TODO: confirm that this is correct - might be the
+        paths object instead? -->
+      fixDescription: >-
+        Although you can leave a path item object empty due to access-control
+        list (ACL) constraints, this doesn't provide your users with a good
+        experience. Add details for any empty path item objects in your API
+        schema.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - No Empty Paths
+      slug: swagger-v2-no-empty-paths
+      summary: >-
+        This is a Spectral governance rule to make sure that there are no empty
+        paths in an Swagger. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that there are no empty paths.
+        message: There should be no empty paths.
+        documentationUrl: https://opensource.zalando.com/restful-api-guidelines/#136
+        severity: error
+        given: $.paths.*~
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: //
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-no-empty-paths.md?ref=main
+      github_sha: a864173c419f5e4c209f21560df7468736cffebf
+      collection_id: 12959542-5ba15fe4-e95b-49a6-88a5-723dfbcb229f
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema contains one or more empty path item objects in the
+        paths object. <!-- TODO: confirm that this is correct - might be the
+        paths object instead? -->
+      fixDescription: >-
+        Although you can leave a path item object empty due to access-control
+        list (ACL) constraints, this doesn't provide your users with a good
+        experience. Add details for any empty path item objects in your API
+        schema.
+identicalSources: true
+selected: true
+identicalDocumentation: true

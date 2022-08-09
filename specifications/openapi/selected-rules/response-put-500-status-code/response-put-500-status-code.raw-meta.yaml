@@ -1,0 +1,77 @@
+id: response-put-500-status-code
+name: Response PUT 500 Status Code
+description: Ensures PUT operations have a 500 status code response.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response PUT 500 Status Code
+      slug: openapi-v3-response-put-500-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that PUT methods all
+        have a 500 status code response in an OpenAPI. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures PUT operations have a 500 status code response.
+        message: A PUT operation should have a 500 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas3
+        given: $.paths[*].put.responses
+        then:
+          field: '500'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-put-500-status-code.md?ref=main
+      github_sha: 562e6d95a96e84661cff130b4f6d51a5b14f21c6
+      collection_id: 12959542-2a6ff1b3-7c44-46cf-9e78-a923207e8d56
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more PUT operation objects in your API
+        schema doesn't contain the 500 status code.
+      fixDescription: Make sure that PUT methods all have a 500 status code response.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Response PUT 500 Status Code
+      slug: swagger-v2-response-put-500-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that PUT methods all
+        have a 500 status code response in an Swagger. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures PUT operations have a 500 status code response.
+        message: A PUT operation should have a 500 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas2
+        given: $.paths[*].put.responses
+        then:
+          field: '500'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-response-put-500-status-code.md?ref=main
+      github_sha: c48199e8fb3635f8f20b92c5c0aa8a9e589dca26
+      collection_id: 12959542-4c04eb88-3d26-4e48-a17c-c0271f08c460
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more PUT operation objects in your API
+        schema doesn't contain the 500 status code.
+      fixDescription: Make sure that PUT methods all have a 500 status code response.
+identicalSources: false
+selected: true
+identicalDocumentation: true

@@ -1,0 +1,77 @@
+id: response-patch-204-status-code
+name: Response PATCH 204 Status Code
+description: Ensures PATCH operations have a 204 status code response.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response PATCH 204 Status Code
+      slug: openapi-v3-response-patch-204-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that PATCH methods all
+        have a 204 status code response in an OpenAPI. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures PATCH operations have a 204 status code response.
+        message: A PATCH operation should have a 204 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas3
+        given: $.paths[*].delete.responses
+        then:
+          field: '204'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-patch-204-status-code.md?ref=main
+      github_sha: bb67499e378611b30270896d4640ac797c65f868
+      collection_id: 12959542-70f51796-a25e-4a20-8813-1b5ecd2e5a63
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more PATCH operation objects in your API
+        schema doesn't contain the 200 status code.
+      fixDescription: Make sure that PATCH methods all have a 200 status code response.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Response PATCH 204 Status Code
+      slug: swagger-v2-response-patch-204-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that PATCH methods all
+        have a 204 status code response in an Swagger. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures PATCH operations have a 204 status code response.
+        message: A PATCH operation should have a 204 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas2
+        given: $.paths[*].delete.responses
+        then:
+          field: '204'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-response-patch-204-status-code.md?ref=main
+      github_sha: 429912e0926525c620c6e9a4fb8b0d60d5d27951
+      collection_id: 12959542-2280e789-3597-4fdd-aae3-6139a0baf354
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more PATCH operation objects in your API
+        schema doesn't contain the 200 status code.
+      fixDescription: Make sure that PATCH methods all have a 200 status code response.
+identicalSources: false
+selected: true
+identicalDocumentation: true

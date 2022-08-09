@@ -1,0 +1,11 @@
+rules:
+  info-description:
+    description: Ensures that all Swaggers have a information description.
+    message: The info object should have a description.
+    given: $.info
+    severity: error
+    formats:
+      - oas2
+    then:
+      field: description
+      function: truthy

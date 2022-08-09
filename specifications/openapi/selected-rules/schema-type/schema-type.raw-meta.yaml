@@ -1,0 +1,71 @@
+id: schema-type
+name: Schema Type
+description: Ensuring that all schema have a type property.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Type
+      slug: openapi-v3-schema-type
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema have a
+        required property within OpenAPI definitions. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Ensuring that all schema have a type property.
+        message: All schema should have a type property.
+        severity: error
+        formats:
+          - oas3
+        given: $.components.schemas.*
+        then:
+          field: type
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-type.md?ref=main
+      github_sha: 56447d23a4003061ec3b94475016ca8e7f687c89
+      collection_id: 12959542-ef4cd4b8-6ce1-4c01-99d5-f4f504110d52
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more schema objects in your API schema's components object
+        doesn't have a type property defined.
+      fixDescription: Add a type property to every schema object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Type
+      slug: swagger-v2-schema-type
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema have a
+        required property within Swagger definitions. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Ensuring that all schema have a type property.
+        message: All schema should have a type property.
+        severity: error
+        formats:
+          - oas2
+        given: $.definitions.*
+        then:
+          field: type
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-type.md?ref=main
+      github_sha: b6bfd58a7280f95238fb22de199294e1d213c087
+      collection_id: 12959542-83052e06-f475-4848-966d-0b352d47dc86
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more schema objects in your API schema's components object
+        doesn't have a type property defined.
+      fixDescription: Add a type property to every schema object.
+identicalSources: false
+selected: true
+identicalDocumentation: true

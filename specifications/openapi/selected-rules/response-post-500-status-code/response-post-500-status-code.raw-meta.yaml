@@ -1,0 +1,77 @@
+id: response-post-500-status-code
+name: Response POST 500 Status Code
+description: Ensures POST operations have a 500 status code response.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response POST 500 Status Code
+      slug: openapi-v3-response-post-500-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that POST methods all
+        have a 500 status code response in an OpenAPI. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures POST operations have a 500 status code response.
+        message: A POST operation should have a 500 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas3
+        given: $.paths[*].post.responses
+        then:
+          field: '500'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-post-500-status-code.md?ref=main
+      github_sha: f53cea48290f03d45da307b53916aaf1f21c27a2
+      collection_id: 12959542-1eee4837-b576-4c8c-ba8a-dc6cbebb22a5
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more POST operation objects in your API
+        schema doesn't contain the 500 status code.
+      fixDescription: Make sure that POST methods all have a 500 status code response.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Response POST 500 Status Code
+      slug: swagger-v2-response-post-500-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that POST methods all
+        have a 500 status code response in an Swagger. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures POST operations have a 500 status code response.
+        message: A POST operation should have a 500 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas2
+        given: $.paths[*].post.responses
+        then:
+          field: '500'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-response-post-500-status-code.md?ref=main
+      github_sha: fd7ff768c7855163c3d06a7f0627a82e914be347
+      collection_id: 12959542-c44796e1-3160-4d51-b4af-536fda7e4522
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more POST operation objects in your API
+        schema doesn't contain the 500 status code.
+      fixDescription: Make sure that POST methods all have a 500 status code response.
+identicalSources: false
+selected: true
+identicalDocumentation: true

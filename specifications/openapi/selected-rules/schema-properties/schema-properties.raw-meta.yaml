@@ -1,0 +1,71 @@
+id: schema-properties
+name: Schema Properties
+description: Ensuring that all schema should have properties.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties
+      slug: openapi-v3-schema-properties
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema have
+        properties within OpenAPI definitions. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Ensuring that all schema should have properties.
+        message: All of your schema need to have properties.
+        severity: error
+        formats:
+          - oas3
+        given: $.components.schemas.*
+        then:
+          field: properties
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties.md?ref=main
+      github_sha: 828580c24a8b87b141a6abdf0a121fee015cdc6c
+      collection_id: 12959542-4da15e33-a84f-4bee-be32-7a39b0368505
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more schema objects in your API schema's components object
+        doesn't contain at least one property.
+      fixDescription: Add a property for every schema object in your API schema.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties
+      slug: swagger-v2-schema-properties
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema have
+        properties within Swagger definitions. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Ensuring that all schema should have properties.
+        message: All of your schema need to have properties.
+        severity: error
+        formats:
+          - oas2
+        given: $.definitions.*
+        then:
+          field: properties
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties.md?ref=main
+      github_sha: 1aea1e0cbe4bf5bb994d80e6a7c9c03b9fd2c27a
+      collection_id: 12959542-4b140788-151b-4063-b37c-3283a19a4a88
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more schema objects in your API schema's components object
+        doesn't contain at least one property.
+      fixDescription: Add a property for every schema object in your API schema.
+identicalSources: false
+selected: true
+identicalDocumentation: true

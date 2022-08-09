@@ -1,0 +1,46 @@
+id: responses-examples-components
+name: OpenAPI V3 Responses Examples Components
+description: >-
+  Check response examples to ensure that they only have references to
+  components.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Responses Examples Components
+      slug: openapi-v3-responses-examples-components
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI response
+        examples are all centralized as a component. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Responses
+      rule:
+        description: >-
+          Check response examples to ensure that they only have references to
+          components.
+        message: Response examples should only reference components.
+        severity: error
+        resolved: false
+        given:
+          - $..responses.*.content..*.examples.$ref
+        then:
+          function: pattern
+          functionOptions:
+            match: '#/components/'
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-responses-examples-components.md?ref=main
+      github_sha: fa1744ccffd59d5558bbe864ed22f253fec14a3b
+      collection_id: 12959542-687b94be-fec6-4eca-afc2-e82818911dd7
+    documentation:
+      category: API Models
+      issueDescription: >-
+        Multiple response objects in your API schema contain examples that
+        should be consolidated into an examples section in the components
+        object.
+      fixDescription: >-
+        Consolidate all the examples from your response objects into an examples
+        section in the components object.
+selected: true

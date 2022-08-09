@@ -1,0 +1,47 @@
+id: request-body-examples-components
+name: OpenAPI V3 Request Body Examples Components
+description: >-
+  Check request bodies examples to ensure that they only have references to
+  components.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Request Body Examples Components
+      slug: openapi-v3-request-body-examples-components
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI request
+        body examples are all centralized as a component. Here is a JSON version
+        of the rule that can be applied using this API-driven collection API, or
+        at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Request Bodies
+        - Examples
+      rule:
+        description: >-
+          Check request bodies examples to ensure that they only have references
+          to components.
+        message: Request bodies examples should only reference components.
+        severity: error
+        resolved: false
+        given:
+          - $..requestBody.content..*.examples.$ref
+        then:
+          function: pattern
+          functionOptions:
+            match: '#/components/'
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-request-body-examples-components.md?ref=main
+      github_sha: d9a8f6ef36656c8e9140e3adcc289c18f27c84fb
+      collection_id: 12959542-f410eb16-6b97-425f-8aee-53b09e0fd749
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        Multiple request body objects in your API schema contain examples that
+        should be consolidated into an examples section <!-- TODO: or should
+        this be the requestBodies section? --> in the components object.
+      fixDescription: >-
+        Consolidate all the examples from your request bodies into an examples
+        section in the components object.
+selected: true

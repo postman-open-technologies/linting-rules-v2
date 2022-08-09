@@ -1,0 +1,9 @@
+rules:
+  info-x-audience:
+    description: Ensures that all OpenAPIs have a information object audience extension.
+    message: The info object should have an audience extension.
+    given: $.info
+    severity: error
+    then:
+      field: x-audience
+      function: truthy

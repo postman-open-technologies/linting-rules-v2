@@ -1,0 +1,83 @@
+id: info-license
+name: Info License
+description: Ensures that all OpenAPIs have a information object license.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info License
+      slug: openapi-v3-info-license
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI info object
+        has a license. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Info
+        - Licensing
+        - Legal
+      rule:
+        description: Ensures that all OpenAPIs have a information object license.
+        message: The info object should have a license.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas3
+        then:
+          field: license
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-license.md?ref=main
+      github_sha: 5defc299e9a6f8326fbfa9f98a1bb02c01d88335
+      collection_id: 12959542-0505ca14-0909-4fdb-bb1d-892fab77bdde
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema's info object doesn't contain a license object, which
+        specifies information about the schema's license.
+      fixDescription: >-
+        Although a license object isn't required, including one provides your
+        users with important information. Add a license object to your API
+        schema's info object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info License
+      slug: swagger-v2-info-license
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger info object
+        has a license. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Info
+        - Licensing
+        - Legal
+      rule:
+        description: Ensures that all Swaggers have a information object license.
+        message: The info object should have a license.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas2
+        then:
+          field: license
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-license.md?ref=main
+      github_sha: e6937f97e4b9abb6ab3399e0153af3af867acbf8
+      collection_id: 12959542-10d54080-3a14-49c1-837b-8ac884ee5bb7
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema's info object doesn't contain a license object, which
+        specifies information about the schema's license.
+      fixDescription: >-
+        Although a license object isn't required, including one provides your
+        users with important information. Add a license object to your API
+        schema's info object.
+identicalSources: false
+selected: true
+identicalDocumentation: true

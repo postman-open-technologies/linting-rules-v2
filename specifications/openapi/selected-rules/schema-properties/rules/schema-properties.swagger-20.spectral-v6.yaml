@@ -1,0 +1,11 @@
+rules:
+  schema-properties:
+    description: Ensuring that all schema should have properties.
+    message: All of your schema need to have properties.
+    given: $.definitions.*
+    severity: error
+    formats:
+      - oas2
+    then:
+      field: properties
+      function: truthy

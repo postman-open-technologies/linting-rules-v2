@@ -1,0 +1,77 @@
+id: response-put-204-status-code
+name: Response PUT 204 Status Code
+description: Ensures PUT operations have a 204 status code response.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response PUT 204 Status Code
+      slug: openapi-v3-response-put-204-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that PUT methods all
+        have a 204 status code response in an OpenAPI. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures PUT operations have a 204 status code response.
+        message: A PUT operation should have a 204 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas3
+        given: $.paths[*].delete.responses
+        then:
+          field: '204'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-put-204-status-code.md?ref=main
+      github_sha: ff29bfc14a5d687e581a76e17b4d033de739d48c
+      collection_id: 12959542-64595edd-b69a-41f9-a154-7f70127c1abe
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more PUT operation objects in your API
+        schema doesn't contain the 200 status code.
+      fixDescription: Make sure that PUT methods all have a 200 status code response.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Response PUT 204 Status Code
+      slug: swagger-v2-response-put-204-status-code
+      summary: >-
+        This is a Spectral governance rule to make sure that PUT methods all
+        have a 204 status code response in an Swagger. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures PUT operations have a 204 status code response.
+        message: A PUT operation should have a 204 status code for the response.
+        severity: warn
+        formats:
+          - oas2
+          - oas2
+        given: $.paths[*].delete.responses
+        then:
+          field: '204'
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-response-put-204-status-code.md?ref=main
+      github_sha: 954a848dd362921b3a1904816557aa3b63b85df5
+      collection_id: 12959542-2a7f4f53-ef67-4f00-bce1-62b20738d748
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        The responses object for one or more PUT operation objects in your API
+        schema doesn't contain the 200 status code.
+      fixDescription: Make sure that PUT methods all have a 200 status code response.
+identicalSources: false
+selected: true
+identicalDocumentation: true

@@ -1,0 +1,87 @@
+id: schema-properties-allowed-integer-format
+name: Schema Properties Allowed Integer Format
+description: Requires integer properties to have a format of int32 or int64.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Allowed Integer Format
+      slug: openapi-v3-schema-properties-allowed-integer-format
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI properties
+        that use integer type have a format of int32 or int64. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Numbers
+        - Formats
+      rule:
+        description: Requires integer properties to have a format of int32 or int64.
+        message: Type format should be be int32 or int64.
+        formats:
+          - oas3
+        severity: hint
+        recommended: true
+        given: $..properties.[?(@.type=="integer")]
+        then:
+          field: format
+          function: enumeration
+          functionOptions:
+            values:
+              - int32
+              - int64
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-allowed-integer-format.md?ref=main
+      github_sha: 5a68f609a3eb094e9b2eb0b655c5d3d62a4b7365
+      collection_id: 12959542-1c57d439-f833-49ce-bd58-6d2378954a09
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more schema objects in your API schema's components object has an
+        integer type property but doesn't specify int32 or int64 format.
+      fixDescription: >-
+        Make sure that properties that have integer type in your API schema have
+        a format of int32 or int64.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Allowed Integer Format
+      slug: swagger-v2-schema-properties-allowed-integer-format
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger properties
+        that use integer type have a format of int32 or int64. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Numbers
+        - Formats
+      rule:
+        description: Requires integer properties to have a format of int32 or int64.
+        message: Type format should be be int32 or int64.
+        formats:
+          - oas2
+        severity: hint
+        recommended: true
+        given: $.definitions.properties.[?(@.type=="integer")]
+        then:
+          field: format
+          function: enumeration
+          functionOptions:
+            values:
+              - int32
+              - int64
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-allowed-integer-format.md?ref=main
+      github_sha: 74c8d636813d2f939c8e7c42613d5f451544f64f
+      collection_id: 12959542-edd02a8e-fc18-4a87-8dba-e55c7c168bbb
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more schema objects in your API schema's components object has an
+        integer type property but doesn't specify int32 or int64 format.
+      fixDescription: >-
+        Make sure that properties that have integer type in your API schema have
+        a format of int32 or int64.
+identicalSources: false
+selected: true
+identicalDocumentation: true

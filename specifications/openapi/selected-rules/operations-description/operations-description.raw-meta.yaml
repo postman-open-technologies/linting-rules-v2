@@ -1,0 +1,71 @@
+id: operations-description
+name: Operations Description
+description: Ensures that each of the operations have a description.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Operations Description
+      slug: openapi-v3-operations-description
+      summary: >-
+        This is a Spectral governance rule to make sure that some words are
+        never used in the description of operations within an OpenAPI. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+      rule:
+        description: Ensures that each of the operations have a description.
+        message: Your operations all need descriptions.
+        severity: error
+        given: $.paths.*[get,post,patch,put,delete]
+        then:
+          - field: description
+            function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-description.md?ref=main
+      github_sha: d369b3617b85463fcc442cbd1349ad03ca744b36
+      collection_id: 12959542-c2b8287d-5280-4e4e-a056-8a92158c6b05
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more operation objects in your API schema doesn't have a
+        description.
+      fixDescription: >-
+        A verbose explanation of the operation's behavior provides your users
+        with important context. Add a description for each operation object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Description
+      slug: swagger-v2-operations-description
+      summary: >-
+        This is a Spectral governance rule to make sure that some words are
+        never used in the description of operations within an Swagger. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+      rule:
+        description: Ensures that each of the operations have a description.
+        message: Your operations all need descriptions.
+        severity: error
+        given: $.paths.*[get,post,patch,put,delete]
+        then:
+          - field: description
+            function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-description.md?ref=main
+      github_sha: a42c0b36a91defd0aef051e8f641d5a8885e3433
+      collection_id: 12959542-50391ed6-a4d2-4f06-827e-a2d3dd471fb1
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more operation objects in your API schema doesn't have a
+        description.
+      fixDescription: >-
+        A verbose explanation of the operation's behavior provides your users
+        with important context. Add a description for each operation object.
+identicalSources: true
+selected: true
+identicalDocumentation: true
