@@ -1046,7 +1046,7 @@
   },
   {
     "name": "OpenAPI V3 - Operations Operation IDs Pascal Case",
-    "slug": "oopenapi-v3-perations-operation-ids-pascal-case",
+    "slug": "openapi-v3-operations-operation-ids-pascal-case",
     "summary": "This is a Spectral governance rule to make sure that operation Ids are pascal case. Here is a JSON version of the rule that can be applied using this API-driven collection API, or at CLI or CI/CD pipeline.",
     "tags": [
       "Operations",
@@ -1065,7 +1065,7 @@
       },
       "type": "style"
     },
-    "github_url": "https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/oopenapi-v3-perations-operation-ids-pascal-case.md?ref=main",
+    "github_url": "https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-operation-ids-pascal-case.md?ref=main",
     "github_sha": "603e350aa20235bd43c36f4ed82e49684ee46508",
     "collection_id": "12959542-256b61fa-80b4-4c86-bd7c-014deda3093c"
   },
@@ -5386,7 +5386,7 @@
   },
   {
     "name": "Swagger V2 - Operations Operationids Pascal Case",
-    "slug": "oswagger-v2-perations-operationids-pascal-case",
+    "slug": "swagger-v2-operations-operationids-pascal-case",
     "summary": "This is a Spectral governance rule to make sure that operation Ids are pascal case. Here is a JSON version of the rule that can be applied using this API-driven collection API, or at CLI or CI/CD pipeline.",
     "tags": [
       "Operations",
@@ -5405,7 +5405,7 @@
       },
       "type": "style"
     },
-    "github_url": "https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/oswagger-v2-perations-operationids-pascal-case.md?ref=main",
+    "github_url": "https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-operationids-pascal-case.md?ref=main",
     "github_sha": "5ec083ee9ecbbc80eef43830563727fefdd99901",
     "collection_id": "12959542-5d520cb5-2835-450d-be96-6bffb84d48e9"
   },
