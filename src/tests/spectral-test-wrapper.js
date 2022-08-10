@@ -14,6 +14,12 @@ import {JSONPath} from 'jsonpath-plus';
 // to load pure rule without parsing
 import * as fileUtils from './file.js';
 
+function spectralPathToJsonPointer(path){
+  const escapedPath = path.map(value => value.replaceAll('/','~1'));
+  const jsonPointer = `#/${escapedPath.join('/')}`;
+  return jsonPointer;
+}
+
 export default class SpectralTestWrapper {
 
   constructor() {}
@@ -96,7 +102,7 @@ export default class SpectralTestWrapper {
     const problems = await this.spectral.run(document);
     const simplifiedProblems = problems
                                   .filter(problem => (problem.code === rulename))
-                                  .map(problem => ({ path: `#/${problem.path.join('/')}`}));
+                                  .map(problem => ({ path: spectralPathToJsonPointer(problem.path)}));
     return simplifiedProblems;
   }
 
