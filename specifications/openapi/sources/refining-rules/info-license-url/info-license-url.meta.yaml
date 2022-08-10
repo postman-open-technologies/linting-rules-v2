@@ -1,0 +1,13 @@
+name: info-license-url
+labels:
+  - info
+  - legal
+  - openapi-info-object
+  - openapi-license-object
+reason: |
+  A license name may not be not enough, especially is using a custom licenses.
+  Better provide a link to the a web page describing the license.
+recommendedSeverity: warn
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/info-license-url.raw-meta.yaml
