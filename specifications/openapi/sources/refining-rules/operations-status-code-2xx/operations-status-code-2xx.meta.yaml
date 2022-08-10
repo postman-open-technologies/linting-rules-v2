@@ -11,7 +11,6 @@ reason: |
   happen when a redirection is needed (3XX is returned).
 recommendedSeverity: warning
 recommended: true
-comment: JSON Schema used to replace 
 sources:
   - comment: |
       JSON Schema used to replace the 2xx status core function which has been removed in v6
