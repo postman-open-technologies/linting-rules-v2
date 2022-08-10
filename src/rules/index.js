@@ -7,7 +7,8 @@ import * as Ruleset from './ruleset.js';
 const args = process.argv.slice(2);
 const allJsonFilename = args[0];
 const selectedCsvFilename = args[1];
-const targetDirectory = args[2];
+const selectedTargetDirectory = args[2];
+const rawTargetDirectory = args[3];
 
 const allRules = Source.loadAllRules(allJsonFilename);
 const selectedRules = Selected.loadSelectedRules(selectedCsvFilename);
@@ -20,5 +21,5 @@ console.log('stats', JSON.stringify(allRules.stats, null, 2));
 //console.log('selectedRules.stats', JSON.stringify(selectedRules.stats, null, 2));
 
 const normalizedSelectedRules = allRules.normalizedRules.filter(rule => rule.selected);
-const report = Ruleset.saveRulesets(normalizedSelectedRules, targetDirectory);
+const report = Ruleset.saveRulesets(normalizedSelectedRules, selectedTargetDirectory);
 console.log('report', JSON.stringify(report, null, 2));

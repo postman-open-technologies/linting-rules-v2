@@ -1,0 +1,1 @@
+The target would be to have a folder per specification, possibly containing "rules" that may not be of the same kind (for instance Spectral will probably won't work on GraphQL or gRPC)?
