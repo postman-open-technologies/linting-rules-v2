@@ -5,45 +5,11 @@ labels:
   - ownership
   - openapi-info-object
   - openapi-contact-object
+recommendedSeverity: error
+recommended: true
 reason: |
   The contact data may be used directly by consumers or through
   an API portal or catalog when consumers have questions about it.
   Also, defining contact information may help ensuring someone owns the API. 
-rules:
-  - rule: rules/info-contact.openapi-v2-v3.spectral-v6.yaml
-    specificationVersions: [ "2.0", "3.0", "3.1" ]
-    linter: spectral
-    linterVersions: [ "6" ]
-  - rule: rules/info-contact.openapi-v2.spectral-v6.yaml
-    specificationVersions: [ "2.0" ]
-    linter: spectral
-    linterVersions: [ "6" ]
-  - rule: rules/info-contact.openapi-v3.spectral-v6.yaml
-    specificationVersions: [ "3.0", "3.1" ]
-    linter: spectral
-    linterVersions: [ "6" ]
-  - rule: rules/info-contact.openapi-v31.spectral-v6.yaml
-    specificationVersions: [ "3.1" ]
-    linter: spectral
-    linterVersions: [ "6" ]
-samples:
-  - type: valid
-    document: samples/info-contact.valid.openapi-v20.yaml
-    specificationVersion: "2.0"
-  - type: valid
-    document: samples/info-contact.valid.openapi-v30.yaml
-    specificationVersion: "3.0"
-  - type: valid
-    document: samples/info-contact.valid.openapi-v31.yaml
-    specificationVersion: "3.1"
-  - type: invalid
-    document: samples/info-contact.invalid.openapi-v20.yaml
-    specificationVersion: "2.0"
-  - type: invalid
-    document: samples/info-contact.invalid.openapi-v30.yaml
-    specificationVersion: "3.0"
-  - type: invalid
-    document: samples/info-contact.invalid.openapi-v31.yaml
-    specificationVersion: "3.1"
 sources:
-  - path: ../../sources/raw/legacy-collected/info-contact.raw-meta.yaml
+  - path: ../../sources/raw/legacy/info-contact.raw-meta.yaml
