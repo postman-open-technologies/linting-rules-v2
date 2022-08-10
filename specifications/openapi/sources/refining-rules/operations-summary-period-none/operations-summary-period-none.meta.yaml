@@ -1,7 +1,6 @@
 name: operations-summary-period-none
 category: Operations
 labels:
-labels:
   - documentation
   - openapi-operation-object
 reason: |
