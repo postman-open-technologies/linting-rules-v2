@@ -1,0 +1,15 @@
+rules:
+  info-contact-email-or-url:
+    description: Ensures that all APIs have contact URL or email.
+    message: API must have a contact URL or email available.
+    given: $.info.contact
+    severity: error
+    formats:
+      - oas2
+      - oas3
+    then:
+      function: xor
+      functionOptions:
+        properties:
+          - url
+          - email
