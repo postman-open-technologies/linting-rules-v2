@@ -15,6 +15,8 @@ const meta = {
     "put some labels here"
   ],
   "reason": "Put a multine\nreason here\n",
+  "recommendedSeverity": "recommended Spectral severity",
+  "recommended": "true or false",
   "sources": [
     {
       "path": `../../sources/raw/legacy/${rulename}.raw-meta.yaml`
