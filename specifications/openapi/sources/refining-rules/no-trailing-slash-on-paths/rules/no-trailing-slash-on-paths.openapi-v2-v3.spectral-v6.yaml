@@ -4,6 +4,9 @@ rules:
     message: There should be no trailing slashes on paths.
     given: $.paths.*~
     severity: error
+    formats:
+      - oas2
+      - oas3
     then:
       function: pattern
       functionOptions:

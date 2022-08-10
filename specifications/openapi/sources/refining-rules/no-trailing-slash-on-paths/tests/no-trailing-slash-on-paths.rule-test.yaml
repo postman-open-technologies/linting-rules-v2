@@ -1,0 +1,48 @@
+testSuiteVersion: spectral-v1.0
+ruleset: no-trailing-slash-on-paths.openapi-v2-v3.spectral-v6.yaml
+rules:
+  no-trailing-slash-on-paths:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: error
+    given:
+      - description: must find all keys of paths object
+        expected:
+          - path: '#/paths/~1resources'
+            value: '/resources'
+          - path: '#/paths/~1path~1to~1resources'
+            value: '/path/to/resources'
+          - path: '#/paths/~1resources~1{resourceId}~1sub-resources'
+            value: '/resources/{resourceId}/sub-resources'
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an api
+            version: "1.0"
+          paths:
+            /resources: {}
+            /path/to/resources: {}
+            /resources/{resourceId}/sub-resources: {}
+    then:
+      - description: must return a problem if a path has a trailing slash
+        expected:
+          - path: '#/paths/~1a-path~1'
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an api
+            version: "1.0"
+          paths:
+            /a-path/: {}
+      - description: must return no problem if no path has a trailing slash
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an api
+            version: "1.0"
+          paths:
+            /a-path: {}

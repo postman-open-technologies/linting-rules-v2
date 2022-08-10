@@ -1,0 +1,14 @@
+name: no-trailing-slash-on-paths
+category: API Implementation
+labels:
+  - implementation
+  - api-gateway
+  - paths
+  - openapi-paths-object
+reason: |
+  Depending on the tools, a trailing slash will be treated differently and may lead to long hours
+  of debugging. Remove them to avoid any problem.
+recommendedSeverity: error
+recommended: true
+sources:
+  - path: ../../sources/raw/legacy/no-trailing-slash-on-paths.raw-meta.yaml
