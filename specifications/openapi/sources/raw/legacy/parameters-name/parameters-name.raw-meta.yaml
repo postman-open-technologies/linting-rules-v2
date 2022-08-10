@@ -1,0 +1,51 @@
+id: parameters-name
+name: Parameters Name
+description: Ensures that that all parameters have a name.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters Name
+      slug: openapi-v3-parameters-name
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters a
+        name in an OpenAPI. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Parameters
+      rule:
+        description: Ensures that that all parameters have a name.
+        message: Your parameter should all have names.
+        given: $.paths.*.*.parameters[?(@.in=='query')]
+        then:
+          field: name
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-name.md?ref=main
+      github_sha: 3a01e908a05613b9449ae0e1827af10426f84399
+      collection_id: 12959542-9807d1a3-fdf6-4b43-8c7c-00f6f8379b94
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters Name
+      slug: swagger-v2-parameters-name
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters a
+        name in an Swagger. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Parameters
+      rule:
+        description: Ensures that that all parameters have a name.
+        message: Your parameter should all have names.
+        given: $.paths.*.*.parameters[?(@.in=='query')]
+        then:
+          field: name
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-name.md?ref=main
+      github_sha: 66751a53a565f3fbba3854648ebdd0e99cf54005
+      collection_id: 12959542-e918fba1-ddba-4112-984c-981e8cf0ac53
+identicalSources: true

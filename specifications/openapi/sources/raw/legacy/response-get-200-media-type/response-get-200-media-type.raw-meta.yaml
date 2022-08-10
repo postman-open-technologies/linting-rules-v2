@@ -1,0 +1,34 @@
+id: response-get-200-media-type
+name: Response GET 200 Media Type
+description: Ensuring GET operations have an application/json media type for 200 responses.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response GET 200 Media Type
+      slug: openapi-v3-response-get-200-media-type
+      summary: >-
+        This is a Spectral governance rule to make sure that GET methods all
+        have a 200 status code response with application/json media type in an
+        OpenAPI. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: >-
+          Ensuring GET operations have an application/json media type for 200
+          responses.
+        message: >-
+          A GET operation should have an application/json media type for 200
+          response.
+        severity: error
+        given: $paths.get.responses.200.content
+        then:
+          field: application/json
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-get-200-media-type.md?ref=main
+      github_sha: 396f26943d8988944d9f62e17a3bdd4cd91120ff
+      collection_id: 12959542-f9d32430-6616-40ab-ba6e-a32a83ee45bc

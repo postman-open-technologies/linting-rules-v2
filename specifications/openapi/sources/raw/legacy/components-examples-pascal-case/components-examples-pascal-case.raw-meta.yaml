@@ -1,0 +1,34 @@
+id: components-examples-pascal-case
+name: OpenAPI V3 Components Examples Pascal Case
+description: Ensuring that all components example are using pascal case for the key.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Components Examples Pascal Case
+      slug: openapi-v3-components-examples-pascal-case
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI example
+        within the components object are all using pascal case for the key. Here
+        is a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Examples
+        - Casing
+      rule:
+        description: >-
+          Ensuring that all components example are using pascal case for the
+          key.
+        message: The component example key needs to be pascalCase.
+        given: $.components.examples
+        severity: error
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: pascal
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-components-examples-pascal-case.md?ref=main
+      github_sha: cb29601638fa89021f5fc394265d4d184ec410f2
+      collection_id: 12959542-d23a499f-a2aa-45cd-8d58-1fcad7d0ce6e

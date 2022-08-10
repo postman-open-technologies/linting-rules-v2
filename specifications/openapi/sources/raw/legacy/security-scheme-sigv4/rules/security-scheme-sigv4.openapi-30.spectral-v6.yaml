@@ -1,0 +1,9 @@
+rules:
+  security-scheme-sigv4:
+    description: Requires the usage of Sigv4 for security scheme.
+    message: Must add Sigv4 for security scheme.
+    given: $..components.securitySchemes
+    severity: error
+    then:
+      field: sigv4
+      function: truthy

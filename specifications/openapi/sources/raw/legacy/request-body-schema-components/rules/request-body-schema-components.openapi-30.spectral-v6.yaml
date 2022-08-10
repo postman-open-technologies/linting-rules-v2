@@ -1,0 +1,13 @@
+rules:
+  request-body-schema-components:
+    description: >-
+      Check request body schena to ensure that they only have references to
+      components.
+    message: Request body schema should only reference components.
+    given:
+      - $..requestBody.content..*.schema.$ref
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '#/components/'

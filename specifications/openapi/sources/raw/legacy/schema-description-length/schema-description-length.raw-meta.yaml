@@ -1,0 +1,61 @@
+id: schema-description-length
+name: Schema Description Length
+description: All schemas descriptions should be shorter than 20 characters.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Description Length
+      slug: openapi-v3-schema-description-length
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema in an
+        OpenAPI do not have too long of descriptions. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: All schemas descriptions should be shorter than 20 characters.
+        message: Description needs to be less than 20 characters.
+        severity: warn
+        formats:
+          - oas3
+        given: $.components.schemas.*
+        then:
+          field: description
+          function: length
+          functionOptions:
+            max: 20
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-description-length.md?ref=main
+      github_sha: 8c326393ae151675b17e8612f846803fe9765e39
+      collection_id: 12959542-c057a780-7cef-4ca9-98ce-eed195be102f
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Description Length
+      slug: swagger-v2-schema-description-length
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema in an
+        Swagger do not have too long of descriptions. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: All schemas descriptions should be shorter than 20 characters.
+        message: Description needs to be less than 20 characters.
+        severity: warn
+        formats:
+          - oas2
+        given: $.definitions.*
+        then:
+          field: description
+          function: length
+          functionOptions:
+            max: 20
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-description-length.md?ref=main
+      github_sha: 28ca8c0298d814b39e1fe2ce6f86b476de67ea2f
+      collection_id: 12959542-11164648-cbfd-4830-a194-40b0deac366c
+identicalSources: false

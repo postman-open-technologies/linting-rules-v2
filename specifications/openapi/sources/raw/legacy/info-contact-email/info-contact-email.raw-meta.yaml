@@ -1,0 +1,77 @@
+id: info-contact-email
+name: Info Contact Email
+description: Ensures that all APIs have contact email.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info Contact Email
+      slug: openapi-v3-info-contact-email
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI info object
+        has a contact email. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - Contact
+        - Communication
+      rule:
+        description: Ensures that all APIs have contact email.
+        message: API must have a contact email available.
+        given: $.info.contact
+        severity: error
+        then:
+          field: email
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-contact-email.md?ref=main
+      github_sha: 102a67f1ce820682483a581c5b399d60db5be120
+      collection_id: 12959542-b73bee8e-c223-474e-a93c-c27f6c142822
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema's contact object doesn't contain an email address for
+        the contact person or organization.
+      fixDescription: >-
+        Although contact information isn't required, including it allows your
+        users to communicate with you. Add an email address to your API schema's
+        contact object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info Contact Email
+      slug: swagger-v2-info-contact-email
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger info object
+        has a contact email. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - Contact
+        - Communication
+      rule:
+        description: Ensures that all APIs have contact email.
+        message: API must have a contact email available.
+        given: $.info.contact
+        severity: error
+        then:
+          field: email
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-contact-email.md?ref=main
+      github_sha: a274ba6f45b0986ecb102bb5b36ee424dbb79d21
+      collection_id: 12959542-26f42cb7-0f87-472c-abbe-bc9fa913b37a
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema's contact object doesn't contain an email address for
+        the contact person or organization.
+      fixDescription: >-
+        Although contact information isn't required, including it allows your
+        users to communicate with you. Add an email address to your API schema's
+        contact object.
+identicalSources: true
+selected: true
+identicalDocumentation: true

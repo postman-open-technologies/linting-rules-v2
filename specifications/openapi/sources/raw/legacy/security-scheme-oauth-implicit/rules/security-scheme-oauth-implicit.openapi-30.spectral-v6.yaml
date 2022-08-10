@@ -1,0 +1,11 @@
+rules:
+  security-scheme-oauth-implicit:
+    description: Requires the usage of oauth implicit for security scheme.
+    message: Must add oauth implicit for security scheme.
+    given: $
+    severity: error
+    formats:
+      - oas3
+    then:
+      field: $.components.securitySchemes.[*].flows.implicit
+      function: truthy

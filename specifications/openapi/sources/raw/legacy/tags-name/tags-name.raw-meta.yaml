@@ -1,0 +1,53 @@
+id: tags-name
+name: Tags Name
+description: Ensuring that all tags have a name.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Tags Name
+      slug: openapi-v3-tags-name
+      summary: >-
+        This is a Spectral governance rule to make sure that all tags have a
+        name within OpenAPI definitions. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Tags
+      rule:
+        description: Ensuring that all tags have a name.
+        message: All tags should have a name.
+        given: $.tags[*]
+        severity: error
+        then:
+          field: name
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-tags-name.md?ref=main
+      github_sha: d4473a73829d4076f42fff05f1e114647e84257d
+      collection_id: 12959542-b00be978-5109-4c22-9ee9-143e858614a4
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Tags Name
+      slug: swagger-v2-tags-name
+      summary: >-
+        This is a Spectral governance rule to make sure that all tags have a
+        name within Swagger definitions. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Tags
+      rule:
+        description: Ensuring that all tags have a name.
+        message: All tags should have a name.
+        given: $.tags[*]
+        severity: error
+        then:
+          field: name
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-tags-name.md?ref=main
+      github_sha: 088cf9bf36cb4328b11bb7284489b8fabe604354
+      collection_id: 12959542-ecefdeb1-d48d-455e-a9bc-c1f86e0d3b20
+identicalSources: true

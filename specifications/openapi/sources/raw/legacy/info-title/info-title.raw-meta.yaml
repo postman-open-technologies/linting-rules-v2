@@ -1,0 +1,59 @@
+id: info-title
+name: Info Title
+description: Ensures that all OpenAPIs have a information object title.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info Title
+      slug: openapi-v3-info-title
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI has an info
+        title. Here is a JSON version of the rule that can be applied using this
+        API-driven collection API, via monitor, and at CLI or CI/CD pipeline.
+      tags:
+        - Info
+      rule:
+        description: Ensures that all OpenAPIs have a information object title.
+        message: The info object should have a title.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas3
+        then:
+          field: title
+          function: truthy
+      collection_id: 12959542-93b89a18-10e5-4cbc-bcb2-79fd0bb4a420
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-title.md?ref=main
+      github_sha: 1cc02ae73882b32c3560e925ea7fdc204c97983c
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info Title
+      slug: swagger-v2-info-title
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger has an info
+        title. Here is a JSON version of the rule that can be applied using this
+        API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Info
+      rule:
+        description: Ensures that all Swaggers have a information object title.
+        message: The info object should have a title.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas2
+        then:
+          field: title
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-title.md?ref=main
+      github_sha: 0529ff8af9b8fd97e7d8ac104416091d5dbf5228
+      collection_id: 12959542-91b484ad-7e73-40a8-9db2-03f6fb50a9e6
+identicalSources: false

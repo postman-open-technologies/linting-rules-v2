@@ -1,0 +1,69 @@
+id: response-get-500-problem-json-media-type
+name: Response GET 500 Problem JSON Media Type
+description: >-
+  Ensuring GET operations have an application/problem+json media type for 500
+  responses.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response GET 500 Problem JSON Media Type
+      slug: openapi-v3-response-get-500-problem-json-media-type
+      summary: >-
+        This is a Spectral governance rule to make sure that GET methods all
+        have a 200 status code response with application/problem+json media type
+        in an OpenAPI. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+        - Media Types
+      rule:
+        description: >-
+          Ensuring GET operations have an application/problem+json media type
+          for 500 responses.
+        message: >-
+          A GET operation should have an application/problem+json media type for
+          500 response.
+        severity: error
+        given: $paths.get.responses.500.content
+        then:
+          field: application/problem+json
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-get-500-problem-json-media-type.md?ref=main
+      github_sha: 2aa1d2714b8418cc55677c97a40debcf296964e5
+      collection_id: 12959542-3f716234-717b-4201-a1e5-f33e06f0f328
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response POST 500 Problem JSON Media Type
+      slug: openapi-v3-response-get-500-problem-json-media-type
+      summary: >-
+        This is a Spectral governance rule to make sure that POST methods all
+        have a 500 status code response with application/json media type in an
+        OpenAPI. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+        - Media Types
+      rule:
+        description: >-
+          Ensuring POST operations have an application/problem+json media type
+          for 500 responses.
+        message: >-
+          A POST operation should have an application/problem+json media type
+          for 500 response.
+        severity: error
+        given: $paths.post.responses.500.content
+        then:
+          field: application/problem+json
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-get-500-problem-json-media-type.md?ref=main
+      github_sha: 0a50d83e94b49fd11e78d33d73acb26449e90ef3
+      collection_id: 12959542-d10ee6dd-a28d-4de7-9fa2-76a7f300d39c
+identicalSources: false

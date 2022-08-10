@@ -1,0 +1,11 @@
+rules:
+  security-scheme-basic:
+    description: Requires the usage of basic for security scheme.
+    message: Must add basic for security scheme.
+    given: $.components.securitySchemes[*]
+    severity: error
+    then:
+      field: scheme
+      function: pattern
+      functionOptions: null
+      notMatch: basic

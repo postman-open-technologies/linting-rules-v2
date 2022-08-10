@@ -1,0 +1,81 @@
+id: info-x-audience
+name: Info X Audience
+description: Ensures that all OpenAPIs have a information object audience extension.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info X Audience
+      slug: openapi-v3-info-x-audience
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI info has
+        an audience extension. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Audience
+        - Extensions
+      rule:
+        description: >-
+          Ensures that all OpenAPIs have a information object audience
+          extension.
+        message: The info object should have an audience extension.
+        severity: error
+        given: $.info
+        then:
+          field: x-audience
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-x-audience.md?ref=main
+      github_sha: ad429d61cee9b8d0845833ceed855d2e95babd98
+      collection_id: 12959542-fe4819e0-91e0-4d09-a091-bda474bee8ae
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema's info object doesn't contain an audience extension
+        (x-audience), which is a custom header used to describe an API's target
+        audience.
+      fixDescription: >-
+        Although an audience extension isn't required, including it provides
+        your users with important information about the API. Add an audience
+        extension to your API schema's info object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info X Audience
+      slug: swagger-v2-info-x-audience
+      summary: >-
+        This is a Spectral governance rule to enforce that the Swagger info has
+        an audience extension. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Audience
+        - Extensions
+      rule:
+        description: >-
+          Ensures that all Swaggers have a information object audience
+          extension.
+        message: The info object should have an audience extension.
+        severity: error
+        given: $.info
+        then:
+          field: x-audience
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-x-audience.md?ref=main
+      github_sha: becc6c4690664be1ccf86b3373dadcb2e09306c7
+      collection_id: 12959542-a04a34d6-b953-403f-9571-8c1c4da50004
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema's info object doesn't contain an audience extension
+        (x-audience), which is a custom header used to describe an API's target
+        audience.
+      fixDescription: >-
+        Although an audience extension isn't required, including it provides
+        your users with important information about the API. Add an audience
+        extension to your API schema's info object.
+identicalSources: false
+selected: true
+identicalDocumentation: true

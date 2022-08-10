@@ -1,0 +1,57 @@
+id: response-put-204-no-body
+name: Response PUT 204 No Body
+description: Ensures PUT operations do not have a response body.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response PUT 204 No Body
+      slug: openapi-v3-response-put-204-no-body
+      summary: >-
+        This is a Spectral governance rule to make sure that PUT methods do not
+        have a response body in an OpenAPI. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures PUT operations do not have a response body.
+        message: A PUT operation should not have a response body.
+        severity: error
+        given: $paths.put.responses.204
+        then:
+          field: content
+          function: falsy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-put-204-no-body.md?ref=main
+      github_sha: 3e6906def58206bade69b45103fe8e6709339c34
+      collection_id: 12959542-5c4d1193-e00f-4079-a71a-09693865ac6d
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Response PUT 204 No Body
+      slug: swagger-v2-response-put-204-no-body
+      summary: >-
+        This is a Spectral governance rule to make sure that PUT methods do not
+        have a response body in an Swagger. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures PUT operations do not have a response body.
+        message: A PUT operation should not have a response body.
+        severity: error
+        given: $paths.put.responses.204
+        then:
+          field: schema
+          function: falsy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-response-put-204-no-body.md?ref=main
+      github_sha: 34215f8438b9c813dcca6a590b0c2f2a76147434
+      collection_id: 12959542-bd4d31f1-3bca-4a12-a014-e1246df3a3af
+identicalSources: false

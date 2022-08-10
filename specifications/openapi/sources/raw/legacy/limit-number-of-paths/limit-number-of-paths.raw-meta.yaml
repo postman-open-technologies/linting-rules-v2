@@ -1,0 +1,55 @@
+id: limit-number-of-paths
+name: Limit Number of Paths
+description: Ensures that there are not too many paths.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Limit Number of Paths
+      slug: openapi-v3-limit-number-of-paths
+      summary: >-
+        This is a Spectral governance rule to make sure that there aren't too
+        many paths in an OpenAPI. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that there are not too many paths.
+        message: There should be no more than 10 paths.
+        severity: warn
+        given: $.paths
+        then:
+          function: count-resource-types
+          functionOptions:
+            max: 10
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-limit-number-of-paths.md?ref=main
+      github_sha: dd444ed7605655c9f4688a3183071173b18b23e8
+      collection_id: 12959542-5aaee088-1cd7-4c0e-b079-6b6df6c42b36
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Limit Number of Paths
+      slug: swagger-v2-limit-number-of-paths
+      summary: >-
+        This is a Spectral governance rule to make sure that there aren't too
+        many paths in an Swagger. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that there are not too many paths.
+        message: There should be no more than 10 paths.
+        severity: warn
+        given: $.paths
+        then:
+          function: count-resource-types
+          functionOptions:
+            max: 10
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-limit-number-of-paths.md?ref=main
+      github_sha: 3698bcb63fd1aa9ed132d671ef68f00f5ca5738b
+      collection_id: 12959542-d05debb6-d39d-4d77-a80c-cbe7aa56a38f
+identicalSources: true

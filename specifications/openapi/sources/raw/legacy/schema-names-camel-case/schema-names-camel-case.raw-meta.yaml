@@ -1,0 +1,59 @@
+id: schema-names-camel-case
+name: Schema Names Camel Case
+description: Ensure all schema names are camel case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Names Camel Case
+      slug: openapi-v3-schema-names-camel-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema names in
+        an OpenAPI are camel case. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensure all schema names are camel case.
+        message: Schema names should be camel case.
+        severity: error
+        given: $.components.schemas
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: camel
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-names-camel-case.md?ref=main
+      github_sha: b658e3425c5b01990ee9b7b34325db0501ae95f3
+      collection_id: 12959542-f0a1aa40-1413-402e-8894-f2ef39d266c3
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Names Camel Case
+      slug: swagger-v2-schema-names-camel-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema names in
+        an Swagger are camel case. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensure all schema names are camel case.
+        message: Schema names should be camel case.
+        severity: error
+        given: $.definitions
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: camel
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-names-camel-case.md?ref=main
+      github_sha: 0b978a80dc285184767c39ce95bb9f2e968d72de
+      collection_id: 12959542-22d90165-6d8c-4f2e-ac1f-5640430db3ba
+identicalSources: false

@@ -1,0 +1,30 @@
+id: use-of-response-schema-anyof
+name: Use of Response Schema anyOf
+description: Checks to see if anyOf is being used as part of each schema.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Use of Response Schema anyOf
+      slug: openapi-v3-use-of-response-schema-anyof
+      summary: >-
+        This is a Spectral governance rule to enforce that check to see if anyOf
+        property is being used as part of the schema for any OpenAPI. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Checks to see if anyOf is being used as part of each schema.
+        message: You should avoid using anyOf as part of your schema.
+        given: $.paths.*.*[responses]..content..schema
+        severity: warn
+        formats:
+          - oas3
+        then:
+          field: anyOf
+          function: falsy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-use-of-response-schema-anyof.md?ref=main
+      github_sha: 07657c4db444fbd3454f4707d520eb04e1b0a8ce
+      collection_id: 12959542-dd659f38-dcce-47b6-bf8b-bc6c33b35e46

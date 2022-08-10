@@ -1,0 +1,12 @@
+rules:
+  response-delete-500-status-code:
+    description: Ensures DELETE operations have a 500 status code response.
+    message: A DELETE operation should have a 500 status code for the response.
+    given: $.paths[*].delete.responses
+    severity: warn
+    formats:
+      - oas2
+      - oas3
+    then:
+      field: '500'
+      function: truthy

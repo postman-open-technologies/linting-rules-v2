@@ -1,0 +1,31 @@
+id: security-oauth2
+name: Security Oauth2
+description: Requires the usage of an OAuth 2.0 for security.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Security Oauth2
+      slug: swagger-v2-security-oauth2
+      summary: >-
+        This is a Spectral governance rule to enforce that OAuth 2.0 security is
+        applied to the Swagger. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires the usage of an OAuth 2.0 for security.
+        message: Must add security definition object with type of oauth2
+        severity: error
+        given: $.security.*
+        then:
+          field: type
+          function: enumeration
+          functionOptions:
+            values:
+              - oauth2
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-security-oauth2.md?ref=main
+      github_sha: 67b064077360d8f15bb1c0337fd09be9d20a06c8
+      collection_id: 12959542-596f3894-16f5-48c9-a293-57fa36d45512

@@ -1,0 +1,61 @@
+id: operations-description-length
+name: Operations Description Length
+description: Ensures that the description for operations are not too long.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Operations Description Length
+      slug: openapi-v3-operations-description-length
+      summary: >-
+        This is a Spectral governance rule to enforce the length of API
+        operation descriptions within an OpenAPI. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Operations
+        - Length
+      rule:
+        description: Ensures that the description for operations are not too long.
+        message: Your operation descriptions should not be more than 250 characters.
+        given: $.paths.*[get,post,patch,put,delete]
+        recommended: true
+        then:
+          - field: description
+            function: length
+            functionOptions:
+              max: 250
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-description-length.md?ref=main
+      github_sha: fa76017c02b4b7afa35701e4b5a06301edded2a5
+      collection_id: 12959542-ff8a5fbc-bf2a-4740-ad5b-f3389f389e7b
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Description Length
+      slug: swagger-v2-operations-description-length
+      summary: >-
+        This is a Spectral governance rule to enforce the length of API
+        operation descriptions within an Swagger. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Operations
+        - Length
+      rule:
+        description: Ensures that the description for operations are not too long.
+        message: Your operation descriptions should not be more than 250 characters.
+        given: $.paths.*[get,post,patch,put,delete]
+        recommended: true
+        then:
+          - field: description
+            function: length
+            functionOptions:
+              max: 250
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-description-length.md?ref=main
+      github_sha: 9e6e0c16524a28c4f1b74092dd3ab2e9dca895d0
+      collection_id: 12959542-e34b453a-769d-4d57-a17b-fed1d82c76f0
+identicalSources: true

@@ -1,0 +1,57 @@
+id: operations-operation-ids-camel-case
+name: Operations Operation IDs Camel Case
+description: Ensures that each of the operations IDs are camel case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Operations Operation IDs Camel Case
+      slug: openapi-v3-operations-operation-ids-camel-case
+      summary: >-
+        This is a Spectral governance rule to make sure that operation Ids are
+        camel case. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Casing
+      rule:
+        description: Ensures that each of the operations IDs are camel case.
+        message: Your operations IDs need to be camel case.
+        given: $.paths.*[get,post,patch,put,delete].operationId
+        recommended: true
+        then:
+          function: casing
+          functionOptions:
+            type: camel
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-operation-ids-camel-case.md?ref=main
+      github_sha: a18fdb49a7d0a700dbb21904de1a05d424d37770
+      collection_id: 12959542-cd273011-3a92-4f2e-b1a6-8bd8801615e7
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Operation IDs Camel Case
+      slug: swagger-v2-operations-operation-ids-camel-case
+      summary: >-
+        This is a Spectral governance rule to make sure that operation Ids are
+        camel case. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Casing
+      rule:
+        description: Ensures that each of the operations IDs are camel case.
+        message: Your operations IDs need to be camel case.
+        given: $.paths.*[get,post,patch,put,delete].operationId
+        recommended: true
+        then:
+          function: casing
+          functionOptions:
+            type: camel
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-operation-ids-camel-case.md?ref=main
+      github_sha: 2a57dbfdec3f5ea54c4ff862de4783a3fd6db8f1
+      collection_id: 12959542-4a95188a-afb8-4741-9cc1-a07f1103c8c6
+identicalSources: true

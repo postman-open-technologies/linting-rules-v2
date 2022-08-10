@@ -1,0 +1,55 @@
+id: version-segment-second
+name: Version Second Segment
+description: Ensuring the second path segment is a version like v1.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Version Second Segment
+      slug: openapi-v3-version-segment-second
+      summary: >-
+        This is a Spectral governance rule to make sure that the second segment
+        of the path a version. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Versioning
+      rule:
+        description: Ensuring the second path segment is a version like v1.
+        message: The second path segment should be the version.
+        given: $.paths
+        then:
+          field: '@key'
+          function: pattern
+          functionOptions:
+            match: ^/[^/]+/v\d+/.+$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-version-segment-second.md?ref=main
+      github_sha: df35f4d4fa10c949c9223243a09519da080aea80
+      collection_id: 12959542-4e2509a9-1726-4755-ab02-df8679adf9be
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Version Second Segment
+      slug: swagger-v2-version-segment-second
+      summary: >-
+        This is a Spectral governance rule to make sure that the second segment
+        of the path a version. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Versioning
+      rule:
+        description: Ensuring the second path segment is a version like v1.
+        message: The second path segment should be the version.
+        given: $.paths
+        then:
+          field: '@key'
+          function: pattern
+          functionOptions:
+            match: ^/[^/]+/v\d+/.+$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-version-segment-second.md?ref=main
+      github_sha: 92f493fb2a334eeb743e65dbce2be50998aad0f0
+      collection_id: 12959542-c987a56f-745b-4b75-a3c0-f27e11b27b30
+identicalSources: true

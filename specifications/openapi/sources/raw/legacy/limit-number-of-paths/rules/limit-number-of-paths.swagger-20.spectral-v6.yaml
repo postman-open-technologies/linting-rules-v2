@@ -1,0 +1,10 @@
+rules:
+  limit-number-of-paths:
+    description: Ensures that there are not too many paths.
+    message: There should be no more than 10 paths.
+    given: $.paths
+    severity: warn
+    then:
+      function: count-resource-types
+      functionOptions:
+        max: 10

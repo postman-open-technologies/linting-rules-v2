@@ -1,0 +1,11 @@
+rules:
+  schema-names-pascal-case:
+    description: Ensure all schema names are pascal case.
+    message: Schema names should be pascal case.
+    given: $.components.schemas
+    severity: error
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: pascal

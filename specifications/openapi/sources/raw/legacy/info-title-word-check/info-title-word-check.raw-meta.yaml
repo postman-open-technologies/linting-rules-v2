@@ -1,0 +1,75 @@
+id: info-title-word-check
+name: Info Title Word Check
+description: Ensures that all OpenAPIs info object title do not contain certain words.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info Title Word Check
+      slug: openapi-v3-info-title-word-check
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI info title
+        doesn't contain certain words. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - Filters
+        - Dictionaries
+      rule:
+        description: >-
+          Ensures that all OpenAPIs info object title do not contain certain
+          words.
+        message: >-
+          The info object title should not contain the words REST, Public, and
+          Developer.
+        given: $.info.title
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas3
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(REST|Public|Developer)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-title-word-check.md?ref=main
+      github_sha: 120eb772415d9c33329ec9a5798aee671e7d19b3
+      collection_id: 12959542-d48ac8b1-3b00-4042-9766-76470d634c6a
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info Title Word Check
+      slug: swagger-v2-info-title-word-check
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger info title
+        doesn't contain certain words. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - Filters
+        - Dictionaries
+      rule:
+        description: >-
+          Ensures that all Swaggers info object title do not contain certain
+          words.
+        message: >-
+          The info object title should not contain the words REST, Public, and
+          Developer.
+        given: $.info.title
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas2
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(REST|Public|Developer)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-title-word-check.md?ref=main
+      github_sha: 329f3ca4a0f1fccaf118dd1b1be9547ea571825e
+      collection_id: 12959542-59cb8e63-568b-455e-9c46-d81c09af760e
+identicalSources: false

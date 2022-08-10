@@ -1,0 +1,34 @@
+id: consume-xml-media-type
+name: Swagger V2 Consume XML Media Type
+description: Ensures that application/xml media types are able to be consumed.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 Consume XML Media Type
+      slug: swagger-v2-consume-xml-media-type
+      summary: >-
+        This is a Spectral governance rule to enforce that a Swagger consumes
+        application/xml media types. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Media Type
+      rule:
+        description: Ensures that application/xml media types are able to be consumed.
+        message: The APIs should be able to consume application/xml media types.
+        severity: error
+        recommended: true
+        format: oas2
+        given: $..consumes.*
+        then:
+          function: schema
+          functionOptions:
+            schema:
+              type: string
+              enum:
+                - application/xml
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-consume-xml-media-type.md?ref=main
+      github_sha: 2d3ae63c28a3b641562e645448441ef4f465d437
+      collection_id: 12959542-4b2f25a7-c27e-4c01-8cfd-7a1726690f0f

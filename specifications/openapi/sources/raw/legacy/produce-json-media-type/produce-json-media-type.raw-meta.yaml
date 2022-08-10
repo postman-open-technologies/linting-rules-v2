@@ -1,0 +1,65 @@
+id: produce-json-media-type
+name: Swagger V2 Produce JSON Media Type
+description: Ensures that an API produces application/json media type.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 Produce JSON Media Type
+      slug: swagger-v2-produce-json-media-type
+      summary: >-
+        This is a Spectral governance rule to make sure that a Swagger
+        definition produces a application/json media type. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Media Type
+      rule:
+        description: Ensures that an API produces application/json media type.
+        message: APIs should produce a application/json media type.
+        severity: error
+        recommended: true
+        format: oas2
+        given: $..consumes.*
+        then:
+          function: schema
+          functionOptions:
+            schema:
+              type: string
+              enum:
+                - application/json
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-produce-json-media-type.md?ref=main
+      github_sha: 5fa688fc8f2bed9c62e5baf6e19cc489ac5aabeb
+      collection_id: 12959542-eeef6fe8-d8de-4b2e-bb90-78a5b1842e88
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 Produce JSON Media Type
+      slug: swagger-v2-produce-json-media-type
+      summary: >-
+        This is a Spectral governance rule to enforce that a Swagger produces
+        application/json media types. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Media Type
+      rule:
+        description: Ensures that application/json media types are able to be produced.
+        message: The APIs should be able to produce application/json media types.
+        severity: error
+        recommended: true
+        format: oas2
+        given: $..produces.*
+        then:
+          function: schema
+          functionOptions:
+            schema:
+              type: string
+              enum:
+                - application/json
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-produce-json-media-type.md?ref=main
+      github_sha: 764801e572cd2af0cc0712bfc8934bde19b7f6bd
+      collection_id: 12959542-eeef6fe8-d8de-4b2e-bb90-78a5b1842e88
+identicalSources: false

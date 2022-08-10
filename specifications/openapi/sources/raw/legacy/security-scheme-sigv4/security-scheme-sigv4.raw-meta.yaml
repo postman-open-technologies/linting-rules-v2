@@ -1,0 +1,28 @@
+id: security-scheme-sigv4
+name: OpenAPI V3 Security Scheme Sigv4
+description: Requires the usage of Sigv4 for security scheme.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Security Scheme Sigv4
+      slug: openapi-v3-security-scheme-sigv4
+      summary: >-
+        This is a Spectral governance rule to enforce that Sigv4 security is
+        applied to the OpenAPI. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires the usage of Sigv4 for security scheme.
+        message: Must add Sigv4 for security scheme.
+        severity: error
+        given: $..components.securitySchemes
+        then:
+          field: sigv4
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-security-scheme-sigv4.md?ref=main
+      github_sha: 92b801766a1835a2e17ce28f8387fee994c8014a
+      collection_id: 12959542-da90b27c-bed1-430b-85bb-dc85a07d20ee

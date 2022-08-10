@@ -1,0 +1,34 @@
+id: components-responses-camel-case
+name: OpenAPI V3 Components Responses Camel Case
+description: Ensuring that all components responses are using camel case for the name.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Components Responses Camel Case
+      slug: openapi-v3-components-responses-camel-case
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI responses
+        within the components object are all using camel case for the key. Here
+        is a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Responses
+        - Casing
+      rule:
+        description: >-
+          Ensuring that all components responses are using camel case for the
+          name.
+        message: The component responses name needs to be camelCase.
+        given: $.components.responses
+        severity: error
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: camel
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-components-responses-camel-case.md?ref=main
+      github_sha: b0cefdad0db56bc02bfdb0e420e783d0edbfcd31
+      collection_id: 12959542-3fc52aba-b651-4742-88f3-8b6eba1e0c07

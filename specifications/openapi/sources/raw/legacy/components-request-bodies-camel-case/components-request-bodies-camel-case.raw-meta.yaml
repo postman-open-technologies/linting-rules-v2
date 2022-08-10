@@ -1,0 +1,34 @@
+id: components-request-bodies-camel-case
+name: OpenAPI V3 Components Request Bodies Camel Case
+description: Ensuring that all components request bodies are using camel case for the key.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Components Request Bodies Camel Case
+      slug: openapi-v3-components-request-bodies-camel-case
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI request
+        bodies within the components object are all using camel case for the
+        key. Here is a JSON version of the rule that can be applied using this
+        API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Request Bodies
+        - Casing
+      rule:
+        description: >-
+          Ensuring that all components request bodies are using camel case for
+          the key.
+        message: The component request bodies key needs to be camelCase.
+        given: $.components.requestBodies
+        severity: error
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: camel
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-components-request-bodies-camel-case.md?ref=main
+      github_sha: 377f7341c8c568de5f65f0de7324ff576fcc84a8
+      collection_id: 12959542-5606f026-51f0-4be9-9f06-c0ca09bb16bd

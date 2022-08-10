@@ -1,0 +1,11 @@
+rules:
+  schema-type:
+    description: Ensuring that all schema have a type property.
+    message: All schema should have a type property.
+    given: $.components.schemas.*
+    severity: error
+    formats:
+      - oas3
+    then:
+      field: type
+      function: truthy

@@ -1,0 +1,13 @@
+rules:
+  schema-description-length:
+    description: All schemas descriptions should be shorter than 20 characters.
+    message: Description needs to be less than 20 characters.
+    given: $.definitions.*
+    severity: warn
+    formats:
+      - oas2
+    then:
+      field: description
+      function: length
+      functionOptions:
+        max: 20

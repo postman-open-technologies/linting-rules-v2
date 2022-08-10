@@ -1,0 +1,11 @@
+rules:
+  schema-properties-type:
+    description: Ensuring that all schemas properties should have a type.
+    message: All schema properties should have type property.
+    given: $.definitions.properties.*
+    severity: warn
+    formats:
+      - oas2
+    then:
+      field: type
+      function: truthy

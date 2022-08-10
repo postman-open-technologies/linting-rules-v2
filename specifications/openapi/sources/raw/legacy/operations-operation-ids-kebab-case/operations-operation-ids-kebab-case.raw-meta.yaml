@@ -1,0 +1,57 @@
+id: operations-operation-ids-kebab-case
+name: Operations Operation IDs Kebab Case
+description: Ensures that each of the operations IDs are kebab case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Operations Operation IDs Kebab Case
+      slug: openapi-v3-operations-operation-ids-kebab-case
+      summary: >-
+        This is a Spectral governance rule to make sure that operation Ids are
+        kebab case. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Casing
+      rule:
+        description: Ensures that each of the operations IDs are kebab case.
+        message: Your operations IDs need to be kebab case.
+        given: $.paths.*[get,post,patch,put,delete].operationId
+        recommended: true
+        then:
+          function: casing
+          functionOptions:
+            type: kebab
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-operation-ids-kebab-case.md?ref=main
+      github_sha: c47484ab73112875012e2c659b79b539c79b9425
+      collection_id: 12959542-5b95cd65-abc3-426c-926d-57e72895886c
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Operation IDs Kebab Case
+      slug: swagger-v2-operations-operation-ids-kebab-case
+      summary: >-
+        This is a Spectral governance rule to make sure that operation Ids are
+        kebab case. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Casing
+      rule:
+        description: Ensures that each of the operations IDs are kebab case.
+        message: Your operations IDs need to be kebab case.
+        given: $.paths.*[get,post,patch,put,delete].operationId
+        recommended: true
+        then:
+          function: casing
+          functionOptions:
+            type: kebab
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-operation-ids-kebab-case.md?ref=main
+      github_sha: c34ebe67b2fcd3db6bfcfbdec54b4854b201e5d4
+      collection_id: 12959542-adc996a1-61be-4900-a9be-739aa29f1a3e
+identicalSources: true

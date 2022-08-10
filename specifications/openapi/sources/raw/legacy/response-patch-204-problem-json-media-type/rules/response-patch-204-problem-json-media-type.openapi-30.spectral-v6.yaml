@@ -1,0 +1,13 @@
+rules:
+  response-patch-204-problem-json-media-type:
+    description: >-
+      Ensuring PATCH operations have an application/problem+json media type for
+      500 responses.
+    message: >-
+      A PATCH operation should have an application/problem+json media type for
+      500 response.
+    given: $paths.patch.responses.500.content
+    severity: error
+    then:
+      field: application/problem+json
+      function: truthy

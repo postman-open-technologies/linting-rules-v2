@@ -1,0 +1,36 @@
+id: components-parameters-pascal-case
+name: OpenAPI V3 Components Parameters Pascal Case
+description: Ensuring that all components parameters are using pascal case for the name.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Components Parameters Pascal Case
+      slug: openapi-v3-components-parameters-pascal-case
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI
+        parameters within the components object are all using pascal case for
+        the key. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Parameters
+        - Casing
+      rule:
+        description: >-
+          Ensuring that all components parameters are using pascal case for the
+          name.
+        message: The component parameters name needs to be pascalCase.
+        given: >-
+          $.components.parameters..[?(@.in==='query' || @.in==='path' ||
+          @.in==='cookie')]
+        severity: warn
+        then:
+          field: name
+          function: casing
+          functionOptions:
+            type: pascal
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-components-parameters-pascal-case.md?ref=main
+      github_sha: 3e0ce8f23bb02c2896fdf5dfe36313c6a41f2901
+      collection_id: 12959542-28adc4a1-f3c2-4261-9fd2-5bc6783c3313

@@ -1,0 +1,101 @@
+id: schema-properties-allowed-number-format
+name: Schema Properties Allowed Number Format
+description: Ensure only allowed number formats.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Allowed Number Format
+      slug: openapi-v3-schema-properties-allowed-number-format
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI properties
+        that use number type have a format of decimal32, decimal64, float,
+        double, or decimal128. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Numbers
+        - Formats
+      rule:
+        description: Ensure only allowed number formats.
+        message: >-
+          You must have format property of decimal32, decimal64, float, double,
+          decimal128
+        formats:
+          - oas3
+        severity: hint
+        recommended: true
+        given: $..properties.[?(@.type=="number")]
+        then:
+          field: format
+          function: enumeration
+          functionOptions:
+            values:
+              - decimal32
+              - decimal64
+              - float
+              - double
+              - decimal128
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-allowed-number-format.md?ref=main
+      github_sha: 9650c26f59adabd452193375cb9209e1ab13f8e0
+      collection_id: 12959542-2d9d89fb-4f51-48c5-a4c9-5244e0c35a52
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more schema objects in your API schema's components object has a
+        number type property but doesn't specify decimal32, decimal64, float,
+        double, or decimal128 format.
+      fixDescription: >-
+        Make sure that properties that have number type in your API schema have
+        a format of decimal32, decimal64, float, double, or decimal128.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Allowed Number Format
+      slug: swagger-v2-schema-properties-allowed-number-format
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger properties
+        that use number type have a format of decimal32, decimal64, float,
+        double, or decimal128. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Numbers
+        - Formats
+      rule:
+        description: Ensure only allowed number formats.
+        message: >-
+          You must have format property of decimal32, decimal64, float, double,
+          decimal128
+        formats:
+          - oas2
+        severity: hint
+        recommended: true
+        given: $.definitions.properties.[?(@.type=="number")]
+        then:
+          field: format
+          function: enumeration
+          functionOptions:
+            values:
+              - decimal32
+              - decimal64
+              - float
+              - double
+              - decimal128
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-allowed-number-format.md?ref=main
+      github_sha: 028cc7a83a6131aefb855e936a1486b12849e63d
+      collection_id: 12959542-74ca6cd1-a47f-4b77-b65f-7a948afb1bbc
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more schema objects in your API schema's components object has a
+        number type property but doesn't specify decimal32, decimal64, float,
+        double, or decimal128 format.
+      fixDescription: >-
+        Make sure that properties that have number type in your API schema have
+        a format of decimal32, decimal64, float, double, or decimal128.
+identicalSources: false
+selected: true
+identicalDocumentation: true

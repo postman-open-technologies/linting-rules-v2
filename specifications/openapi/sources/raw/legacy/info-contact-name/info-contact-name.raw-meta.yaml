@@ -1,0 +1,77 @@
+id: info-contact-name
+name: Info Contact Name
+description: Ensures that all APIs have contact name.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info Contact Name
+      slug: openapi-v3-info-contact-name
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI info object
+        has a contact name. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - Contact
+        - Communication
+      rule:
+        description: Ensures that all APIs have contact name.
+        message: API must have a contact name available.
+        given: $.info.contact
+        severity: error
+        then:
+          field: name
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-contact-name.md?ref=main
+      github_sha: f1272208586b28ef939eef2d4f8a53d928038c89
+      collection_id: 12959542-b24b53a9-d792-43c7-b2ee-e0dc0376ddf9
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema's contact object doesn't contain a name for the contact
+        person or organization.
+      fixDescription: >-
+        Although contact information isn't required, including it allows your
+        users to communicate with you. Add a name to your API schema's contact
+        object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info Contact Name
+      slug: swagger-v2-info-contact-name
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger info object
+        has a contact name. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - Contact
+        - Communication
+      rule:
+        description: Ensures that all APIs have contact name.
+        message: API must have a contact name available.
+        given: $.info.contact
+        severity: error
+        then:
+          field: name
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-contact-name.md?ref=main
+      github_sha: 4c9b2fa23d1085b5cd6ff4cc8531373ca2bb00d3
+      collection_id: 12959542-d3bae007-b837-4a25-add4-099374abce28
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema's contact object doesn't contain a name for the contact
+        person or organization.
+      fixDescription: >-
+        Although contact information isn't required, including it allows your
+        users to communicate with you. Add a name to your API schema's contact
+        object.
+identicalSources: true
+selected: true
+identicalDocumentation: true

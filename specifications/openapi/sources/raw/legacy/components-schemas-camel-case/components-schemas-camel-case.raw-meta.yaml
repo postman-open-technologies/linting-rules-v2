@@ -1,0 +1,34 @@
+id: components-schemas-camel-case
+name: OpenAPI V3 Components Schemas Camel Case
+description: Ensuring that all components schemas are using camel case for the name.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Components Schemas Camel Case
+      slug: openapi-v3-components-schemas-camel-case
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI schemas
+        within the components object are all using camel case for the key. Here
+        is a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Schemas
+        - Casing
+      rule:
+        description: >-
+          Ensuring that all components schemas are using camel case for the
+          name.
+        message: The component schemas name needs to be camelCase.
+        given: $.components.schemas
+        severity: error
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: camel
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-components-schemas-camel-case.md?ref=main
+      github_sha: 276c9e45d545f76e981030a43cb4ad204ec4b201
+      collection_id: 12959542-5e08f537-cfb1-494f-9b15-44f70fdc2786

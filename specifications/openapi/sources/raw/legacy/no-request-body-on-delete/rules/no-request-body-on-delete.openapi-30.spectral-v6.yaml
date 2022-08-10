@@ -1,0 +1,9 @@
+rules:
+  no-request-body-on-delete:
+    description: Ensures that DELETE methods do not have request bodies.
+    message: Your DELETE methods should not have request bodies.
+    given: $.paths.*.delete
+    severity: error
+    then:
+      field: requestBody
+      function: falsy

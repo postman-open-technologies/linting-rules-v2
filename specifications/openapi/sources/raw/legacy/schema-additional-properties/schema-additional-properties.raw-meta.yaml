@@ -1,0 +1,65 @@
+id: schema-additional-properties
+name: Schema Additional Properties
+description: Restricts objects from having additional properties defined.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Additional Properties
+      slug: openapi-v3-schema-additional-properties
+      summary: >-
+        This is a Spectral governance rule to enforce that schema objects do not
+        have additional properties enabled for each OpenAPI. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Security
+      rule:
+        description: Restricts objects from having additional properties defined.
+        message: All schema objects should have additionalProperties set to false.
+        formats:
+          - oas3
+        severity: warn
+        recommended: true
+        given:
+          - >-
+            $.[?(@.type=="object" && @.additionalProperties &&
+            @.additionalProperties!=true && @.additionalProperties!=false )]
+        then:
+          - field: maxProperties
+            function: defined
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-additional-properties.md?ref=main
+      github_sha: dbe3cac3e287168fa926bf550cd3baef43a95287
+      collection_id: 12959542-add3ba84-cee5-4636-b9e2-dd36a66fa938
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Additional Properties
+      slug: swagger-v2-schema-additional-properties
+      summary: >-
+        This is a Spectral governance rule to enforce that schema objects do not
+        have additional properties enabled for each Swagger. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Security
+      rule:
+        description: Restricts objects from having additional properties defined.
+        message: All schema objects should have additionalProperties set to false.
+        formats:
+          - oas2
+        severity: warn
+        recommended: true
+        given:
+          - >-
+            $.[?(@.type=="object" && @.additionalProperties &&
+            @.additionalProperties!=true && @.additionalProperties!=false )]
+        then:
+          - field: maxProperties
+            function: defined
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-additional-properties.md?ref=main
+      github_sha: 8ce414d3151da9dc3280ff59469b01c3e9a1676c
+      collection_id: 12959542-e8246698-9492-4c38-ab8d-f2414f97d07f
+identicalSources: false

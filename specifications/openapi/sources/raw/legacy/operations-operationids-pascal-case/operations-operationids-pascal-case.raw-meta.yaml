@@ -1,0 +1,30 @@
+id: operations-operationids-pascal-case
+name: Operations Operationids Pascal Case
+description: Ensures that each of the operations IDs are pascal case.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Operationids Pascal Case
+      slug: swagger-v2-operations-operationids-pascal-case
+      summary: >-
+        This is a Spectral governance rule to make sure that operation Ids are
+        pascal case. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Casing
+      rule:
+        description: Ensures that each of the operations IDs are pascal case.
+        message: Your operations IDs need to be pascal case.
+        given: $.paths.*[get,post,patch,put,delete].operationId
+        recommended: true
+        then:
+          function: casing
+          functionOptions:
+            type: pascal
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-operationids-pascal-case.md?ref=main
+      github_sha: 5ec083ee9ecbbc80eef43830563727fefdd99901
+      collection_id: 12959542-5d520cb5-2835-450d-be96-6bffb84d48e9

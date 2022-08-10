@@ -1,0 +1,10 @@
+rules:
+  version-date-format:
+    description: Ensuring that there is a data form version applied.
+    message: You need to have a date version format.
+    given: $.info.version
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: ^([0-9]{4}-[0-9]{2}-[0-9]{2})$

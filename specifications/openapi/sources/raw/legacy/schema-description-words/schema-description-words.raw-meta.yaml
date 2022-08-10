@@ -1,0 +1,61 @@
+id: schema-description-words
+name: Schema Description Words
+description: Some words should not be be contained within the schema description.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Description Words
+      slug: openapi-v3-schema-description-words
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema in an
+        OpenAPI do not contain certain words within the description.. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Some words should not be be contained within the schema description.
+        message: Do not use the words word, word, and word in the schema descriptions.
+        severity: warn
+        formats:
+          - oas3
+        given: $.components.schemas.*
+        then:
+          field: description
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-description-words.md?ref=main
+      github_sha: 72e36d236ec843bde9b05abf628f97e9101bd0a3
+      collection_id: 12959542-318c630c-7b2e-4398-943c-6d4e559ee5b2
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Description Words
+      slug: swagger-v2-schema-description-words
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema in an
+        Swagger do not contain certain words within the description.. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Some words should not be be contained within the schema description.
+        message: Do not use the words word, word, and word in the schema descriptions.
+        severity: warn
+        formats:
+          - oas2
+        given: $.definitions.*
+        then:
+          field: description
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-description-words.md?ref=main
+      github_sha: 85c4dc07d22d66e01b587fb05df116e85d179377
+      collection_id: 12959542-ec4c77f4-91f1-4bab-8344-6ea65c985d22
+identicalSources: false

@@ -1,0 +1,65 @@
+id: produce-xml-media-type
+name: Swagger V2 Produce XML Media Type
+description: Ensures that an API produces application/xml media type.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 Produce XML Media Type
+      slug: swagger-v2-produce-xml-media-type
+      summary: >-
+        This is a Spectral governance rule to make sure that a Swagger
+        definition produces a application/xml media type. Here is a JSON version
+        of the rule that can be applied using this API-driven collection API, or
+        at CLI or CI/CD pipeline.
+      tags:
+        - Media Type
+      rule:
+        description: Ensures that an API produces application/xml media type.
+        message: APIs should produce a application/xml media type.
+        severity: error
+        recommended: true
+        format: oas2
+        given: $..consumes.*
+        then:
+          function: schema
+          functionOptions:
+            schema:
+              type: string
+              enum:
+                - application/xml
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-produce-xml-media-type.md?ref=main
+      github_sha: 1c7eb90613137d7032036b01e7e97d1a8dc33111
+      collection_id: 12959542-21e70a43-d060-405a-9e73-67985a663f4d
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 Produce XML Media Type
+      slug: swagger-v2-produce-xml-media-type
+      summary: >-
+        This is a Spectral governance rule to enforce that a Swagger produces
+        application/xml media types. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Media Type
+      rule:
+        description: Ensures that application/xml media types are able to be produced.
+        message: The APIs should be able to produce application/xml media types.
+        severity: error
+        recommended: true
+        format: oas2
+        given: $..produces.*
+        then:
+          function: schema
+          functionOptions:
+            schema:
+              type: string
+              enum:
+                - application/xml
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-produce-xml-media-type.md?ref=main
+      github_sha: f1b20bfa4627f03dc473c5c300f7156fa97e7908
+      collection_id: 12959542-21e70a43-d060-405a-9e73-67985a663f4d
+identicalSources: false

@@ -1,0 +1,31 @@
+id: security-api-key
+name: Security API Key
+description: Requires the usage of an API key for security.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Security API Key
+      slug: swagger-v2-security-api-key
+      summary: >-
+        This is a Spectral governance rule to enforce that API key security is
+        applied to the Swagger. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires the usage of an API key for security.
+        message: Must add security definition object with type of apiKey
+        severity: error
+        given: $.security.*
+        then:
+          field: type
+          function: enumeration
+          functionOptions:
+            values:
+              - apiKey
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-security-api-key.md?ref=main
+      github_sha: 2b50ff7723ee0230cc3ff27b89b94f3c90765f63
+      collection_id: 12959542-83dc6a80-631a-4fe7-a7a9-62ce7d4ed3b8

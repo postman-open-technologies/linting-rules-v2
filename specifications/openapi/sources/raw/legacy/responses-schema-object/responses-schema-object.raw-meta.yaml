@@ -1,0 +1,28 @@
+id: responses-schema-object
+name: Responses Schema Object
+description: Ensuring all responses have a schema defined.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Responses Schema Object
+      slug: openapi-v3-responses-schema-object
+      summary: >-
+        This is a Spectral governance rule to make sure that all responses have
+        schema defined in an OpenAPI. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Responses
+        - Schema
+      rule:
+        description: Ensuring all responses have a schema defined.
+        message: All your responses need to have a schema defined.
+        severity: error
+        given: $.paths.*.*[responses]..content..schema
+        then:
+          function: is-object-schema
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-responses-schema-object.md?ref=main
+      github_sha: 7873fb762ef66569857a409f1dd667793126cb89
+      collection_id: 12959542-7bf191ed-00e5-4ca1-be74-4937fcb065e7

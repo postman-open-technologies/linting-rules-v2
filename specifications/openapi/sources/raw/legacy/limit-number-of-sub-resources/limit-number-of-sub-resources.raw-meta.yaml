@@ -1,0 +1,55 @@
+id: limit-number-of-sub-resources
+name: Limit Number of Sub-resources
+description: Ensures that there are not too many sub-resources.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Limit Number of Sub-resources
+      slug: openapi-v3-limit-number-of-sub-resources
+      summary: >-
+        This is a Spectral governance rule to make sure that there aren't too
+        many sub-resources in an OpenAPI. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that there are not too many sub-resources.
+        message: There should be no more than three levels of sub-resources.
+        severity: warn
+        given: $.paths.*~
+        then:
+          function: pattern
+          functionOptions:
+            match: ^/[^/]*((/{[^}]*})*/[^/]*(/{[^}]*})*){0,3}/?$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-limit-number-of-sub-resources.md?ref=main
+      github_sha: 9477e7d749074722e96d330a17e9cc9ee6f65944
+      collection_id: 12959542-57226d1a-49e8-4274-bc52-6606f0c8a0d9
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Limit Number of Sub-resources
+      slug: swagger-v2-limit-number-of-sub-resources
+      summary: >-
+        This is a Spectral governance rule to make sure that there aren't too
+        many sub-resources in an Swagger. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that there are not too many sub-resources.
+        message: There should be no more than three levels of sub-resources.
+        severity: warn
+        given: $.paths.*~
+        then:
+          function: pattern
+          functionOptions:
+            match: ^/[^/]*((/{[^}]*})*/[^/]*(/{[^}]*})*){0,3}/?$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-limit-number-of-sub-resources.md?ref=main
+      github_sha: 828fcbc0eb74f29f8f77bb4537f65842969a51af
+      collection_id: 12959542-8c03f764-b099-4aa8-9142-c768cc57f305
+identicalSources: true

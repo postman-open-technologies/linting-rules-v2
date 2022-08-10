@@ -1,0 +1,71 @@
+id: schema-properties-type
+name: Schema Properties Type
+description: Ensuring that all schemas properties should have a type.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Type
+      slug: openapi-v3-schema-properties-type
+      summary: >-
+        This is a Spectral governance rule to make sure that schema properties
+        have a type defined within OpenAPI definitions. Here is a JSON version
+        of the rule that can be applied using this API-driven collection API, or
+        at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Ensuring that all schemas properties should have a type.
+        message: All schema properties should have type property.
+        severity: warn
+        formats:
+          - oas3
+        given: $..properties.*
+        then:
+          field: type
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-type.md?ref=main
+      github_sha: ab8104fb53639feaeec0674494b72777ce96e3f1
+      collection_id: 12959542-ee1b7d48-725e-41eb-aa81-a6f57812a4cd
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more properties in a schema object in your API schema's
+        components object doesn't have a type defined.
+      fixDescription: Add a type for every property in your schema objects.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Type
+      slug: swagger-v2-schema-properties-type
+      summary: >-
+        This is a Spectral governance rule to make sure that schema properties
+        have a type defined within Swagger definitions. Here is a JSON version
+        of the rule that can be applied using this API-driven collection API, or
+        at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Ensuring that all schemas properties should have a type.
+        message: All schema properties should have type property.
+        severity: warn
+        formats:
+          - oas2
+        given: $.definitions.properties.*
+        then:
+          field: type
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-type.md?ref=main
+      github_sha: 5715f77ba65b9277115b3283bfe58eab6158d557
+      collection_id: 12959542-61a51155-5ef0-433f-ae92-8321a1b23650
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more properties in a schema object in your API schema's
+        components object doesn't have a type defined.
+      fixDescription: Add a type for every property in your schema objects.
+identicalSources: false
+selected: true
+identicalDocumentation: true

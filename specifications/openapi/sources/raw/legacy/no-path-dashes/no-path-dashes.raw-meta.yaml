@@ -1,0 +1,57 @@
+id: no-path-dashes
+name: No Path Dashes
+description: Ensures that paths do not contain dashes.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - No Path Dashes
+      slug: openapi-v3-no-path-dashes
+      summary: >-
+        This is a Spectral governance rule to make sure that paths should not
+        contain dashes in an OpenAPI. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that paths do not contain dashes.
+        message: Your paths should not contain dashes.
+        severity: error
+        recommended: true
+        given: $.paths[*]~
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: /-/
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-no-path-dashes.md?ref=main
+      github_sha: 197bfe7b1e0db5f34d9e217ca3a5b49c730fe578
+      collection_id: 12959542-f518ca55-f448-40c3-b868-18ee998acff7
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - No Path Dashes
+      slug: swagger-v2-no-path-dashes
+      summary: >-
+        This is a Spectral governance rule to make sure that paths should not
+        contain dashes in an Swagger. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that paths do not contain dashes.
+        message: Your paths should not contain dashes.
+        severity: error
+        recommended: true
+        given: $.paths[*]~
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: /-/
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-no-path-dashes.md?ref=main
+      github_sha: 2907a985544bb1dd3a03bd3d1618e179bf2b9484
+      collection_id: 12959542-7f3e04f0-da67-4093-a530-cc63a7c0da9f
+identicalSources: true

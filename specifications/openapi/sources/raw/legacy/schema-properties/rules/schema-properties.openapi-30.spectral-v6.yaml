@@ -1,0 +1,11 @@
+rules:
+  schema-properties:
+    description: Ensuring that all schema should have properties.
+    message: All of your schema need to have properties.
+    given: $.components.schemas.*
+    severity: error
+    formats:
+      - oas3
+    then:
+      field: properties
+      function: truthy

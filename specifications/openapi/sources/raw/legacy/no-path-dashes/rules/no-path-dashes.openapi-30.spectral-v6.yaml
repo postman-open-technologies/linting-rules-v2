@@ -1,0 +1,10 @@
+rules:
+  no-path-dashes:
+    description: Ensures that paths do not contain dashes.
+    message: Your paths should not contain dashes.
+    given: $.paths[*]~
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: /-/

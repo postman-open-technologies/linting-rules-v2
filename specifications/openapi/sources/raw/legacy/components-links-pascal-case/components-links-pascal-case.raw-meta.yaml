@@ -1,0 +1,32 @@
+id: components-links-pascal-case
+name: OpenAPI V3 Components Links Pascal Case
+description: Ensuring that all components links are using pascal case for the key.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Components Links Pascal Case
+      slug: openapi-v3-components-links-pascal-case
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI links
+        within the components object are all using pascal case for the key. Here
+        is a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Links
+        - Casing
+      rule:
+        description: Ensuring that all components links are using pascal case for the key.
+        message: The component links key needs to be pascalCase.
+        given: $.components.links
+        severity: error
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: pascal
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-components-links-pascal-case.md?ref=main
+      github_sha: ffea466789411f7b6f3da2ed1d4d6d9fc374544b
+      collection_id: 12959542-bb176dec-a9cc-400f-9302-58af4833ecb8

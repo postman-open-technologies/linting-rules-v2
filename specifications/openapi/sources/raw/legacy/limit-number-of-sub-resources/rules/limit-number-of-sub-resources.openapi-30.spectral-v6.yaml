@@ -1,0 +1,10 @@
+rules:
+  limit-number-of-sub-resources:
+    description: Ensures that there are not too many sub-resources.
+    message: There should be no more than three levels of sub-resources.
+    given: $.paths.*~
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: ^/[^/]*((/{[^}]*})*/[^/]*(/{[^}]*})*){0,3}/?$

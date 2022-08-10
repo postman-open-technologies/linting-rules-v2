@@ -1,0 +1,57 @@
+id: parameters-name-pascal-case
+name: Parameters Name Pascal Case
+description: Ensures that that all parameter names are pascal case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters Name Pascal Case
+      slug: openapi-v3-parameters-name-pascal-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameter names
+        are pascal case within an OpenAPI. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Parameters
+        - Casing
+      rule:
+        description: Ensures that that all parameter names are pascal case.
+        message: Your parameter names should all be pascal case.
+        given: $.paths.*.*.parameters[?(@.in=='query')].name
+        then:
+          field: name
+          function: casing
+          functionOptions:
+            type: pascal
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-name-pascal-case.md?ref=main
+      github_sha: 337405b99f0754eed2ad2c2e8b71077220c59e05
+      collection_id: 12959542-a73a34e9-05cc-467f-b2c2-829bd9631689
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters Name Pascal Case
+      slug: swagger-v2-parameters-name-pascal-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameter names
+        are pascal case within an Swagger. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Parameters
+        - Casing
+      rule:
+        description: Ensures that that all parameter names are pascal case.
+        message: Your parameter names should all be pascal case.
+        given: $.paths.*.*.parameters[?(@.in=='query')].name
+        then:
+          field: name
+          function: casing
+          functionOptions:
+            type: pascal
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-name-pascal-case.md?ref=main
+      github_sha: ddfd0f292f82a59ed0f0d71a87273b3f62afbe1d
+      collection_id: 12959542-3700e4f8-7e8e-49e1-8e0c-b9741a8d5c0c
+identicalSources: true

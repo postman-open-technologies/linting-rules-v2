@@ -1,0 +1,71 @@
+id: info-description-word-check
+name: OpenAPI V3 Info Description Word Check
+description: Ensures that all APIs descriptions do not contain certain words.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Info Description Word Check
+      slug: openapi-v3-info-description-word-check
+      summary: >-
+        This is a Spectral governance rule to enforce that an OpenAPI
+        information object description does not contain certain words. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Info
+        - Filters
+        - Dictionaries
+      rule:
+        description: Ensures that all APIs descriptions do not contain certain words.
+        message: >-
+          The info object description cannot contain the words REST, public,
+          developer.
+        given: $.info.description
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas3
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(REST|Public|Developer)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-description-word-check.md?ref=main
+      github_sha: bdaca28109e01da5f565104cc332607c2e1f9560
+      collection_id: 12959542-df3139c9-6f02-4c06-ba3a-259c27125d3c
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 Info Description Word Check
+      slug: swagger-v2-info-description-word-check
+      summary: >-
+        This is a Spectral governance rule to enforce that an Swagger
+        information object description does not contain certain words. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Info
+        - Filters
+        - Dictionaries
+      rule:
+        description: Ensures that all APIs descriptions do not contain certain words.
+        message: >-
+          The info object description cannot contain the words REST, public,
+          developer.
+        given: $.info.description
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas2
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(REST|Public|Developer)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-description-word-check.md?ref=main
+      github_sha: 851f8b89071720af91dedf7946ae00b70d92d75a
+      collection_id: 12959542-75e2dcca-e812-4d42-8695-b13d899b66fa
+identicalSources: false

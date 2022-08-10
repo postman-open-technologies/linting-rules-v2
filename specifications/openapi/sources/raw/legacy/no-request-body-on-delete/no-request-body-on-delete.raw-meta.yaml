@@ -1,0 +1,64 @@
+id: no-request-body-on-delete
+name: No Request Body on DELETE
+description: Ensures that DELETE methods do not have request bodies.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - No Request Body on DELETE
+      slug: openapi-v3-no-request-body-on-delete
+      summary: >-
+        This is a Spectral governance rule to make sure that no DELETE method
+        has a request body in an OpenAPI. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Methods
+        - DELETE
+        - Request Bodies
+      rule:
+        description: Ensures that DELETE methods do not have request bodies.
+        message: Your DELETE methods should not have request bodies.
+        given: $.paths.*.delete
+        recommended: true
+        severity: error
+        then:
+          field: requestBody
+          function: falsy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-no-request-body-on-delete.md?ref=main
+      github_sha: 358514850f9e439dccb51e939f065b42aeceb8f9
+      collection_id: 12959542-31b6fb44-2813-4367-b944-53873362d8c3
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - No Request Body on DELETE
+      slug: swagger-v2-no-request-body-on-delete
+      summary: >-
+        This is a Spectral governance rule to make sure that no DELETE method
+        has a request body in an Swagger. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Methods
+        - DELETE
+        - Request Bodies
+      rule:
+        description: Ensures that DELETE methods do not have request bodies.
+        message: Your DELETE methods should not have request bodies.
+        given: $.paths.*.delete
+        recommended: true
+        severity: error
+        then:
+          field: in
+          function: enumeration
+          functionOptions:
+            values:
+              - query
+              - header
+              - path
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-no-request-body-on-delete.md?ref=main
+      github_sha: 41eecca6939a9c9ad420d666fe09e9621c665cc9
+      collection_id: 12959542-f6b9adb8-2bb4-4b7f-b1ee-889b07a19529
+identicalSources: false

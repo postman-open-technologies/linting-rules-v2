@@ -1,0 +1,67 @@
+id: schema-properties-define-number-boundaries
+name: Schema Properties Define Number Boundaries
+description: Ensures that all number properties have boundaries defined.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Define Number Boundaries
+      slug: openapi-v3-schema-properties-define-number-boundaries
+      summary: >-
+        This is a Spectral governance rule to enforce that the numeric
+        properties within an OpenAPI all have boundaries defined. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Numbers
+      rule:
+        description: Ensures that all number properties have boundaries defined.
+        message: Numeric types need to have a minimum and maximum property defined.
+        formats:
+          - oas3
+        severity: warn
+        recommended: true
+        given:
+          - $..properties.[?(@.type=="number")]
+          - $..properties.[?(@.type=="integer")]
+        then:
+          - field: maximum
+            function: defined
+          - field: minimum
+            function: defined
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-define-number-boundaries.md?ref=main
+      github_sha: d0a749ff246b0a101e2dac443eaad9d63047cae4
+      collection_id: 12959542-7eaa0b61-c037-4a65-85a7-2c42a3720eac
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Define Number Boundaries
+      slug: swagger-v2-schema-properties-define-number-boundaries
+      summary: >-
+        This is a Spectral governance rule to enforce that the numeric
+        properties within an Swagger all have boundaries defined. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Numbers
+      rule:
+        description: Ensures that all number properties have boundaries defined.
+        message: Numeric types need to have a minimum and maximum property defined.
+        formats:
+          - oas2
+        severity: warn
+        recommended: true
+        given:
+          - $.definitions.properties.[?(@.type=="number")]
+          - $.definitions.properties.[?(@.type=="integer")]
+        then:
+          - field: maximum
+            function: defined
+          - field: minimum
+            function: defined
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-define-number-boundaries.md?ref=main
+      github_sha: 8863b3a033a068ae552859925e1a26d6512c8fab
+      collection_id: 12959542-1c4106a3-b8e9-4e8a-8d47-7ac06c488838
+identicalSources: false

@@ -1,0 +1,34 @@
+id: consume-json-media-type
+name: Swagger V2 Consume JSON Media Type
+description: Ensures that application/json media types are able to be consumed.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 Consume JSON Media Type
+      slug: swagger-v2-consume-json-media-type
+      summary: >-
+        This is a Spectral governance rule to enforce that a Swagger consumes
+        application/json media types. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Media Type
+      rule:
+        description: Ensures that application/json media types are able to be consumed.
+        message: The APIs should be able to consume application/json media types.
+        severity: error
+        recommended: true
+        format: oas2
+        given: $..consumes.*
+        then:
+          function: schema
+          functionOptions:
+            schema:
+              type: string
+              enum:
+                - application/json
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-consume-json-media-type.md?ref=main
+      github_sha: f9c6b105eaa5fe44d030f3fea47813bb098a480c
+      collection_id: 12959542-73205074-f193-4612-aea4-4ac533eba3bb

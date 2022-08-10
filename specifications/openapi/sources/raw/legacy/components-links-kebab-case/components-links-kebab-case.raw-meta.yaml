@@ -1,0 +1,32 @@
+id: components-links-kebab-case
+name: OpenAPI V3 Components Links Kebab Case
+description: Ensuring that all components links are using kebab case for the key.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Components Links Kebab Case
+      slug: openapi-v3-components-links-kebab-case
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI links
+        within the components object are all using kebab case for the key. Here
+        is a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Links
+        - Casing
+      rule:
+        description: Ensuring that all components links are using kebab case for the key.
+        message: The component links key needs to be kebabCase.
+        given: $.components.links
+        severity: error
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: kebab
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-components-links-kebab-case.md?ref=main
+      github_sha: ba64da41a0375cdb3b6ec6d3d5ec75ca9beb8062
+      collection_id: 12959542-757cc918-cc2e-4034-b214-fc2315b09c44

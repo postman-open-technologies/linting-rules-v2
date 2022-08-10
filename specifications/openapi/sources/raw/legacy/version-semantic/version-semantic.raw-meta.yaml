@@ -1,0 +1,55 @@
+id: version-semantic
+name: Version Semantic
+description: Ensuring that semantic versioning is being used.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Version Semantic
+      slug: openapi-v3-version-semantic
+      summary: >-
+        An API governance linting rule to enforce that semantic versioning has
+        been applied to an OpenAPI, making sure that all teams are using the
+        same versioning patterns, and all APIs are being versioned.
+      tags:
+        - Versioning
+      rule:
+        description: Ensuring that semantic versioning is being used.
+        message: You need to provide a semantic version.
+        severity: error
+        recommended: true
+        given: $.info.version
+        then:
+          function: pattern
+          functionOptions: null
+          match: ^[0-9]+.[0-9]+.[0-9]+(-[a-z0-9+.-]+)?
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-version-semantic.md?ref=main
+      github_sha: 126e1eb6e2790670293976b3508f263bdce45f19
+      collection_id: 12959542-58695c33-2e73-48cb-a9d2-20170492cce7
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Version Semantic
+      slug: swagger-v2-version-semantic
+      summary: >-
+        An API governance linting rule to enforce that semantic versioning has
+        been applied to an Swagger, making sure that all teams are using the
+        same versioning patterns, and all APIs are being versioned.
+      tags:
+        - Versioning
+      rule:
+        description: Ensuring that semantic versioning is being used.
+        message: You need to provide a semantic version.
+        severity: error
+        recommended: true
+        given: $.info.version
+        then:
+          function: pattern
+          functionOptions: null
+          match: ^[0-9]+.[0-9]+.[0-9]+(-[a-z0-9+.-]+)?
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-version-semantic.md?ref=main
+      github_sha: 7f69076c39e62afefe20f1ed940a969a731b0f02
+      collection_id: 12959542-b5bbf66e-c0be-491f-b5f2-0de82c679f5e
+identicalSources: true

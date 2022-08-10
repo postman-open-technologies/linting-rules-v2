@@ -1,0 +1,64 @@
+id: no-request-body-on-get
+name: No Request Body on GET
+description: Ensures that GET methods do not have request bodies.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - No Request Body on GET
+      slug: openapi-v3-no-request-body-on-get
+      summary: >-
+        This is a Spectral governance rule to make sure that no GET method has a
+        request body in an OpenAPI. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Methods
+        - GET
+        - Request Bodies
+      rule:
+        description: Ensures that GET methods do not have request bodies.
+        message: Your GET methods should not have request bodies.
+        given: $.paths.*.get
+        recommended: true
+        severity: error
+        then:
+          field: requestBody
+          function: falsy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-no-request-body-on-get.md?ref=main
+      github_sha: 24285130e6c740cd7dcbee7c0e32dcdfc25d4dd1
+      collection_id: 12959542-61d4ea79-f11b-456e-a526-69b7833f39a9
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - No Request Body on GET
+      slug: swagger-v2-no-request-body-on-get
+      summary: >-
+        This is a Spectral governance rule to make sure that no GET method has a
+        request body in an Swagger. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Methods
+        - GET
+        - Request Bodies
+      rule:
+        description: Ensures that GET methods do not have request bodies.
+        message: Your GET methods should not have request bodies.
+        given: $.paths.*.get.parameters.*
+        recommended: true
+        severity: error
+        then:
+          field: in
+          function: enumeration
+          functionOptions:
+            values:
+              - query
+              - header
+              - path
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-no-request-body-on-get.md?ref=main
+      github_sha: b40477a49931043e10c22dfc785af7c19e17c14f
+      collection_id: 12959542-2df1e7b3-49be-4897-b8ef-921b0cadad02
+identicalSources: false

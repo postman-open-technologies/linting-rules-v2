@@ -1,0 +1,17 @@
+rules:
+  https-only:
+    description: Ensures that all APIs are only using HTTPS protocol as a transport.
+    message: You must only use HTTPS for the schemes.
+    given: $.schemes
+    severity: error
+    formats:
+      - oas2
+    then:
+      function: schema
+      functionOptions: null
+      schema:
+        type: string
+        items: null
+        enum:
+          - https
+        maxItems: 1

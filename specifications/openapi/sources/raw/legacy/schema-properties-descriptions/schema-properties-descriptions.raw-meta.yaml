@@ -1,0 +1,77 @@
+id: schema-properties-descriptions
+name: Schema Properties Descriptions
+description: Ensure that all schemas properties should have a description.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Descriptions
+      slug: openapi-v3-schema-properties-descriptions
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema
+        properties have descriptions within OpenAPI definitions. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Ensure that all schemas properties should have a description.
+        message: All schema properties should have descriptions.
+        severity: warn
+        formats:
+          - oas3
+        given: $..properties.*
+        then:
+          field: description
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-descriptions.md?ref=main
+      github_sha: f219267eaac1396c6cd5ea562b6eeb2cbf904c1a
+      collection_id: 12959542-a07c1a6b-7f75-494a-8c69-319c2767c887
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more properties in a schema object in your API schema's
+        components object doesn't contain a description.
+      fixDescription: >-
+        A brief description of properties in the API schema provides your users
+        with important context. Add a description for every property in your
+        schema objects.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Descriptions
+      slug: swagger-v2-schema-properties-descriptions
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema
+        properties have descriptions within Swagger definitions. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Ensure that all schemas properties should have a description.
+        message: All schema properties should have descriptions.
+        severity: warn
+        formats:
+          - oas2
+        given: $.definitions.properties.*
+        then:
+          field: description
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-descriptions.md?ref=main
+      github_sha: 1ab373e90bef339709f2eb08ab50fac92a4b2742
+      collection_id: 12959542-39173ff1-964f-4bd0-949b-481012fadb61
+    documentation:
+      category: API Models
+      issueDescription: >-
+        One or more properties in a schema object in your API schema's
+        components object doesn't contain a description.
+      fixDescription: >-
+        A brief description of properties in the API schema provides your users
+        with important context. Add a description for every property in your
+        schema objects.
+identicalSources: false
+selected: true
+identicalDocumentation: true

@@ -1,0 +1,32 @@
+id: components-links-camel-case
+name: OpenAPI V3 Components Links Camel Case
+description: Ensuring that all components links are using camel case for the key.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Components Links Camel Case
+      slug: openapi-v3-components-links-camel-case
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI links
+        within the components object are all using camel case for the key. Here
+        is a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Links
+        - Casing
+      rule:
+        description: Ensuring that all components links are using camel case for the key.
+        message: The component links key needs to be camelCase.
+        given: $.components.links
+        severity: error
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: camel
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-components-links-camel-case.md?ref=main
+      github_sha: 553865b70f51b323ba242c290cfeab8f7ca4a838
+      collection_id: 12959542-8e4b6449-5754-4225-978f-0d8f45b268a9

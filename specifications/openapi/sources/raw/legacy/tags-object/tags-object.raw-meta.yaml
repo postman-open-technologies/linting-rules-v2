@@ -1,0 +1,69 @@
+id: tags-object
+name: Tags Object
+description: Ensuring that there are tags being applied.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Tags Object
+      slug: openapi-v3-tags-object
+      summary: >-
+        This is a Spectral governance rule to make sure that there is a central
+        tag object within OpenAPI definitions. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Tags
+      rule:
+        description: Ensuring that there are tags being applied.
+        message: You should have a central tags object.
+        given: $
+        severity: error
+        then:
+          field: tags
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-tags-object.md?ref=main
+      github_sha: 6bdf91e650e84db9a9992f1fa48b9f085d861698
+      collection_id: 12959542-f1877929-56b2-45f0-940c-a260e4efd481
+    documentation:
+      category: API Information
+      issueDescription: Your API schema doesn't contain a root-level tags object.
+      fixDescription: >-
+        The tags object lists all the tags used in the schema's operation
+        objects, providing users with important context. Add a tags object to
+        your API schema.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Tags Object
+      slug: swagger-v2-tags-object
+      summary: >-
+        This is a Spectral governance rule to make sure that there is a central
+        tag object within Swagger definitions. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Tags
+      rule:
+        description: Ensuring that there are tags being applied.
+        message: You should have a central tags object.
+        given: $
+        severity: error
+        then:
+          field: tags
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-tags-object.md?ref=main
+      github_sha: 30a0400c1609333ae2d093927b1d7c7501b8888f
+      collection_id: 12959542-a46970b9-6c5d-4749-bc3f-803c7949a0dc
+    documentation:
+      category: API Information
+      issueDescription: Your API schema doesn't contain a root-level tags object.
+      fixDescription: >-
+        The tags object lists all the tags used in the schema's operation
+        objects, providing users with important context. Add a tags object to
+        your API schema.
+identicalSources: true
+selected: true
+identicalDocumentation: true

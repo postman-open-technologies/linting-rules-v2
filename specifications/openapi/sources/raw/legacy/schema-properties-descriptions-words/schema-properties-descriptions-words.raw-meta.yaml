@@ -1,0 +1,65 @@
+id: schema-properties-descriptions-words
+name: Schema Properties Descriptions Words
+description: Some words should not exist within the property description.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Descriptions Words
+      slug: openapi-v3-schema-properties-descriptions-words
+      summary: >-
+        This is a Spectral governance rule to make sure that some words aren't
+        used in schema property descriptions within OpenAPI definitions. Here is
+        a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Some words should not exist within the property description.
+        message: >-
+          Schema property descriptions should not contain the words word, word,
+          and word.
+        severity: warn
+        formats:
+          - oas3
+        given: $..properties.*
+        then:
+          field: description
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-descriptions-words.md?ref=main
+      github_sha: 859e8080fe664826d976d0810ad7597bff58ddde
+      collection_id: 12959542-637876da-2af5-47c3-be49-d0bf2ffc3139
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Descriptions Words
+      slug: swagger-v2-schema-properties-descriptions-words
+      summary: >-
+        This is a Spectral governance rule to make sure that some words aren't
+        used in schema property descriptions within Swagger definitions. Here is
+        a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Some words should not exist within the property description.
+        message: >-
+          Schema property descriptions should not contain the words word, word,
+          and word.
+        severity: warn
+        formats:
+          - oas2
+        given: $.definitions.properties.*
+        then:
+          field: description
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-descriptions-words.md?ref=main
+      github_sha: ba3348818fc46b64de3f0d7b5c8094e656a694dd
+      collection_id: 12959542-87b1d350-fbd4-45aa-9db8-379bdb2f70cf
+identicalSources: false

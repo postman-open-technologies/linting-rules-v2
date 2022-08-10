@@ -1,0 +1,31 @@
+id: security-in-query
+name: Security in Query
+description: Requires the usage of query parameter for security.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Security in Query
+      slug: swagger-v2-security-in-query
+      summary: >-
+        This is a Spectral governance rule to enforce that basic security is
+        applied to the Swagger using query parameter. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires the usage of query parameter for security.
+        message: Must add query parameter to in property for security object
+        severity: error
+        given: $.security.*
+        then:
+          field: in
+          function: enumeration
+          functionOptions:
+            values:
+              - query
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-security-in-query.md?ref=main
+      github_sha: 7795841f66560d815fdb46cdb37e8e19f295ecb0
+      collection_id: 12959542-afbe9cd4-6af4-4a4f-a34f-96f47448b80d

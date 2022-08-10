@@ -1,0 +1,11 @@
+rules:
+  schema-properties-descriptions:
+    description: Ensure that all schemas properties should have a description.
+    message: All schema properties should have descriptions.
+    given: $.definitions.properties.*
+    severity: warn
+    formats:
+      - oas2
+    then:
+      field: description
+      function: truthy

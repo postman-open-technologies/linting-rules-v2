@@ -4,9 +4,9 @@ import SpectralTestWrapper from './spectral-test-wrapper.js';
 import DocumentValidator from './test-document-validator.js';
 import * as SpectralTest from './spectral-test.js';
 
-export function runTests(tests, rulesets){
+export function runTests(tests, rulesets, title){
 
-  describe(`Testing rulesets [${rulesets}] with tests [${tests}]`, function() {
+  describe(`Testing [${title}] rulesets [${rulesets}] with tests [${tests}]`, function() {
     // 1 - Loading test and rule files and mapping them
     // TODO: Need to add mapping control, all ruleset have test files, all test files have ruleset
     // Some try/catch hecks to add here about no test founds
@@ -24,11 +24,11 @@ export function runTests(tests, rulesets){
         assert.equal(testLoader.getInvalidTests(), [], 'Some invalid tests found');
       });
   
-      it('must find a test suite for each rule', function() {
+      it('must find a test suite for each ruleset', function() {
         assert.deepEqual(testLoader.getWithoutTestRulesets(), [], 'Some rulesets don\'t have test suites');
       });
   
-      it('must find a rule for each test suite', function() {
+      it('must find ruleset of each test suite', function() {
         assert.deepEqual(testLoader.getWithoutRulesetTests(), [], 'Some tests target non-existing rulesets');
       });
     });

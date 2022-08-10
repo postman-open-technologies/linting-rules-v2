@@ -1,0 +1,46 @@
+id: response-rate-limit-headers
+name: Response Rate Limit Headers
+description: Ensures that all OpenAPIs have rate limiting headers applied.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response Rate Limit Headers
+      slug: openapi-v3-response-rate-limit-headers
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI possesses
+        rate limit headers. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Headers
+        - Rate Limit
+        - Security
+      rule:
+        description: Ensures that all OpenAPIs have rate limiting headers applied.
+        message: You need to be using rate limiting headers.
+        formats:
+          - oas3
+        severity: warn
+        recommended: true
+        given: $.[responses][?(@property[0] == "2" )][headers]
+        then:
+          - functionOptions:
+              properties:
+                - X-RateLimit-Limit
+                - RateLimit-Limit
+            function: xor
+          - functionOptions:
+              properties:
+                - X-RateLimit-Remaining
+                - RateLimit-Remaining
+            function: xor
+          - functionOptions:
+              properties:
+                - X-RateLimit-Reset
+                - RateLimit-Reset
+            function: xor
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-rate-limit-headers.md?ref=main
+      github_sha: d54758cdf7223f71adae0c25393a84016d34d7a2
+      collection_id: 12959542-9ed47003-2f28-4a06-9741-04b059452ba5

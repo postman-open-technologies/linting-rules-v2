@@ -1,0 +1,53 @@
+id: parameters-schema
+name: Parameters Schema
+description: Ensures that that all parameters have a schema.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters Schema
+      slug: openapi-v3-parameters-schema
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters have
+        a schema defined in an OpenAPI. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Parameters
+        - Schema
+      rule:
+        description: Ensures that that all parameters have a schema.
+        message: Your parameter should all have a schema defined.
+        given: $.paths.*.*.parameters[?(@.in=='query')]
+        then:
+          field: schema
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-schema.md?ref=main
+      github_sha: 81247f31c7c990ec5013c38b4e08ae3cebfc2276
+      collection_id: 12959542-f3c8a0da-0ddf-436f-8fa3-7d625ed5e46d
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters Schema
+      slug: swagger-v2-parameters-schema
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters have
+        a schema defined in an Swagger. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Parameters
+        - Schema
+      rule:
+        description: Ensures that that all parameters have a schema.
+        message: Your parameter should all have a schema defined.
+        given: $.paths.*.*.parameters[?(@.in=='query')]
+        then:
+          field: schema
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-schema.md?ref=main
+      github_sha: 74cebaf7a47c28e9e0aaa34c17d4de7c143d13b1
+      collection_id: 12959542-8b2626b2-c86b-43d1-a7d5-e8ebe7270d4a
+identicalSources: true

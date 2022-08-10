@@ -1,0 +1,30 @@
+id: response-post-201-media-type
+name: Response POST 201 Media Type
+description: POST responses should have a JSON body.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response POST 201 Media Type
+      slug: openapi-v3-response-post-201-media-type
+      summary: >-
+        This is a Spectral governance rule to make sure that POST methods all
+        have a 201 status code response with application/json media type in an
+        OpenAPI. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+        - Media Types
+      rule:
+        severity: error
+        description: POST responses should have a JSON body.
+        given: $paths.post.responses.201.content
+        then:
+          field: application/json
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-post-201-media-type.md?ref=main
+      github_sha: 96285155ea3210cc75c31dd092c12280401408a4
+      collection_id: 12959542-b87a1351-4da7-47da-94dd-73f24e6a60fd

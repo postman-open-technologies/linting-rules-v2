@@ -1,0 +1,59 @@
+id: schema-names-snake-case
+name: Schema Names Snake Case
+description: Ensure all schema names are snake case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Names Snake Case
+      slug: openapi-v3-schema-names-snake-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema names in
+        an OpenAPI are snake case. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensure all schema names are snake case.
+        message: Schema names should be snake case.
+        severity: error
+        given: $.components.schemas
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: snake
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-names-snake-case.md?ref=main
+      github_sha: bd3818cd5b141d3716e5d3ff49c0d5a24b9c3995
+      collection_id: 12959542-d8a4ac28-fcf6-4aa5-932c-476d21403170
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Names Snake Case
+      slug: swagger-v2-schema-names-snake-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema names in
+        an Swagger are snake case. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensure all schema names are snake case.
+        message: Schema names should be snake case.
+        severity: error
+        given: $.definitions
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: snake
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-names-snake-case.md?ref=main
+      github_sha: 2346582a73eb554ebd5600122683f062bdab2a35
+      collection_id: 12959542-5774ccc6-eb14-41fa-8024-0b94ad95deb3
+identicalSources: false

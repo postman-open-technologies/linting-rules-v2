@@ -1,0 +1,30 @@
+id: use-of-response-schema-oneof
+name: Use of Response Schema oneOf
+description: Checks to see if oneOf is being used as part of each schema.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Use of Response Schema oneOf
+      slug: openapi-v3-use-of-response-schema-oneof
+      summary: >-
+        This is a Spectral governance rule to enforce that check to see if oneOf
+        property is being used as part of the schema for any OpenAPI. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+      rule:
+        description: Checks to see if oneOf is being used as part of each schema.
+        message: You should avoid using oneOf as part of your schema.
+        given: $.paths.*.*[responses]..content..schema
+        severity: warn
+        formats:
+          - oas3
+        then:
+          field: oneOf
+          function: falsy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-use-of-response-schema-oneof.md?ref=main
+      github_sha: 1a1c216ac85731985aab4e54017fafa5c52a04f2
+      collection_id: 12959542-9d71f028-719b-410f-8afc-131ff9ecf3eb

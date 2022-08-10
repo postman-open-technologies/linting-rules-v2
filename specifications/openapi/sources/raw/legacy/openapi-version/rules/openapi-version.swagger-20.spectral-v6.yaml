@@ -1,0 +1,11 @@
+rules:
+  openapi-version:
+    description: Ensuring that a specific version of Swagger is being used.
+    message: You do not have the right version of Swagger.
+    given: $
+    severity: error
+    then:
+      field: swagger
+      function: pattern
+      functionOptions:
+        match: 2

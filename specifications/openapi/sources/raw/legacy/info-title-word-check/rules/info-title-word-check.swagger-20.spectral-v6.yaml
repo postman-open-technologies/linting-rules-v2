@@ -1,0 +1,14 @@
+rules:
+  info-title-word-check:
+    description: Ensures that all Swaggers info object title do not contain certain words.
+    message: >-
+      The info object title should not contain the words REST, Public, and
+      Developer.
+    given: $.info.title
+    severity: error
+    formats:
+      - oas2
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: \b(REST|Public|Developer)\b

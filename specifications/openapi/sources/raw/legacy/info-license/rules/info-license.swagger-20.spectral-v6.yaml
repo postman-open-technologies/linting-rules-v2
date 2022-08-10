@@ -1,0 +1,11 @@
+rules:
+  info-license:
+    description: Ensures that all Swaggers have a information object license.
+    message: The info object should have a license.
+    given: $.info
+    severity: error
+    formats:
+      - oas2
+    then:
+      field: license
+      function: truthy

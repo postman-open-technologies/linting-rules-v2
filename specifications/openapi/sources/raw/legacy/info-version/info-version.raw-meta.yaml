@@ -1,0 +1,61 @@
+id: info-version
+name: Info Version
+description: Ensures that all OpenAPIs have a information object version.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info Version
+      slug: openapi-v3-info-version
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI has an info
+        version. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Versioning
+        - Info
+      rule:
+        description: Ensures that all OpenAPIs have a information object version.
+        message: The info object should have a version.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas3
+        then:
+          field: version
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-version.md?ref=main
+      github_sha: 97f0752cf2be06ed3ead8d88ccdb6acc7f01b8ff
+      collection_id: 12959542-0224b44e-4379-4b5c-862e-bbb8f8c4ce12
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info Version
+      slug: swagger-v2-info-version
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger has an info
+        version. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Versioning
+        - Info
+      rule:
+        description: Ensures that all Swaggers have a information object version.
+        message: The info object should have a version.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas2
+        then:
+          field: version
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-version.md?ref=main
+      github_sha: 3a0b60ffecdd3c6e27b1386bc782e7975803ecf3
+      collection_id: 12959542-bb0c8815-7c73-4d0f-a57b-acbab9bd2954
+identicalSources: false

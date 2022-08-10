@@ -1,0 +1,15 @@
+rules:
+  schema-properties-descriptions-words:
+    description: Some words should not exist within the property description.
+    message: >-
+      Schema property descriptions should not contain the words word, word, and
+      word.
+    given: $..properties.*
+    severity: warn
+    formats:
+      - oas3
+    then:
+      field: description
+      function: pattern
+      functionOptions:
+        notMatch: \b(word|word|word)\b

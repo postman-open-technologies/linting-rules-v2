@@ -1,0 +1,57 @@
+id: parameters-schema-type-array
+name: Parameters Schema Type Array
+description: Ensures that that all parameters of schema type array have items defined.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters Schema Type Array
+      slug: openapi-v3-parameters-schema-type-array
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters with
+        schema type of array have items defined in an OpenAPI. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Parameters
+        - Schema
+      rule:
+        description: >-
+          Ensures that that all parameters of schema type array have items
+          defined.
+        message: Your parameter schema should have an items property if it is an array.
+        given: $.paths.*.*.parameters[?(@.in=='query')].schema[?(@.type=='array')]
+        then:
+          field: items
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-schema-type-array.md?ref=main
+      github_sha: 3f7e155411a93597d6b23caac80f3723c42d0880
+      collection_id: 12959542-8a4595f1-81f5-4918-8f14-bdc62e92f96f
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters Schema Type Array
+      slug: swagger-v2-parameters-schema-type-array
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters with
+        schema type of array have items defined in an Swagger. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Parameters
+        - Schema
+      rule:
+        description: >-
+          Ensures that that all parameters of schema type array have items
+          defined.
+        message: Your parameter schema should have an items property if it is an array.
+        given: $.paths.*.*.parameters[?(@.in=='query')].schema[?(@.type=='array')]
+        then:
+          field: items
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-schema-type-array.md?ref=main
+      github_sha: b66597a4fca7d41c62fbe7938f4015d30a856692
+      collection_id: 12959542-10cfde43-e608-45e7-b429-7732e5c5d87c
+identicalSources: true

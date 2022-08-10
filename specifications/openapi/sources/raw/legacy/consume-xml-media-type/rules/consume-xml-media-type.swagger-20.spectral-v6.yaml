@@ -1,0 +1,13 @@
+rules:
+  consume-xml-media-type:
+    description: Ensures that application/xml media types are able to be consumed.
+    message: The APIs should be able to consume application/xml media types.
+    given: $..consumes.*
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: string
+          enum:
+            - application/xml

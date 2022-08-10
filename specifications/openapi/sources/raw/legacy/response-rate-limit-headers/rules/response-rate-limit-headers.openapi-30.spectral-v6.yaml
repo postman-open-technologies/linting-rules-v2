@@ -1,0 +1,24 @@
+rules:
+  response-rate-limit-headers:
+    description: Ensures that all OpenAPIs have rate limiting headers applied.
+    message: You need to be using rate limiting headers.
+    given: $.[responses][?(@property[0] == "2" )][headers]
+    severity: warn
+    formats:
+      - oas3
+    then:
+      - functionOptions:
+          properties:
+            - X-RateLimit-Limit
+            - RateLimit-Limit
+        function: xor
+      - functionOptions:
+          properties:
+            - X-RateLimit-Remaining
+            - RateLimit-Remaining
+        function: xor
+      - functionOptions:
+          properties:
+            - X-RateLimit-Reset
+            - RateLimit-Reset
+        function: xor

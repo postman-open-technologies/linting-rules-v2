@@ -1,0 +1,63 @@
+id: info-license-url-apache
+name: Info License Url Apache
+description: Ensures that all OpenAPIs have a information object license url for Apache.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info License Url Apache
+      slug: openapi-v3-info-license-url-apache
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI info object
+        has an Apache license. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - License
+        - Legal
+      rule:
+        description: >-
+          Ensures that all OpenAPIs have a information object license url for
+          Apache.
+        message: The info object should have a license url for Apache.
+        given: $.info.license.url
+        severity: error
+        then:
+          function: pattern
+          functionOptions:
+            match: apache.org
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-license-url-apache.md?ref=main
+      github_sha: 0753c104e797d5df2162087642172bdaa25c3ed7
+      collection_id: 12959542-bba945ec-1164-4439-8e13-e681f79d2a80
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info License Url Apache
+      slug: swagger-v2-info-license-url-apache
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger info object
+        has an Apache license. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - License
+        - Legal
+      rule:
+        description: >-
+          Ensures that all Swaggers have a information object license url for
+          Apache.
+        message: The info object should have a license url for Apache.
+        given: $.info.license.url
+        severity: error
+        then:
+          function: pattern
+          functionOptions:
+            match: apache.org
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-license-url-apache.md?ref=main
+      github_sha: 78da4bd6c8f199b3cc1e162697eb8c88587dce83
+      collection_id: 12959542-bc52708a-5f3e-4474-9c97-618ba336b55c
+identicalSources: false

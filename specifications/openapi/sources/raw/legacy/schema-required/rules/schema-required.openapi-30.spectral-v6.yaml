@@ -1,0 +1,11 @@
+rules:
+  schema-required:
+    description: Ensuring that all schema have a required property.
+    message: All of your schema need to have a required property.
+    given: $.components.schemas.*
+    severity: warn
+    formats:
+      - oas3
+    then:
+      field: required
+      function: truthy

@@ -1,0 +1,10 @@
+rules:
+  trailing-slash-on-paths:
+    description: Ensures that there are trailing slashes on paths.
+    message: There should be trailing slashes on paths.
+    given: $.paths.*~
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: /$

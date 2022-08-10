@@ -1,0 +1,11 @@
+rules:
+  info-version:
+    description: Ensures that all OpenAPIs have a information object version.
+    message: The info object should have a version.
+    given: $.info
+    severity: error
+    formats:
+      - oas3
+    then:
+      field: version
+      function: truthy

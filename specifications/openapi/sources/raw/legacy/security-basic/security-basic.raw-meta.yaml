@@ -1,0 +1,31 @@
+id: security-basic
+name: Security Basic
+description: Requires the usage of an basic for security.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Security Basic
+      slug: swagger-v2-security-basic
+      summary: >-
+        This is a Spectral governance rule to enforce that basic security is
+        applied to the Swagger. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires the usage of an basic for security.
+        message: Must add security definition object with type of basic
+        severity: error
+        given: $.security.*
+        then:
+          field: type
+          function: enumeration
+          functionOptions:
+            values:
+              - basic
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-security-basic.md?ref=main
+      github_sha: 61feb75d84cece32e54de74808786edb5d11304b
+      collection_id: 12959542-dcf26b45-fe4b-4321-a4e2-1cbf5df74410

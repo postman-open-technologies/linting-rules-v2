@@ -1,0 +1,12 @@
+rules:
+  security-in-header:
+    description: Requires the usage of header for security.
+    message: Must add header to in property for security object
+    given: $.security.*
+    severity: error
+    then:
+      field: in
+      function: enumeration
+      functionOptions:
+        values:
+          - header

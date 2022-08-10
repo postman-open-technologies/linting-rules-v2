@@ -1,0 +1,32 @@
+id: components-examples-kebab-case
+name: OpenAPI V3 Components Examples Kebab Case
+description: Ensuring that all components example are using kebab case for the key.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Components Examples Kebab Case
+      slug: openapi-v3-components-examples-kebab-case
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI example
+        within the components object are all using kebab case for the key. Here
+        is a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Examples
+        - Casing
+      rule:
+        description: Ensuring that all components example are using kebab case for the key.
+        message: The component example key needs to be kebabCase.
+        given: $.components.examples
+        severity: error
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: kebab
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-components-examples-kebab-case.md?ref=main
+      github_sha: f64a134b82186b5c587b295861002beea8c46938
+      collection_id: 12959542-df25ca6d-5cbc-403a-91c0-e79f1e87d9bb

@@ -1,0 +1,85 @@
+id: request-body-on-put
+name: Request Body on PUT
+description: Ensures that PUT methods have request bodies.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Request Body on PUT
+      slug: openapi-v3-request-body-on-put
+      summary: >-
+        This is a Spectral governance rule to make sure that PUT methods have a
+        request body in an OpenAPI. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Methods
+        - PUT
+        - Request Bodies
+      rule:
+        description: Ensures that PUT methods have request bodies.
+        message: Your PUT methods should have request bodies.
+        given: $.paths.*.put
+        recommended: true
+        severity: error
+        then:
+          field: requestBody
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-request-body-on-put.md?ref=main
+      github_sha: 211e089e79f6208980b9f4fcb53ad0d926ebb169
+      collection_id: 12959542-254550af-ae18-463f-a186-d4513c316ebe
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more PUT operation objects in your API schema doesn't contain a
+        request body object.
+      fixDescription: >-
+        A request body object contains a brief description of the response body
+        and information about what a valid response body should look like. Add a
+        request body object to any POST operation operation objects.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Request Body on PUT
+      slug: swagger-v2-request-body-on-put
+      summary: >-
+        This is a Spectral governance rule to make sure that PUT methods have a
+        request body in an Swagger. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Methods
+        - PUT
+        - Request Bodies
+      rule:
+        description: Ensures that PUT methods have request bodies.
+        message: Your PUT methods should have request bodies.
+        given: $.paths.*.put
+        recommended: true
+        severity: error
+        then:
+          field: in
+          function: enumeration
+          functionOptions:
+            values:
+              - query
+              - header
+              - path
+              - body
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-request-body-on-put.md?ref=main
+      github_sha: 0170b5b4eebc3cf399c3a5c85f570807ef0737f6
+      collection_id: 12959542-ec521df2-1b19-4354-9a7b-022a90ed34c7
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more PUT operation objects in your API schema doesn't contain a
+        request body object.
+      fixDescription: >-
+        A request body object contains a brief description of the response body
+        and information about what a valid response body should look like. Add a
+        request body object to any POST operation operation objects.
+identicalSources: false
+selected: true
+identicalDocumentation: true

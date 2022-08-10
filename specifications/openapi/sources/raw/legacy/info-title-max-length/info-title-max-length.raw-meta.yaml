@@ -1,0 +1,73 @@
+id: info-title-max-length
+name: Info Title Max Length
+description: >-
+  Ensures that all OpenAPIs information titles are not longer than 50
+  characters.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info Title Max Length
+      slug: openapi-v3-info-title-max-length
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI info title is
+        under a maximum length. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - Length
+      rule:
+        description: >-
+          Ensures that all OpenAPIs information titles are not longer than 50
+          characters.
+        message: The info object title should not be more than 50 characters.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas3
+        then:
+          field: title
+          function: length
+          functionOptions:
+            max: 50
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-title-max-length.md?ref=main
+      github_sha: b3879fdc5c0a71454c40de7ae036f07839855134
+      collection_id: 12959542-15441d35-4f21-40de-9805-41fad615f945
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info Title Max Length
+      slug: swagger-v2-info-title-max-length
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger info title is
+        under a maximum length. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - Length
+      rule:
+        description: >-
+          Ensures that all Swaggers information titles are not longer than 50
+          characters.
+        message: The info object title should not be more than 50 characters.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas2
+        then:
+          field: title
+          function: length
+          functionOptions:
+            max: 50
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-title-max-length.md?ref=main
+      github_sha: c4f8312d458e4eb3a32afa2a6c904feb7dd37336
+      collection_id: 12959542-94c55be8-5063-4f7c-b764-f8d6962c18e5
+identicalSources: false

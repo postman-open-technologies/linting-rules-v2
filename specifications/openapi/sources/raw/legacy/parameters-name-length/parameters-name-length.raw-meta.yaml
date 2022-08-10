@@ -1,0 +1,57 @@
+id: parameters-name-length
+name: Parameters Name Length
+description: Ensures that that parameter names aren't too long.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters Name Length
+      slug: openapi-v3-parameters-name-length
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameter
+        aren't too long within an OpenAPI. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Parameters
+        - Length
+      rule:
+        description: Ensures that that parameter names aren't too long.
+        message: Your parameter names should not be longer than 25 characters.
+        given: $.paths.*.*.parameters[?(@.in=='query')].name
+        then:
+          field: summary
+          function: length
+          functionOptions:
+            max: 25
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-name-length.md?ref=main
+      github_sha: bf4348eaa6d853450211826a203c90e3b13d523c
+      collection_id: 12959542-14d573df-68e2-4199-b5c8-452ace5dc78d
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters Name Length
+      slug: swagger-v2-parameters-name-length
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameter
+        aren't too long within an Swagger. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Parameters
+        - Length
+      rule:
+        description: Ensures that that parameter names aren't too long.
+        message: Your parameter names should not be longer than 25 characters.
+        given: $.paths.*.*.parameters[?(@.in=='query')].name
+        then:
+          field: summary
+          function: length
+          functionOptions:
+            max: 25
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-name-length.md?ref=main
+      github_sha: d4343f837f0884d5e5d7eeb238b482a43b19fbc3
+      collection_id: 12959542-361aa0e3-8110-42d7-b2c5-5ae7270736aa
+identicalSources: true

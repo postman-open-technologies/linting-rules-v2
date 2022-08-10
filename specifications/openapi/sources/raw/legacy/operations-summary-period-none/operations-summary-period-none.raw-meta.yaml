@@ -1,0 +1,77 @@
+id: operations-summary-period-none
+name: Operations Summary Period None
+description: Ensures that each of the operations summaries do not have an ending period.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Operations Summary Period None
+      slug: openapi-v3-operations-summary-period-none
+      summary: >-
+        This is a Spectral governance rule to make sure that operation summaries
+        do not have a ending period. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Operations
+      rule:
+        severity: error
+        description: >-
+          Ensures that each of the operations summaries do not have an ending
+          period.
+        message: Your operations summaries should not end with a period.
+        given: $.paths[*][*].summary
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \.$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-summary-period-none.md?ref=main
+      github_sha: b3a68aa02a1e067e8e31d02e02b497c949c928e1
+      collection_id: 12959542-5ddc15db-e024-4bbb-8b6f-04d06742b8f8
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more operation objects in your API schema contains a summary that
+        ends with a period (.).
+      fixDescription: >-
+        Remove the final period from all summaries at the operations object
+        level in your API schema.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Summary Period None
+      slug: swagger-v2-operations-summary-period-none
+      summary: >-
+        This is a Spectral governance rule to make sure that operation summaries
+        do not have a ending period. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Operations
+      rule:
+        severity: error
+        description: >-
+          Ensures that each of the operations summaries do not have an ending
+          period.
+        message: Your operations summaries should not end with a period.
+        given: $.paths[*][*].summary
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \.$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-summary-period-none.md?ref=main
+      github_sha: eb7517784588a7360f1dafb30056a25e56e842f6
+      collection_id: 12959542-cfb4a67d-9d44-4971-b818-f353f0e57354
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more operation objects in your API schema contains a summary that
+        ends with a period (.).
+      fixDescription: >-
+        Remove the final period from all summaries at the operations object
+        level in your API schema.
+identicalSources: true
+selected: true
+identicalDocumentation: true

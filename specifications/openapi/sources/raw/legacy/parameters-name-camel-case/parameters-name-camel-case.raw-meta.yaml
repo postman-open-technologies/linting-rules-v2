@@ -1,0 +1,57 @@
+id: parameters-name-camel-case
+name: Parameters Name Camel Case
+description: Ensures that that all parameter names are camel case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters Name Camel Case
+      slug: openapi-v3-parameters-name-camel-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameter names
+        are camel case within an OpenAPI. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Parameters
+        - Casing
+      rule:
+        description: Ensures that that all parameter names are camel case.
+        message: Your parameter names should all be camel case.
+        given: $.paths.*.*.parameters[?(@.in=='query')].name
+        then:
+          field: name
+          function: casing
+          functionOptions:
+            type: camel
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-name-camel-case.md?ref=main
+      github_sha: 0df2ccbc09823ed942eee420e5b502ad16541436
+      collection_id: 12959542-d7dcad61-c768-4ca1-8151-8b702bf69ce7
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters Name Camel Case
+      slug: swagger-v2-parameters-name-camel-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameter names
+        are camel case within an Swagger. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Parameters
+        - Casing
+      rule:
+        description: Ensures that that all parameter names are camel case.
+        message: Your parameter names should all be camel case.
+        given: $.paths.*.*.parameters[?(@.in=='query')].name
+        then:
+          field: name
+          function: casing
+          functionOptions:
+            type: camel
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-name-camel-case.md?ref=main
+      github_sha: 01aecf0b7be0a7c9a14df6737083e006581bdf18
+      collection_id: 12959542-916788cf-7caa-4df3-88e6-e16e0c8a448a
+identicalSources: true

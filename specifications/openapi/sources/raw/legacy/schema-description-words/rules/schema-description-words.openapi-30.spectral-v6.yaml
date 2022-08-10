@@ -1,0 +1,13 @@
+rules:
+  schema-description-words:
+    description: Some words should not be be contained within the schema description.
+    message: Do not use the words word, word, and word in the schema descriptions.
+    given: $.components.schemas.*
+    severity: warn
+    formats:
+      - oas3
+    then:
+      field: description
+      function: pattern
+      functionOptions:
+        notMatch: \b(word|word|word)\b

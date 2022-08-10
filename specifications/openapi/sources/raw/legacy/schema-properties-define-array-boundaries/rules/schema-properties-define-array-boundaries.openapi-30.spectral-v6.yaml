@@ -1,0 +1,14 @@
+rules:
+  schema-properties-define-array-boundaries:
+    description: Requires that arrays have their minimum and maximum boundaries defined.
+    message: Arrays must have minItems and maxItems defined.
+    given:
+      - $..properties.[?(@.type=="array")]
+    severity: warn
+    formats:
+      - oas3
+    then:
+      - field: maxItems
+        function: defined
+      - field: minItems
+        function: defined

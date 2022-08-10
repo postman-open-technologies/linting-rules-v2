@@ -1,0 +1,32 @@
+id: request-body-json-media-type-on-post
+name: Request Body JSON Media Type on POST
+description: Ensures that POST methods have request bodies.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Request Body JSON Media Type on POST
+      slug: openapi-v3-request-body-json-media-type-on-post
+      summary: >-
+        This is a Spectral governance rule to make sure that POST methods have
+        an application/json media type for the request body in an OpenAPI. Here
+        is a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Methods
+        - POST
+        - Request Bodies
+        - Media Types
+      rule:
+        description: Ensures that POST methods have request bodies.
+        message: Your POST methods should have request bodies.
+        given: $.paths.*.post[requestBody].content
+        recommended: true
+        severity: error
+        then:
+          field: application/json
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-request-body-json-media-type-on-post.md?ref=main
+      github_sha: cfc3a6d3ff7d90ded27a73a6d53a19af7db36b02
+      collection_id: 12959542-817d888d-9a29-40a4-a534-e79939365a7c

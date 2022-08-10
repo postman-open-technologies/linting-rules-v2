@@ -1,0 +1,55 @@
+id: do-not-use-api-for-base-path
+name: Do Not Use API for Base Path
+description: Ensures that paths do not use /api as part of the base path.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Do Not Use API for Base Path
+      slug: openapi-v3-do-not-use-api-for-base-path
+      summary: >-
+        This is a Spectral governance rule to make sure that /api is not used as
+        base path in an OpenAPI. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that paths do not use /api as part of the base path.
+        message: You should not use /api as part of your base path.
+        severity: warn
+        given: $.paths.*~
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: ^/api
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-do-not-use-api-for-base-path.md?ref=main
+      github_sha: 9cf4ee57c3cffb1032c00dc13e78a5eebc680160
+      collection_id: 12959542-19b4a5c5-c25f-4edc-84f4-b74ed57713ef
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Do Not Use API for Base Path
+      slug: swagger-v2-do-not-use-api-for-base-path
+      summary: >-
+        This is a Spectral governance rule to make sure that /api is not used as
+        base path in an Swagger. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that paths do not use /api as part of the base path.
+        message: You should not use /api as part of your base path.
+        severity: warn
+        given: $.paths.*~
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: ^/api
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-do-not-use-api-for-base-path.md?ref=main
+      github_sha: 9657bb65be35bd821e52ebb3120abf80987f5463
+      collection_id: 12959542-5dbe9fc8-e008-4990-be79-9812c0e1aee7
+identicalSources: true

@@ -1,0 +1,59 @@
+id: schema-properties-names-camel-case
+name: Schema Properties Names Camel Case
+description: Ensuring that schema property names are camel case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Names Camel Case
+      slug: openapi-v3-schema-properties-names-camel-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema property
+        names are camel case within OpenAPI definitions. Here is a JSON version
+        of the rule that can be applied using this API-driven collection API, or
+        at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensuring that schema property names are camel case.
+        message: All schema property names should be camel case.
+        severity: error
+        given: $..properties.*
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: camel
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-names-camel-case.md?ref=main
+      github_sha: 021b046362f67223bba903a24a7c5e778440aeb9
+      collection_id: 12959542-48a74f86-0b0b-4d53-b9b0-3cd97d5d02d1
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Names Camel Case
+      slug: swagger-v2-schema-properties-names-camel-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema property
+        names are camel case within Swagger definitions. Here is a JSON version
+        of the rule that can be applied using this API-driven collection API, or
+        at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensuring that schema property names are camel case.
+        message: All schema property names should be camel case.
+        severity: error
+        given: $.definitions.properties.*
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: camel
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-names-camel-case.md?ref=main
+      github_sha: 7eb25678184940a7fbc871f0e2c50337d21572bf
+      collection_id: 12959542-83f6348a-e94b-4b3a-a17c-8cc1bd965dd4
+identicalSources: false

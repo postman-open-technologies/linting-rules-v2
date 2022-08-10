@@ -1,0 +1,63 @@
+id: info-license-url-mit
+name: Info License Url Mit
+description: Ensures that all OpenAPIs have a information object license url for MIT.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info License Url Mit
+      slug: openapi-v3-info-license-url-mit
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI info object
+        has an MIT license. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - License
+        - Legal
+      rule:
+        description: >-
+          Ensures that all OpenAPIs have a information object license url for
+          MIT.
+        message: The info object should have a license url for MIT.
+        given: $.info.license.url
+        severity: error
+        then:
+          function: pattern
+          functionOptions:
+            match: mit.edu
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-license-url-mit.md?ref=main
+      github_sha: 870f869119f29a3d38345f625824973065e7578f
+      collection_id: 12959542-2aff9e1a-7f7c-4735-8419-3047fb6fd248
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info License Url Mit
+      slug: swagger-v2-info-license-url-mit
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger info object
+        has an MIT license. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - License
+        - Legal
+      rule:
+        description: >-
+          Ensures that all Swaggers have a information object license url for
+          MIT.
+        message: The info object should have a license url for MIT.
+        given: $.info.license.url
+        severity: error
+        then:
+          function: pattern
+          functionOptions:
+            match: mit.edu
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-license-url-mit.md?ref=main
+      github_sha: 86fed23ba5ffd949abd1ff250ba55d79bacad4dc
+      collection_id: 12959542-573d49b2-5c6e-46c4-ab4a-e44a3c242077
+identicalSources: false

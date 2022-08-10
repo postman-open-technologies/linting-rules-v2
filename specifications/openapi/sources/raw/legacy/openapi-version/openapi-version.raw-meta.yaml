@@ -1,0 +1,57 @@
+id: openapi-version
+name: OpenAPI Version
+description: Ensuring that a specific version of OpenAPI is being used.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - OpenAPI Version
+      slug: openapi-v3-openapi-version
+      summary: >-
+        This is a Spectral governance rule to make sure that a specific version
+        of OpenAPI is being used. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Versioning
+      rule:
+        description: Ensuring that a specific version of OpenAPI is being used.
+        message: You do not have the right version of OpenAPI.
+        severity: error
+        given: $
+        then:
+          field: openapi
+          function: pattern
+          functionOptions:
+            match: 3.0.3
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-openapi-version.md?ref=main
+      github_sha: 06aa5bfeb49ab801f4b17b0a42d7d6207aeb11f4
+      collection_id: 12959542-37bf5d40-836b-43f8-874f-9b7b242708c6
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Swagger Version
+      slug: swagger-v2-openapi-version
+      summary: >-
+        This is a Spectral governance rule to make sure that a specific version
+        of Swagger is being used. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Versioning
+      rule:
+        description: Ensuring that a specific version of Swagger is being used.
+        message: You do not have the right version of Swagger.
+        severity: error
+        given: $
+        then:
+          field: swagger
+          function: pattern
+          functionOptions:
+            match: 2
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-openapi-version.md?ref=main
+      github_sha: c5264e0c69b80e5d80e8895d3eadcf0bc90d77a9
+      collection_id: 12959542-53c4b6d5-6525-4d66-b6a6-fd173211e7bc
+identicalSources: false

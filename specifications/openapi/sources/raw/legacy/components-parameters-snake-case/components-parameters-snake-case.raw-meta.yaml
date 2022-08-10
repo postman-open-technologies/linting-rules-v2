@@ -1,0 +1,36 @@
+id: components-parameters-snake-case
+name: OpenAPI V3 Components Parameters Snake Case
+description: Ensuring that all components parameters are using snake case for the name.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Components Parameters Snake Case
+      slug: openapi-v3-components-parameters-snake-case
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI
+        parameters within the components object are all using snake case for the
+        key. Here is a JSON version of the rule that can be applied using this
+        API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Components
+        - Parameters
+        - Casing
+      rule:
+        description: >-
+          Ensuring that all components parameters are using snake case for the
+          name.
+        message: The component parameters name needs to be snakeCase.
+        given: >-
+          $.components.parameters..[?(@.in==='query' || @.in==='path' ||
+          @.in==='cookie')]
+        severity: warn
+        then:
+          field: name
+          function: casing
+          functionOptions:
+            type: snake
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-components-parameters-snake-case.md?ref=main
+      github_sha: 6aaea88c83377b8fe941c79cf2ed85ba0fe44c11
+      collection_id: 12959542-a36d1702-59e2-4157-a4cd-f2605d367c91

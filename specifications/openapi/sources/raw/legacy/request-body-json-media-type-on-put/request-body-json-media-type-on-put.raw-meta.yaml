@@ -1,0 +1,32 @@
+id: request-body-json-media-type-on-put
+name: Request Body JSON Media Type on PUT
+description: Ensures that PUT methods have request bodies.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Request Body JSON Media Type on PUT
+      slug: openapi-v3-request-body-json-media-type-on-put
+      summary: >-
+        This is a Spectral governance rule to make sure that PUT methods have an
+        application/json media type for the request body in an OpenAPI. Here is
+        a JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Methods
+        - PUT
+        - Request Bodies
+        - Media Types
+      rule:
+        description: Ensures that PUT methods have request bodies.
+        message: Your PUT methods should have request bodies.
+        given: $.paths.*.put[requestBody].content
+        recommended: true
+        severity: error
+        then:
+          field: application/json
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-request-body-json-media-type-on-put.md?ref=main
+      github_sha: ff91669dc6b7b1055f4d4c48a3f028364dbc54f0
+      collection_id: 12959542-5740b0e2-7134-42a3-a5bf-a68f84862fec

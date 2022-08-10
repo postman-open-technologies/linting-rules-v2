@@ -1,0 +1,13 @@
+rules:
+  produce-xml-media-type:
+    description: Ensures that application/xml media types are able to be produced.
+    message: The APIs should be able to produce application/xml media types.
+    given: $..produces.*
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: string
+          enum:
+            - application/xml

@@ -1,0 +1,51 @@
+id: parameters-in
+name: Parameters In
+description: Ensures that that all parameters have an in property.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters In
+      slug: openapi-v3-parameters-in
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters have
+        an in property within an OpenAPI. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Parameters
+      rule:
+        description: Ensures that that all parameters have an in property.
+        message: Your parameters all need to have in properties.
+        given: $.paths.*.*.parameters[?(@.in=='query')]
+        then:
+          field: in
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-in.md?ref=main
+      github_sha: cd395ff6e5df922ad13daaa8fdb891bcfad70c18
+      collection_id: 12959542-65ea4af3-7264-4bee-964d-3437ce295dfd
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters In
+      slug: swagger-v2-parameters-in
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters have
+        an in property within an Swagger. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Parameters
+      rule:
+        description: Ensures that that all parameters have an in property.
+        message: Your parameters all need to have in properties.
+        given: $.paths.*.*.parameters[?(@.in=='query')]
+        then:
+          field: in
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-in.md?ref=main
+      github_sha: e13af3cefaa3bf48e3ed02d96cc97b878257a4ba
+      collection_id: 12959542-11c86656-67bb-4295-a14d-339e737ad01e
+identicalSources: true

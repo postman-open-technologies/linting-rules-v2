@@ -1,0 +1,71 @@
+id: operations-tags
+name: Operations Tags
+description: Ensures that each of the operations have a tags property.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Operations Tags
+      slug: openapi-v3-operations-tags
+      summary: >-
+        This is a Spectral governance rule to make sure that all operations have
+        a tags property. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Tags
+      rule:
+        description: Ensures that each of the operations have a tags property.
+        message: All of your operations need to have tags.
+        severity: error
+        given: $.paths.*[get,post,patch,put,delete]
+        then:
+          - field: tags
+            function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-tags.md?ref=main
+      github_sha: e560e3013b3f79219df482d5bd4a8dbc5f5e8c6c
+      collection_id: 12959542-ed0bfe5d-32e0-46e6-9e49-a435d22dd11d
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more operation objects in your API schema does not contain a tags
+        array.
+      fixDescription: >-
+        Operation tags can be used to create logical groupings of operations in
+        API documentation. Add a tags array for each operation object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Tags
+      slug: swagger-v2-operations-tags
+      summary: >-
+        This is a Spectral governance rule to make sure that all operations have
+        a tags property. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Tags
+      rule:
+        description: Ensures that each of the operations have a tags property.
+        message: All of your operations need to have tags.
+        severity: error
+        given: $.paths.*[get,post,patch,put,delete]
+        then:
+          - field: tags
+            function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-tags.md?ref=main
+      github_sha: 5cd4f58a9e89eeda4aba3c6657e8f203e0e6a6af
+      collection_id: 12959542-b5fbbd78-efac-41e8-b4e8-80175118236b
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more operation objects in your API schema does not contain a tags
+        array.
+      fixDescription: >-
+        Operation tags can be used to create logical groupings of operations in
+        API documentation. Add a tags array for each operation object.
+identicalSources: true
+selected: true
+identicalDocumentation: true

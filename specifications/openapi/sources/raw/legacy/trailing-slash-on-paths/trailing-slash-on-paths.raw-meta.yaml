@@ -1,0 +1,55 @@
+id: trailing-slash-on-paths
+name: Trailing Slash on Paths
+description: Ensures that there are trailing slashes on paths.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Trailing Slash on Paths
+      slug: openapi-v3-trailing-slash-on-paths
+      summary: >-
+        This is a Spectral governance rule to make sure that there are trailing
+        slashes on paths in an OpenAPI. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that there are trailing slashes on paths.
+        message: There should be trailing slashes on paths.
+        severity: error
+        given: $.paths.*~
+        then:
+          function: pattern
+          functionOptions:
+            match: /$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-trailing-slash-on-paths.md?ref=main
+      github_sha: 3642be598eaf6417d82caf199b81e292c16d31ba
+      collection_id: 12959542-4febb51f-0bc7-41d6-bae2-e5e453393c69
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Trailing Slash on Paths
+      slug: swagger-v2-trailing-slash-on-paths
+      summary: >-
+        This is a Spectral governance rule to make sure that there are trailing
+        slashes on paths in an Swagger. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Paths
+      rule:
+        description: Ensures that there are trailing slashes on paths.
+        message: There should be trailing slashes on paths.
+        severity: error
+        given: $.paths.*~
+        then:
+          function: pattern
+          functionOptions:
+            match: /$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-trailing-slash-on-paths.md?ref=main
+      github_sha: 3b2b737c2ad71c592ce92acb06718a36fed423a4
+      collection_id: 12959542-98564093-50fb-4710-a580-3c726be2f795
+identicalSources: true

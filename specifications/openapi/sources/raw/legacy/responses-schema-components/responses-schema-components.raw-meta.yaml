@@ -1,0 +1,43 @@
+id: responses-schema-components
+name: OpenAPI V3 Responses Schema Components
+description: Check response schema to ensure that they only have references to components.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Responses Schema Components
+      slug: openapi-v3-responses-schema-components
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI response
+        schema are all centralized as a component. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Components
+        - Responses
+      rule:
+        description: >-
+          Check response schema to ensure that they only have references to
+          components.
+        message: Response schema should only reference components.
+        severity: error
+        resolved: false
+        given:
+          - $..responses.*.content..*.schema.$ref
+        then:
+          function: pattern
+          functionOptions:
+            match: '#/components/'
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-responses-schema-components.md?ref=main
+      github_sha: ca992719c6edba74b665f471a46de35a9a2b2dae
+      collection_id: 12959542-5f40fb28-8e85-4fd0-a3b1-b15e157fc5da
+    documentation:
+      category: API Models
+      issueDescription: >-
+        Multiple response objects in your API schema contain schemas that should
+        be consolidated into an schemas section in the components object.
+      fixDescription: >-
+        Consolidate all the schemas from your response objects into a schemas
+        section in the components object.
+selected: true

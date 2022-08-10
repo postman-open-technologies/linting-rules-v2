@@ -1,0 +1,37 @@
+id: response-patch-204-problem-json-media-type
+name: Response PATCH 204 Problem JSON Media Type
+description: >-
+  Ensuring PATCH operations have an application/problem+json media type for 500
+  responses.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response PATCH 204 Problem JSON Media Type
+      slug: openapi-v3-response-patch-204-problem-json-media-type
+      summary: >-
+        This is a Spectral governance rule to make sure that PATCH methods all
+        have a 500 status code response with application/json media type in an
+        OpenAPI. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+        - Media Types
+      rule:
+        description: >-
+          Ensuring PATCH operations have an application/problem+json media type
+          for 500 responses.
+        message: >-
+          A PATCH operation should have an application/problem+json media type
+          for 500 response.
+        severity: error
+        given: $paths.patch.responses.500.content
+        then:
+          field: application/problem+json
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-patch-204-problem-json-media-type.md?ref=main
+      github_sha: 493910bbd0cfd23491357c53600af0b198037411
+      collection_id: 12959542-96e358fc-b950-4507-9cdc-b8459b98a0d0

@@ -8,7 +8,10 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "npx mocha tests/**/*.test.js  "
+    "command": "echo ",
+    "test": "npx mocha tests/**/*.test.js",
+    "test:rules": "npx mocha tests/rules.test.js",
+    "test:refining-rules": "npx mocha tests/refining-rules.test.js"
   },
   "author": "",
   "license": "ISC",

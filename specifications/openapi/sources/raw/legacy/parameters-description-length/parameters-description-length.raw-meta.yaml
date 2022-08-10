@@ -1,0 +1,57 @@
+id: parameters-description-length
+name: Parameters Description Length
+description: Ensures that each of parameter description isn't too long.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters Description Length
+      slug: openapi-v3-parameters-description-length
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters
+        description are not too long. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Parameters
+        - Length
+      rule:
+        description: Ensures that each of parameter description isn't too long.
+        message: Your parameter descriptions can't be more than 500 characters.
+        given: $.paths.*.*.parameters[?(@.in=='query')].description
+        then:
+          field: summary
+          function: length
+          functionOptions:
+            max: 500
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-description-length.md?ref=main
+      github_sha: 1fe0df41e8cb40660e4ee05f595daf14dfae4639
+      collection_id: 12959542-c2d16275-4a2a-4294-bf1e-7d1b5fdbf46f
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters Description Length
+      slug: swagger-v2-parameters-description-length
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters
+        description are not too long. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Parameters
+        - Length
+      rule:
+        description: Ensures that each of parameter description isn't too long.
+        message: Your parameter descriptions can't be more than 500 characters.
+        given: $.paths.*.*.parameters[?(@.in=='query')].description
+        then:
+          field: summary
+          function: length
+          functionOptions:
+            max: 500
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-description-length.md?ref=main
+      github_sha: 380a401e2c1194db3d8e779eb036fb8e85017591
+      collection_id: 12959542-2aaeffb8-5eab-44a2-b030-cefdbdd6bb47
+identicalSources: true

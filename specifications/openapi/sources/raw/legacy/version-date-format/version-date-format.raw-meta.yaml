@@ -1,0 +1,57 @@
+id: version-date-format
+name: Version Date Format
+description: Ensuring that there is a data form version applied.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Version Date Format
+      slug: openapi-v3-version-date-format
+      summary: >-
+        This is a Spectral governance rule to make sure that there is at data
+        version applied within OpenAPI definitions. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Versioning
+      rule:
+        description: Ensuring that there is a data form version applied.
+        message: You need to have a date version format.
+        severity: error
+        recommended: true
+        given: $.info.version
+        then:
+          function: pattern
+          functionOptions:
+            match: ^([0-9]{4}-[0-9]{2}-[0-9]{2})$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-version-date-format.md?ref=main
+      github_sha: e8c55469a72ca8e409045b269ada3d6424f935bc
+      collection_id: 12959542-9b8ba6d0-17cf-4708-9cd1-762bd2d4136a
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Version Date Format
+      slug: swagger-v2-version-date-format
+      summary: >-
+        This is a Spectral governance rule to make sure that there is at data
+        version applied within Swagger definitions. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Versioning
+      rule:
+        description: Ensuring that there is a data form version applied.
+        message: You need to have a date version format.
+        severity: error
+        recommended: true
+        given: $.info.version
+        then:
+          function: pattern
+          functionOptions:
+            match: ^([0-9]{4}-[0-9]{2}-[0-9]{2})$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-version-date-format.md?ref=main
+      github_sha: cdb260580ac40acd363bfc16237b37f2596b2281
+      collection_id: 12959542-187fbe17-643e-46ab-8c1f-bae0dbe557c5
+identicalSources: true

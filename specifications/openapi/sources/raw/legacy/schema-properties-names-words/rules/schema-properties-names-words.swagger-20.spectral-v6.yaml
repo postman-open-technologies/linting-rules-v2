@@ -1,0 +1,11 @@
+rules:
+  schema-properties-names-words:
+    description: Schema property names should not contain certain words.
+    message: Schema property names should not contain the words word, word, and word.
+    given: $.definitions.properties.*
+    severity: error
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        notMatch: \b(word|word|word)\b

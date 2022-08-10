@@ -1,0 +1,9 @@
+rules:
+  response-delete-204-no-body:
+    description: Ensures DELETE operations do not have a response body.
+    message: A DELETE operation should not have a response body.
+    given: $paths.delete.responses.204
+    severity: error
+    then:
+      field: schema
+      function: falsy

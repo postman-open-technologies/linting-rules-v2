@@ -1,0 +1,14 @@
+rules:
+  schema-additional-properties:
+    description: Restricts objects from having additional properties defined.
+    message: All schema objects should have additionalProperties set to false.
+    given:
+      - >-
+        $.[?(@.type=="object" && @.additionalProperties &&
+        @.additionalProperties!=true && @.additionalProperties!=false )]
+    severity: warn
+    formats:
+      - oas2
+    then:
+      - field: maxProperties
+        function: defined

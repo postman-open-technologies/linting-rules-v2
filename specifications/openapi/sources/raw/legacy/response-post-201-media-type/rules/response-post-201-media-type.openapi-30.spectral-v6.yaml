@@ -1,0 +1,8 @@
+rules:
+  response-post-201-media-type:
+    description: POST responses should have a JSON body.
+    given: $paths.post.responses.201.content
+    severity: error
+    then:
+      field: application/json
+      function: truthy

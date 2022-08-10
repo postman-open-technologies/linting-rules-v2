@@ -1,0 +1,59 @@
+id: schema-properties-names-pascal-case
+name: Schema Properties Names Pascal Case
+description: Ensuring that schema property names are pascal case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Names Pascal Case
+      slug: openapi-v3-schema-properties-names-pascal-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema property
+        names are pascal case within OpenAPI definitions. Here is a JSON version
+        of the rule that can be applied using this API-driven collection API, or
+        at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensuring that schema property names are pascal case.
+        message: All schema property names should be pascal case.
+        severity: error
+        given: $..properties.*
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: pascal
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-names-pascal-case.md?ref=main
+      github_sha: ef6064e0b28a4e27b2ea4c624fdfc5ce85423254
+      collection_id: 12959542-520ce3af-2162-42ee-9746-59bf73f557e7
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Names Pascal Case
+      slug: swagger-v2-schema-properties-names-pascal-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema property
+        names are pascal case within Swagger definitions. Here is a JSON version
+        of the rule that can be applied using this API-driven collection API, or
+        at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensuring that schema property names are pascal case.
+        message: All schema property names should be pascal case.
+        severity: error
+        given: $.definitions.properties.*
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: pascal
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-names-pascal-case.md?ref=main
+      github_sha: defc8bd0c1a182ddab54f2486179e439d0cda31e
+      collection_id: 12959542-a7fc069f-fa44-4603-8cd1-9dd485df5df1
+identicalSources: false

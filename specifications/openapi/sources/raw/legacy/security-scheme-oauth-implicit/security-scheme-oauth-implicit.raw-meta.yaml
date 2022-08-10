@@ -1,0 +1,32 @@
+id: security-scheme-oauth-implicit
+name: OpenAPI V3 Security Scheme OAuth Implicit
+description: Requires the usage of oauth implicit for security scheme.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Security Scheme OAuth Implicit
+      slug: openapi-v3-security-scheme-oauth-implicit
+      summary: >-
+        This is a Spectral governance rule to enforce that OAuth implicit
+        security is applied to the OpenAPI. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires the usage of oauth implicit for security scheme.
+        message: Must add oauth implicit for security scheme.
+        recommended: true
+        severity: error
+        formats:
+          - oas3
+        type: style
+        given: $
+        then:
+          field: $.components.securitySchemes.[*].flows.implicit
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-security-scheme-oauth-implicit.md?ref=main
+      github_sha: dc85a66de5b56e1b5f9e2ec0ef2bc09eccd9cf4c
+      collection_id: 12959542-f1248eb1-01a5-48e2-ac2f-1255eae99c17

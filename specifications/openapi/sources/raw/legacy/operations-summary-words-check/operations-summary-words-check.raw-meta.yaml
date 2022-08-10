@@ -1,0 +1,67 @@
+id: operations-summary-words-check
+name: Operations Summary Words Check
+description: Ensures that each of the operations summaries do not content certain words.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Operations Summary Words Check
+      slug: openapi-v3-operations-summary-words-check
+      summary: >-
+        This is a Spectral governance rule to make sure that operation summaries
+        do not contain specific words. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Operations
+        - Words
+      rule:
+        description: >-
+          Ensures that each of the operations summaries do not content certain
+          words.
+        message: >-
+          Your operations summaries should not contain the words word, word, and
+          word.
+        given: $.paths.*[get,post,patch,put,delete].summary
+        recommended: true
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-summary-words-check.md?ref=main
+      github_sha: 80bbdf80902ff3453ebca81bb2528aaea1de41a8
+      collection_id: 12959542-183e3bdf-4544-444a-8a66-86be4c4a2faf
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Summary Words Check
+      slug: swagger-v2-operations-summary-words-check
+      summary: >-
+        This is a Spectral governance rule to make sure that operation summaries
+        do not contain specific words. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Operations
+        - Words
+      rule:
+        description: >-
+          Ensures that each of the operations summaries do not content certain
+          words.
+        message: >-
+          Your operations summaries should not contain the words word, word, and
+          word.
+        given: $.paths.*[get,post,patch,put,delete].summary
+        recommended: true
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-summary-words-check.md?ref=main
+      github_sha: 6108bf74c4078583bed623a32f26084de12e2dfc
+      collection_id: 12959542-34afc7c0-d748-4380-bd88-f14639677156
+identicalSources: true

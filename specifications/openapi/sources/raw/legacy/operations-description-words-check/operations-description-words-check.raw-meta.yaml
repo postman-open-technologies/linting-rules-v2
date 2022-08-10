@@ -1,0 +1,63 @@
+id: operations-description-words-check
+name: Operations Description Words Check
+description: Ensures that the description do not contain certain words.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Operations Description Words Check
+      slug: openapi-v3-operations-description-words-check
+      summary: >-
+        This is a Spectral governance rule to make sure that some words are
+        never used in the description of operations within an OpenAPI. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Words
+      rule:
+        description: Ensures that the description do not contain certain words.
+        message: >-
+          Your operation descriptions should not use the words word, word, and
+          word.
+        given: $.paths.*[get,post,patch,put,delete].description
+        recommended: true
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-description-words-check.md?ref=main
+      github_sha: a743922069d551410135f04ee671c15b30fc343e
+      collection_id: 12959542-54c1eecf-29d4-45ae-9f8c-679ebc7521fc
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Description Words Check
+      slug: swagger-v2-operations-description-words-check
+      summary: >-
+        This is a Spectral governance rule to make sure that some words are
+        never used in the description of operations within an Swagger. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Words
+      rule:
+        description: Ensures that the description do not contain certain words.
+        message: >-
+          Your operation descriptions should not use the words word, word, and
+          word.
+        given: $.paths.*[get,post,patch,put,delete].description
+        recommended: true
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-description-words-check.md?ref=main
+      github_sha: 8d59ce63aae70b01b6cf82f9456d5355b929aedd
+      collection_id: 12959542-8524926a-cda1-494d-9d38-14cdbb5f36f9
+identicalSources: true

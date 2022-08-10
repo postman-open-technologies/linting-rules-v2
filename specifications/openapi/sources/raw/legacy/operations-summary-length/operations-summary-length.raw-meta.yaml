@@ -1,0 +1,59 @@
+id: operations-summary-length
+name: Operations Summary Length
+description: Ensures that each of the operations summaries are not too long.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Operations Summary Length
+      slug: openapi-v3-operations-summary-length
+      summary: >-
+        This is a Spectral governance rule to make sure that operation summaries
+        are not too long. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Length
+      rule:
+        description: Ensures that each of the operations summaries are not too long.
+        message: Your operations summaries can't be longer than 50 characters.
+        given: $.paths.*[get,post,patch,put,delete]
+        recommended: true
+        then:
+          - field: summary
+            function: length
+            functionOptions:
+              max: 50
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-operations-summary-length.md?ref=main
+      github_sha: 2ee4aff018b4c09c17f024e67276f58a84fa4a7a
+      collection_id: 12959542-71084ab3-ba02-4b24-8b4f-4a0f846e1d4e
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Operations Summary Length
+      slug: swagger-v2-operations-summary-length
+      summary: >-
+        This is a Spectral governance rule to make sure that operation summaries
+        are not too long. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Length
+      rule:
+        description: Ensures that each of the operations summaries are not too long.
+        message: Your operations summaries can't be longer than 50 characters.
+        given: $.paths.*[get,post,patch,put,delete]
+        recommended: true
+        then:
+          - field: summary
+            function: length
+            functionOptions:
+              max: 50
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-operations-summary-length.md?ref=main
+      github_sha: 87e5b8e6ee7bbcaa52ee03e4d8c4a6a541c6f892
+      collection_id: 12959542-b11341b2-0acf-4308-9a6b-ae6f36c7a81a
+identicalSources: true

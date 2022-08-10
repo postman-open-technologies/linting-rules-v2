@@ -1,0 +1,30 @@
+id: security-scheme-access-token
+name: OpenAPI V3 Security Scheme Access Token
+description: Requires the usage of access token for security scheme.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Security Scheme Access Token
+      slug: openapi-v3-security-scheme-access-token
+      summary: >-
+        This is a Spectral governance rule to enforce that access token security
+        is applied to the OpenAPI. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires the usage of access token for security scheme.
+        message: Must add access token for security scheme.
+        given: $.components.securitySchemes[Oidc.AccessToken]
+        severity: error
+        then:
+          field: type
+          function: pattern
+          functionOptions:
+            match: ^openIdConnect$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-security-scheme-access-token.md?ref=main
+      github_sha: 3a6aacef6909c32214b4b4dc225e3e5f7054c469
+      collection_id: 12959542-c06fbbcb-cbf9-4adf-8d89-0747ca9a5fef

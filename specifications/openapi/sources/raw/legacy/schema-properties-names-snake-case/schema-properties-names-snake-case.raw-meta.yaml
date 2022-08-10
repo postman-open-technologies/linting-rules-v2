@@ -1,0 +1,59 @@
+id: schema-properties-names-snake-case
+name: Schema Properties Names Snake Case
+description: Ensuring that schema property names are snake case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Names Snake Case
+      slug: openapi-v3-schema-properties-names-snake-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema property
+        names are snake case within OpenAPI definitions. Here is a JSON version
+        of the rule that can be applied using this API-driven collection API, or
+        at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensuring that schema property names are snake case.
+        message: All schema property names should be snake case.
+        severity: error
+        given: $..properties.*
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: snake
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-names-snake-case.md?ref=main
+      github_sha: 7a98912a8ac93f7e813364d811529353c0ebde00
+      collection_id: 12959542-c0fd0e59-5508-4c75-9a39-e68f13bebb0e
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Names Snake Case
+      slug: swagger-v2-schema-properties-names-snake-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema property
+        names are snake case within Swagger definitions. Here is a JSON version
+        of the rule that can be applied using this API-driven collection API, or
+        at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensuring that schema property names are snake case.
+        message: All schema property names should be snake case.
+        severity: error
+        given: $.definitions.properties.*
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: snake
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-names-snake-case.md?ref=main
+      github_sha: 8091311385ae91207b7b1b904d15f46e427e5650
+      collection_id: 12959542-4caadf51-d837-4bdc-9283-c023ee9359f6
+identicalSources: false

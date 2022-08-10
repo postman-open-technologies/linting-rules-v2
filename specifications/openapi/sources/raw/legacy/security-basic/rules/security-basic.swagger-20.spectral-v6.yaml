@@ -1,0 +1,12 @@
+rules:
+  security-basic:
+    description: Requires the usage of an basic for security.
+    message: Must add security definition object with type of basic
+    given: $.security.*
+    severity: error
+    then:
+      field: type
+      function: enumeration
+      functionOptions:
+        values:
+          - basic

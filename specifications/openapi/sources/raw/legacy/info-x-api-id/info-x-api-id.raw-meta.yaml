@@ -1,0 +1,79 @@
+id: info-x-api-id
+name: Info X API Id
+description: Ensures that all OpenAPIs have a information object API ID extension.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info X API Id
+      slug: openapi-v3-info-x-api-id
+      summary: >-
+        This is a Spectral governance rule to enforce that the OpenAPI info has
+        an API ID extension. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Unique ID
+        - Extensions
+      rule:
+        description: Ensures that all OpenAPIs have a information object API ID extension.
+        message: The info object should have an API ID extension.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        then:
+          field: x-api-id
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-x-api-id.md?ref=main
+      github_sha: 84d985f757eb76fdac97fe953c0529e74ca9af79
+      collection_id: 12959542-df01afec-a0f1-4ee8-850c-0a2f9048e869
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema's info object doesn't contain an API ID extension
+        (x-api-id), which is a custom header used to pass an API key.
+      fixDescription: >-
+        Although an API ID extension isn't required, including it provides your
+        users with important information. Add an API ID extension to your API
+        schema's info object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info X API Id
+      slug: swagger-v2-info-x-api-id
+      summary: >-
+        This is a Spectral governance rule to enforce that the Swagger info has
+        an API ID extension. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Unique ID
+        - Extensions
+      rule:
+        description: Ensures that all Swaggers have a information object API ID extension.
+        message: The info object should have an API ID extension.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        then:
+          field: x-api-id
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-x-api-id.md?ref=main
+      github_sha: b0201681d2ec9350d3ad700eb0bdabc48888577f
+      collection_id: 12959542-46180193-0959-4f5b-9e2e-0198582ac4e3
+    documentation:
+      category: API Information
+      issueDescription: >-
+        Your API schema's info object doesn't contain an API ID extension
+        (x-api-id), which is a custom header used to pass an API key.
+      fixDescription: >-
+        Although an API ID extension isn't required, including it provides your
+        users with important information. Add an API ID extension to your API
+        schema's info object.
+identicalSources: false
+selected: true
+identicalDocumentation: true

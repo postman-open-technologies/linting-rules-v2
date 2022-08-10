@@ -1,0 +1,11 @@
+rules:
+  have-get-method:
+    description: Ensures that all APIs at least have one GET method.
+    message: An API must have at least one GET method.
+    given: $.paths[/]
+    severity: warn
+    formats:
+      - oas3
+    then:
+      field: get
+      function: truthy

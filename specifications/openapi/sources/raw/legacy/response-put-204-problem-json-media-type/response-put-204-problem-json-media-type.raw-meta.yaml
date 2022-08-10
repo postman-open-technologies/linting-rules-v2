@@ -1,0 +1,37 @@
+id: response-put-204-problem-json-media-type
+name: Response PUT 204 Problem JSON Media Type
+description: >-
+  Ensuring PUT operations have an application/problem+json media type for 500
+  responses.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response PUT 204 Problem JSON Media Type
+      slug: openapi-v3-response-put-204-problem-json-media-type
+      summary: >-
+        This is a Spectral governance rule to make sure that PUT methods all
+        have a 500 status code response with application/json media type in an
+        OpenAPI. Here is a JSON version of the rule that can be applied using
+        this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+        - Media Types
+      rule:
+        description: >-
+          Ensuring PUT operations have an application/problem+json media type
+          for 500 responses.
+        message: >-
+          A PUT operation should have an application/problem+json media type for
+          500 response.
+        severity: error
+        given: $paths.put.responses.500.content
+        then:
+          field: application/problem+json
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-put-204-problem-json-media-type.md?ref=main
+      github_sha: edc828033d91551d10e2cc3e7d2ae443e8de3fd3
+      collection_id: 12959542-869d39cc-fd4d-49ef-8378-75868233c9c1

@@ -1,0 +1,59 @@
+id: schema-names-length
+name: Schema Names Length
+description: Ensure schema names should be no more than 25 characters.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Names Length
+      slug: openapi-v3-schema-names-length
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema names in
+        an OpenAPI are not too long. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Schema
+        - Length
+      rule:
+        description: Ensure schema names should be no more than 25 characters.
+        message: All schema names should be less than 25 characters.
+        severity: error
+        given: $.components.schemas
+        then:
+          field: '@key'
+          function: length
+          functionOptions:
+            max: 25
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-names-length.md?ref=main
+      github_sha: 8998ed7a6f293e1ed70dace6ad4aea8b00000a17
+      collection_id: 12959542-ec9799a7-6be2-4fce-bc89-fc369b16c787
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Names Length
+      slug: swagger-v2-schema-names-length
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema names in
+        an Swagger are not too long. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Schema
+        - Length
+      rule:
+        description: Ensure schema names should be no more than 25 characters.
+        message: All schema names should be less than 25 characters.
+        severity: error
+        given: $.definitions
+        then:
+          field: '@key'
+          function: length
+          functionOptions:
+            max: 25
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-names-length.md?ref=main
+      github_sha: 935cba6239f89e493fe157d4cd2c1be91b9ed0c4
+      collection_id: 12959542-8fcd653f-367d-4039-a752-2e9bacb0fc2c
+identicalSources: false

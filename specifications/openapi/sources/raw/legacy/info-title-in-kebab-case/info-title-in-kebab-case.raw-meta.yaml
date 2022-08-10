@@ -1,0 +1,65 @@
+id: info-title-in-kebab-case
+name: Info Title In Kebab Case
+description: Ensures that all OpenAPIs information title are in Kebab case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info Title In Kebab Case
+      slug: openapi-v3-info-title-in-kebab-case
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI info title is
+        in kebab case. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Info
+        - Title
+      rule:
+        description: Ensures that all OpenAPIs information title are in Kebab case.
+        message: The info object title needs to be in Kebab case.
+        given: $.info.title
+        then:
+          function: pattern
+          functionOptions:
+            match: ^[a-z][a-z0-9\-]*$
+        type: style
+        recommended: true
+        formats:
+          - oas2
+          - oas3
+        severity: error
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-title-in-kebab-case.md?ref=main
+      github_sha: 70ff2ff75deb3bb41a0f87a37172b28320db4dce
+      collection_id: 12959542-66ce8bf6-2213-4ca9-9f36-67d56520437d
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info Title In Kebab Case
+      slug: swagger-v2-info-title-in-kebab-case
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger info title is
+        in kebab case. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Info
+        - Title
+      rule:
+        description: Ensures that all Swaggers information title are in Kebab case.
+        message: The info object title needs to be in Kebab case.
+        given: $.info.title
+        then:
+          function: pattern
+          functionOptions:
+            match: ^[a-z][a-z0-9\-]*$
+        type: style
+        recommended: true
+        formats:
+          - oas2
+          - oas2
+        severity: error
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-title-in-kebab-case.md?ref=main
+      github_sha: c50b48d17e272046c4d4ee9d3ded187842091e46
+      collection_id: 12959542-a31ab21d-a3b1-402f-9655-65bb40e8849d
+identicalSources: false

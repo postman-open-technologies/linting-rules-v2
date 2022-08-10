@@ -1,0 +1,57 @@
+id: parameters-name-snake-case
+name: Parameters Name Snake Case
+description: Ensures that that all parameter names are snake case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters Name Snake Case
+      slug: openapi-v3-parameters-name-snake-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameter names
+        are snake case within an OpenAPI. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Parameters
+        - Casing
+      rule:
+        description: Ensures that that all parameter names are snake case.
+        message: Your parameter names should all be snake case.
+        given: $.paths.*.*.parameters[?(@.in=='query')].name
+        then:
+          field: name
+          function: casing
+          functionOptions:
+            type: snake
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-name-snake-case.md?ref=main
+      github_sha: c87e699264703f16cc954fd6d7af8cfcefa8f4c7
+      collection_id: 12959542-c2b9e53b-9982-4f46-a35a-b9364af89b14
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters Name Snake Case
+      slug: swagger-v2-parameters-name-snake-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameter names
+        are snake case within an Swagger. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Parameters
+        - Casing
+      rule:
+        description: Ensures that that all parameter names are snake case.
+        message: Your parameter names should all be snake case.
+        given: $.paths.*.*.parameters[?(@.in=='query')].name
+        then:
+          field: name
+          function: casing
+          functionOptions:
+            type: snake
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-name-snake-case.md?ref=main
+      github_sha: f7d592fcd647ac81d4bb02b4300179aa7fcd9b18
+      collection_id: 12959542-e5b8610b-88cd-4e37-8e6a-b443127e330d
+identicalSources: true

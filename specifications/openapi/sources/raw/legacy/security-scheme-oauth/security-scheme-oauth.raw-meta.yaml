@@ -1,0 +1,32 @@
+id: security-scheme-oauth
+name: OpenAPI V3 Security Scheme OAuth
+description: Requires the usage of OAuth for security scheme.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Security Scheme OAuth
+      slug: openapi-v3-security-scheme-oauth
+      summary: >-
+        This is a Spectral governance rule to enforce that OAuth security is
+        applied to the OpenAPI. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires the usage of OAuth for security scheme.
+        message: Must add OAuth implicit for security scheme.
+        recommended: true
+        severity: error
+        formats:
+          - oas3
+        type: style
+        given: $
+        then:
+          field: $.components.securitySchemes.[*].type
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-security-scheme-oauth.md?ref=main
+      github_sha: f006db688139a8d0f633320c15c9b6e21f072241
+      collection_id: 12959542-d2f2341b-f0fd-4061-b59f-781b2ac24baa

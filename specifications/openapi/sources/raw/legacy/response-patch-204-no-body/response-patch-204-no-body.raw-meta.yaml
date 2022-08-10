@@ -1,0 +1,57 @@
+id: response-patch-204-no-body
+name: Response PATCH 204 No Body
+description: Ensures PATCH operations do not have a response body.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Response PATCH 204 No Body
+      slug: openapi-v3-response-patch-204-no-body
+      summary: >-
+        This is a Spectral governance rule to make sure that PATCH methods do
+        not have a response body in an OpenAPI. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures PATCH operations do not have a response body.
+        message: A PATCH operation should not have a response body.
+        severity: error
+        given: $paths.patch.responses.204
+        then:
+          field: content
+          function: falsy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-response-patch-204-no-body.md?ref=main
+      github_sha: 08e69fcc394a6f87d815f0d576e767651b4858be
+      collection_id: 12959542-285585aa-db4c-4135-a426-56e639cf8f8e
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Response PATCH 204 No Body
+      slug: swagger-v2-response-patch-204-no-body
+      summary: >-
+        This is a Spectral governance rule to make sure that PATCH methods do
+        not have a response body in an Swagger. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Operations
+        - Responses
+        - Status Codes
+      rule:
+        description: Ensures PATCH operations do not have a response body.
+        message: A PATCH operation should not have a response body.
+        severity: error
+        given: $paths.patch.responses.204
+        then:
+          field: schema
+          function: falsy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-response-patch-204-no-body.md?ref=main
+      github_sha: 2b95192b959dbe18189d992e2bfe7878989d2c80
+      collection_id: 12959542-000d83be-ec82-43f1-8c1c-e09bec240b89
+identicalSources: false

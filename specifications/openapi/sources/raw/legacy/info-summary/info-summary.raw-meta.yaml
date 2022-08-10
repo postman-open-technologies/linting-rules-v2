@@ -1,0 +1,32 @@
+id: info-summary
+name: Info Summary
+description: Ensures that all OpenAPIs have a information object summary.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info Summary
+      slug: openapi-v3-info-summary
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI has an info
+        object summary. Here is a JSON version of the rule that can be applied
+        using this API-driven collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Summary
+        - Info
+      rule:
+        description: Ensures that all OpenAPIs have a information object summary.
+        message: The info object should have a summary.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas3
+        then:
+          field: summary
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-summary.md?ref=main
+      github_sha: 42d7eb74c11d30345846bf75e416f209a188e6c6
+      collection_id: 12959542-419d5f01-b723-41ef-9145-c4d216156c18

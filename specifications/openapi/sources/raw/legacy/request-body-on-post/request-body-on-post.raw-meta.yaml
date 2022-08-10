@@ -1,0 +1,85 @@
+id: request-body-on-post
+name: Request Body on POST
+description: Ensures that POST methods have request bodies.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Request Body on POST
+      slug: openapi-v3-request-body-on-post
+      summary: >-
+        This is a Spectral governance rule to make sure that POST methods have a
+        request body in an OpenAPI. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Methods
+        - POST
+        - Request Bodies
+      rule:
+        description: Ensures that POST methods have request bodies.
+        message: Your POST methods should have request bodies.
+        given: $.paths.*.post
+        recommended: true
+        severity: error
+        then:
+          field: requestBody
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-request-body-on-post.md?ref=main
+      github_sha: 4edc04e49cc15be950a6ffa85e7ce6ed957f8335
+      collection_id: 12959542-24eb0330-5ddd-4c8f-be61-c1fbcd0bdc4c
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more POST operation objects in your API schema doesn't contain a
+        request body object.
+      fixDescription: >-
+        A request body object contains a brief description of the response body
+        and information about what a valid response body should look like. Add a
+        request body object to any POST operation operation objects.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Request Body on POST
+      slug: swagger-v2-request-body-on-post
+      summary: >-
+        This is a Spectral governance rule to make sure that POST methods have a
+        request body in an Swagger. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Methods
+        - POST
+        - Request Bodies
+      rule:
+        description: Ensures that POST methods have request bodies.
+        message: Your POST methods should have request bodies.
+        given: $.paths.*.post.parameters.*
+        recommended: true
+        severity: error
+        then:
+          field: in
+          function: enumeration
+          functionOptions:
+            values:
+              - query
+              - header
+              - path
+              - body
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-request-body-on-post.md?ref=main
+      github_sha: 5475889761c69fee13499b34bf6f2d00ecaf6a8a
+      collection_id: 12959542-b3bbc64c-4491-417f-a800-bf82d8fe6a2b
+    documentation:
+      category: API Operations
+      issueDescription: >-
+        One or more POST operation objects in your API schema doesn't contain a
+        request body object.
+      fixDescription: >-
+        A request body object contains a brief description of the response body
+        and information about what a valid response body should look like. Add a
+        request body object to any POST operation operation objects.
+identicalSources: false
+selected: true
+identicalDocumentation: true

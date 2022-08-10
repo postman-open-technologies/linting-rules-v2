@@ -1,0 +1,59 @@
+id: schema-properties-names-length
+name: Schema Properties Names Length
+description: Ensuring that property names are no more than 25 characters.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Names Length
+      slug: openapi-v3-schema-properties-names-length
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema property
+        names are not too long within OpenAPI definitions. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Length
+      rule:
+        description: Ensuring that property names are no more than 25 characters.
+        message: Schema property names should be less than 25 characters .
+        severity: error
+        given: $..properties.*
+        then:
+          field: '@key'
+          function: length
+          functionOptions:
+            max: 25
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-names-length.md?ref=main
+      github_sha: 4e2aa2ddcf3aec5a59da6bee833904730fe02be3
+      collection_id: 12959542-03b6ec90-3287-49cc-b733-f82fa71aa24b
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Names Length
+      slug: swagger-v2-schema-properties-names-length
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema property
+        names are not too long within Swagger definitions. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Length
+      rule:
+        description: Ensuring that property names are no more than 25 characters.
+        message: Schema property names should be less than 25 characters .
+        severity: error
+        given: $.definitions.properties.*
+        then:
+          field: '@key'
+          function: length
+          functionOptions:
+            max: 25
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-names-length.md?ref=main
+      github_sha: 8e67bdf268f5fe433989b9f29fefa83a37e79359
+      collection_id: 12959542-19374431-0977-47aa-ad4f-681b53557464
+identicalSources: false

@@ -1,0 +1,9 @@
+rules:
+  operations-tags:
+    description: Ensures that each of the operations have a tags property.
+    message: All of your operations need to have tags.
+    given: $.paths.*[get,post,patch,put,delete]
+    severity: error
+    then:
+      - field: tags
+        function: truthy

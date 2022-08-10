@@ -1,0 +1,31 @@
+id: security-in-header
+name: Security in Header
+description: Requires the usage of header for security.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Security in Header
+      slug: swagger-v2-security-in-header
+      summary: >-
+        This is a Spectral governance rule to enforce that basic security is
+        applied to the Swagger using header. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires the usage of header for security.
+        message: Must add header to in property for security object
+        severity: error
+        given: $.security.*
+        then:
+          field: in
+          function: enumeration
+          functionOptions:
+            values:
+              - header
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-security-in-header.md?ref=main
+      github_sha: 591ded8a13b11d94063fc75e0c71a90c85239525
+      collection_id: 12959542-ffb70732-70f5-4cbe-bb50-55c011431a9c

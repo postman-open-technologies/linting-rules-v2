@@ -1,0 +1,63 @@
+id: schema-properties-descriptions-length
+name: Schema Properties Descriptions Length
+description: Ensure that schema descriptions aren't too long.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Descriptions Length
+      slug: openapi-v3-schema-properties-descriptions-length
+      summary: >-
+        This is a Spectral governance rule to make sure that schema property
+        descriptions are too long within OpenAPI definitions. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Length
+      rule:
+        description: Ensure that schema descriptions aren't too long.
+        message: The schema description length needs to be less than 250 characters.
+        severity: warn
+        formats:
+          - oas3
+        given: $..properties.*
+        then:
+          field: description
+          function: length
+          functionOptions:
+            max: 250
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-descriptions-length.md?ref=main
+      github_sha: f0e4014023810bfe47f69d1a63ce0141c46faefd
+      collection_id: 12959542-a4d5a85a-9c7d-447a-8e88-d4ff90a8760a
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Descriptions Length
+      slug: swagger-v2-schema-properties-descriptions-length
+      summary: >-
+        This is a Spectral governance rule to make sure that schema property
+        descriptions are too long within Swagger definitions. Here is a JSON
+        version of the rule that can be applied using this API-driven collection
+        API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Length
+      rule:
+        description: Ensure that schema descriptions aren't too long.
+        message: The schema description length needs to be less than 250 characters.
+        severity: warn
+        formats:
+          - oas2
+        given: $.definitions.properties.*
+        then:
+          field: description
+          function: length
+          functionOptions:
+            max: 250
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-descriptions-length.md?ref=main
+      github_sha: c0c447a68a8b7fc644e31e6c64d182e1756de78c
+      collection_id: 12959542-dcf7abf1-3f93-405f-b694-4b33d217a9da
+identicalSources: false

@@ -1,0 +1,59 @@
+id: parameters-description-word-check
+name: Parameters Description Word Check
+description: Ensures that some words aren't used in parameter descriptions.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters Description Word Check
+      slug: openapi-v3-parameters-description-word-check
+      summary: >-
+        This is a Spectral governance rule to make sure that some words aren't
+        used in parameter description. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Parameters
+        - Words
+      rule:
+        description: Ensures that some words aren't used in parameter descriptions.
+        message: >-
+          Your parameter descriptions can't contain the words word, word, and
+          word.
+        given: $.paths.*.*.parameters[?(@.in=='query')].description
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-description-word-check.md?ref=main
+      github_sha: c4735e33d20eb954584bb0c1a36bf2144bd392d2
+      collection_id: 12959542-8c4af658-a5bc-4af1-94a1-8b91c1d0fd63
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters Description Word Check
+      slug: swagger-v2-parameters-description-word-check
+      summary: >-
+        This is a Spectral governance rule to make sure that some words aren't
+        used in parameter description. Here is a JSON version of the rule that
+        can be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Parameters
+        - Words
+      rule:
+        description: Ensures that some words aren't used in parameter descriptions.
+        message: >-
+          Your parameter descriptions can't contain the words word, word, and
+          word.
+        given: $.paths.*.*.parameters[?(@.in=='query')].description
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-description-word-check.md?ref=main
+      github_sha: e1fb8200605d664e5f733372ebc04b79e77b95f4
+      collection_id: 12959542-401e8a0b-ecd9-4042-9a2e-a52db3409abe
+identicalSources: true

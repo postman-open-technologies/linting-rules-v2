@@ -1,0 +1,53 @@
+id: parameters-schema-type
+name: Parameters Schema Type
+description: Ensures that that all parameters have a schema type.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Parameters Schema Type
+      slug: openapi-v3-parameters-schema-type
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters have
+        a schema type in an OpenAPI. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Parameters
+        - Schema
+      rule:
+        description: Ensures that that all parameters have a schema type.
+        message: Your parameter should all schema types.
+        given: $.paths.*.*.parameters[?(@.in=='query')].schema
+        then:
+          field: type
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-parameters-schema-type.md?ref=main
+      github_sha: 939a792929830c18d10fd41e16532f49c0507914
+      collection_id: 12959542-b0143264-704a-4f6c-8474-967d5adb86fa
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Parameters Schema Type
+      slug: swagger-v2-parameters-schema-type
+      summary: >-
+        This is a Spectral governance rule to make sure that all parameters have
+        a schema type in an Swagger. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Parameters
+        - Schema
+      rule:
+        description: Ensures that that all parameters have a schema type.
+        message: Your parameter should all schema types.
+        given: $.paths.*.*.parameters[?(@.in=='query')].schema
+        then:
+          field: type
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-parameters-schema-type.md?ref=main
+      github_sha: 4135439efbfc2f589d77a4278b48a663b534e45d
+      collection_id: 12959542-4db91542-c767-4a18-ab2b-e23e8687ebf4
+identicalSources: true

@@ -1,0 +1,73 @@
+id: tags-one
+name: Tags One
+description: Ensuring that there is at least on tag being applied.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Tags One
+      slug: openapi-v3-tags-one
+      summary: >-
+        This is a Spectral governance rule to make sure that there is at least
+        one tag within OpenAPI definitions. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Tags
+      rule:
+        description: Ensuring that there is at least on tag being applied.
+        message: You should have at least one tag.
+        given: $
+        severity: error
+        then:
+          field: tags
+          function: length
+          functionOptions:
+            min: 1
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-tags-one.md?ref=main
+      github_sha: e9df3412a775b53857a99cc6a12b09e1a7e18e84
+      collection_id: 12959542-f3bd881c-c327-486a-b203-6a14455eb56e
+    documentation:
+      category: API Information
+      issueDescription: Your API schema's tags object doesn't contain any tags.
+      fixDescription: >-
+        Tags enable you to provide your users with important context. Add at
+        least one tag to your schema's tags object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Tags One
+      slug: swagger-v2-tags-one
+      summary: >-
+        This is a Spectral governance rule to make sure that there is at least
+        one tag within Swagger definitions. Here is a JSON version of the rule
+        that can be applied using this API-driven collection API, or at CLI or
+        CI/CD pipeline.
+      tags:
+        - Tags
+      rule:
+        description: Ensuring that there is at least on tag being applied.
+        message: You should have at least one tag.
+        given: $
+        severity: error
+        then:
+          field: tags
+          function: length
+          functionOptions:
+            min: 1
+        type: style
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-tags-one.md?ref=main
+      github_sha: 9700021038e58dd5d2e845b7147be24cfc6b2741
+      collection_id: 12959542-9b3cbdac-c42c-49c8-a7ef-0d248edb2864
+    documentation:
+      category: API Information
+      issueDescription: Your API schema's tags object doesn't contain any tags.
+      fixDescription: >-
+        Tags enable you to provide your users with important context. Add at
+        least one tag to your schema's tags object.
+identicalSources: true
+selected: true
+identicalDocumentation: true

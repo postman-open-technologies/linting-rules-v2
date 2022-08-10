@@ -1,0 +1,8 @@
+rules:
+  responses-schema-object:
+    description: Ensuring all responses have a schema defined.
+    message: All your responses need to have a schema defined.
+    given: $.paths.*.*[responses]..content..schema
+    severity: error
+    then:
+      function: is-object-schema

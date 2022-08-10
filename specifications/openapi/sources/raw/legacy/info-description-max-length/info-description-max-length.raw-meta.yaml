@@ -1,0 +1,71 @@
+id: info-description-max-length
+name: Info Description Max Length
+description: Ensures that all APIs descriptions are under a specific length.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info Description Max Length
+      slug: openapi-v3-info-description-max-length
+      summary: >-
+        This is a Spectral governance rule to enforce that an OpenAPI
+        information object description meet a specific length requirement,
+        making sure that descriptions aren't too long, and provide the precise
+        right amount of information for consumers.. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Info
+        - Length
+      rule:
+        description: Ensures that all APIs descriptions are under a specific length.
+        message: The info object description should be less than 250 characters.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas3
+        then:
+          field: description
+          function: length
+          functionOptions:
+            max: 250
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-description-max-length.md?ref=main
+      github_sha: b341e587149b4bd3bcbb682deb0f5f216a18a46e
+      collection_id: 12959542-945346be-b8fa-4aea-8898-2f544e1c62d3
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info Description Max Length
+      slug: swagger-v2-info-description-max-length
+      summary: >-
+        This is a Spectral governance rule to enforce that an Swagger
+        information object description meet a specific length requirement,
+        making sure that descriptions aren't too long, and provide the precise
+        right amount of information for consumers.. Here is a JSON version of
+        the rule that can be applied using this API-driven collection API, or at
+        CLI or CI/CD pipeline.
+      tags:
+        - Info
+        - Length
+      rule:
+        description: Ensures that all APIs descriptions are under a specific length.
+        message: The info object description should be less than 250 characters.
+        given: $.info
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas2
+        then:
+          field: description
+          function: length
+          functionOptions:
+            max: 250
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-description-max-length.md?ref=main
+      github_sha: ec14581ad82a984b8e7bbf807f2896cb9e6f6fbe
+      collection_id: 12959542-2a8fb3ec-ad63-45cb-879b-872e82b45da8
+identicalSources: false

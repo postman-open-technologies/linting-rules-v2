@@ -1,0 +1,10 @@
+rules:
+  do-not-use-api-for-base-path:
+    description: Ensures that paths do not use /api as part of the base path.
+    message: You should not use /api as part of your base path.
+    given: $.paths.*~
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ^/api

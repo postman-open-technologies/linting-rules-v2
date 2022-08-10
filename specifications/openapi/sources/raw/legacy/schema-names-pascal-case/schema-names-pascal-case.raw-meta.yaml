@@ -1,0 +1,59 @@
+id: schema-names-pascal-case
+name: Schema Names Pascal Case
+description: Ensure all schema names are pascal case.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Names Pascal Case
+      slug: openapi-v3-schema-names-pascal-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema names in
+        an OpenAPI are pascal case. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensure all schema names are pascal case.
+        message: Schema names should be pascal case.
+        severity: error
+        given: $.components.schemas
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: pascal
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-names-pascal-case.md?ref=main
+      github_sha: 13e6725ee902f5e8fa4986800b6114c6c9494dea
+      collection_id: 12959542-e37c9db2-dbc8-42a8-bde3-a12efcf9f593
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Names Pascal Case
+      slug: swagger-v2-schema-names-pascal-case
+      summary: >-
+        This is a Spectral governance rule to make sure that all schema names in
+        an Swagger are pascal case. Here is a JSON version of the rule that can
+        be applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Schema
+        - Casing
+      rule:
+        description: Ensure all schema names are pascal case.
+        message: Schema names should be pascal case.
+        severity: error
+        given: $.definitions
+        then:
+          field: '@key'
+          function: casing
+          functionOptions:
+            type: pascal
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-names-pascal-case.md?ref=main
+      github_sha: 57697a1f9fe073c1674d414b02755fb573d4da9e
+      collection_id: 12959542-6b7b5c18-7a10-4115-9e4d-455067f72c32
+identicalSources: false

@@ -1,0 +1,9 @@
+rules:
+  request-body-json-media-type-on-patch:
+    description: Ensures that PATCH methods have request bodies.
+    message: Your PATCH methods should have request bodies.
+    given: $.paths.*.patch[requestBody].content
+    severity: error
+    then:
+      field: application/json
+      function: truthy

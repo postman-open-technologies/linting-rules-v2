@@ -1,0 +1,57 @@
+id: info-license-name
+name: Info License Name
+description: Ensures that all OpenAPIs have a information object license name.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info License Name
+      slug: openapi-v3-info-license-name
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI info object
+        has a license name. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - License
+        - Legal
+      rule:
+        description: Ensures that all OpenAPIs have a information object license name.
+        message: The info object should have a license name.
+        given: $.info.license
+        severity: error
+        then:
+          field: name
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-license-name.md?ref=main
+      github_sha: 277009e6806558d1c4caa8a47027fb65c2bf03fc
+      collection_id: 12959542-3f2f1062-930d-439e-b28b-21dfdbdd86df
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Info License Name
+      slug: swagger-v2-info-license-name
+      summary: >-
+        This is a Spectral governance rule to enforce that Swagger info object
+        has a license name. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Info
+        - License
+        - Legal
+      rule:
+        description: Ensures that all Swaggers have a information object license name.
+        message: The info object should have a license name.
+        given: $.info.license
+        severity: error
+        then:
+          field: name
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-info-license-name.md?ref=main
+      github_sha: 103bb7f9043ff4387ba4e557ba28ce5bd761f83a
+      collection_id: 12959542-72599433-0ea0-4072-abcd-2d87e4c65058
+identicalSources: false

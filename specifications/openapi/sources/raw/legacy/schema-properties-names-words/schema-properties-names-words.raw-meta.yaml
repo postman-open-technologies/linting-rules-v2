@@ -1,0 +1,63 @@
+id: schema-properties-names-words
+name: Schema Properties Names Words
+description: Schema property names should not contain certain words.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Schema Properties Names Words
+      slug: openapi-v3-schema-properties-names-words
+      summary: >-
+        This is a Spectral governance rule to make sure that some words are not
+        used for schema property names within OpenAPI definitions. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Words
+      rule:
+        description: Schema property names should not contain certain words.
+        message: >-
+          Schema property names should not contain the words word, word, and
+          word.
+        severity: error
+        given: $..properties.*
+        then:
+          field: '@key'
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-schema-properties-names-words.md?ref=main
+      github_sha: e36433437db2cda2cc233b04c20aefb6a256d11c
+      collection_id: 12959542-e9c37b08-971a-4b58-b663-72e909fb8e80
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Schema Properties Names Words
+      slug: swagger-v2-schema-properties-names-words
+      summary: >-
+        This is a Spectral governance rule to make sure that some words are not
+        used for schema property names within Swagger definitions. Here is a
+        JSON version of the rule that can be applied using this API-driven
+        collection API, or at CLI or CI/CD pipeline.
+      tags:
+        - Schema
+        - Words
+      rule:
+        description: Schema property names should not contain certain words.
+        message: >-
+          Schema property names should not contain the words word, word, and
+          word.
+        severity: error
+        given: $.definitions.properties.*
+        then:
+          field: '@key'
+          function: pattern
+          functionOptions:
+            notMatch: \b(word|word|word)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-schema-properties-names-words.md?ref=main
+      github_sha: b768e99ee1eb250a4bb9e9aeebaaf1a10d587721
+      collection_id: 12959542-e588c051-bed0-42e9-a2f5-d8578f2736ed
+identicalSources: false

@@ -1,0 +1,41 @@
+id: info-summary-word-check
+name: Info Summary Word Check
+description: >-
+  Ensures that all OpenAPIs information object summary do not contain some
+  words.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Info Summary Word Check
+      slug: openapi-v3-info-summary-word-check
+      summary: >-
+        This is a Spectral governance rule to enforce that OpenAPI info object
+        summary does not contain certain words. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Info
+        - Filters
+        - Dictionaries
+      rule:
+        description: >-
+          Ensures that all OpenAPIs information object summary do not contain
+          some words.
+        message: >-
+          The info object summary should not contain the words REST, Public, or
+          Developer.
+        given: $.info.summary
+        severity: error
+        recommended: true
+        type: style
+        formats:
+          - oas3
+        then:
+          function: pattern
+          functionOptions:
+            notMatch: \b(REST|Public|Developer)\b
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-info-summary-word-check.md?ref=main
+      github_sha: 41aa1baa114bda5152d7e3c70b36e250cb109050
+      collection_id: 12959542-e2fec228-3e73-4f8c-97d0-06c11adf7a32

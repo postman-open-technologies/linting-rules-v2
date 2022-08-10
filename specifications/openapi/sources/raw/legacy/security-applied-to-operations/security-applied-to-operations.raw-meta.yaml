@@ -1,0 +1,28 @@
+id: security-applied-to-operations
+name: Security Applied to Operations
+description: Requires security to be applied to all operations.
+sources:
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Security Applied to Operations
+      slug: swagger-v2-security-applied-to-operations
+      summary: >-
+        This is a Spectral governance rule to enforce that security is applied
+        to all operations. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires security to be applied to all operations.
+        message: Each operation must have a security property.
+        severity: error
+        given: $.paths.*.*
+        then:
+          field: security
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-security-applied-to-operations.md?ref=main
+      github_sha: a5ab9b89cfa00b1ec8388f9aadb210bd3b64edba
+      collection_id: 12959542-668d0eed-61d8-4975-ab62-3f54bec3ed3c

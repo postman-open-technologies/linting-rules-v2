@@ -1,0 +1,71 @@
+id: tags-description
+name: Tags Description
+description: Ensuring that all tags have a description.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 - Tags Description
+      slug: openapi-v3-tags-description
+      summary: >-
+        This is a Spectral governance rule to make sure that all tags have a
+        description within OpenAPI definitions. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Tags
+      rule:
+        description: Ensuring that all tags have a description.
+        message: All tags should have a description.
+        given: $.tags[*]
+        severity: error
+        then:
+          field: description
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-tags-description.md?ref=main
+      github_sha: 5fc59346fb0890070d5fa0508b5a16a87b52b57c
+      collection_id: 12959542-6576c113-5a90-47e5-bfcd-fc2995e5ccb7
+    documentation:
+      category: API Information
+      issueDescription: >-
+        One or more tags in your API schema's tags object don't have an
+        accompanying description.
+      fixDescription: >-
+        Tag descriptions enable you to provide your users with important
+        context. Add a description for every tag in the tags object.
+  - version: '2.0'
+    sourceName: legacy
+    sourceRule:
+      name: Swagger V2 - Tags Description
+      slug: swagger-v2-tags-description
+      summary: >-
+        This is a Spectral governance rule to make sure that all tags have a
+        description within Swagger definitions. Here is a JSON version of the
+        rule that can be applied using this API-driven collection API, or at CLI
+        or CI/CD pipeline.
+      tags:
+        - Tags
+      rule:
+        description: Ensuring that all tags have a description.
+        message: All tags should have a description.
+        given: $.tags[*]
+        severity: error
+        then:
+          field: description
+          function: truthy
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/swagger-v2-tags-description.md?ref=main
+      github_sha: 4aba7c35a66a03a679efd8f2d36e8200a8fb5f9a
+      collection_id: 12959542-15ac934e-a3bf-4569-b308-1373bec70a4a
+    documentation:
+      category: API Information
+      issueDescription: >-
+        One or more tags in your API schema's tags object don't have an
+        accompanying description.
+      fixDescription: >-
+        Tag descriptions enable you to provide your users with important
+        context. Add a description for every tag in the tags object.
+identicalSources: true
+selected: true
+identicalDocumentation: true

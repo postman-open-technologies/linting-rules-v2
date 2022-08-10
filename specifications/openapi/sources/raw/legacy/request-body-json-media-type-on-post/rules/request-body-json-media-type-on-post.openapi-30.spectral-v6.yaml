@@ -1,0 +1,9 @@
+rules:
+  request-body-json-media-type-on-post:
+    description: Ensures that POST methods have request bodies.
+    message: Your POST methods should have request bodies.
+    given: $.paths.*.post[requestBody].content
+    severity: error
+    then:
+      field: application/json
+      function: truthy

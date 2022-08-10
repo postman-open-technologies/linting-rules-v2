@@ -1,0 +1,38 @@
+id: security-scheme-api-key
+name: OpenAPI V3 Security Scheme API Key
+description: Requires the usage of API key for security scheme.
+sources:
+  - version: '3.0'
+    sourceName: legacy
+    sourceRule:
+      name: OpenAPI V3 Security Scheme API Key
+      slug: openapi-v3-security-scheme-api-key
+      summary: >-
+        This is a Spectral governance rule to enforce that API key security is
+        applied to the OpenAPI. Here is a JSON version of the rule that can be
+        applied using this API-driven collection API, or at CLI or CI/CD
+        pipeline.
+      tags:
+        - Security
+      rule:
+        description: Requires the usage of API key for security scheme.
+        message: Must add API key for security scheme.
+        given: $.components.securitySchemes[Keys.ClientId]
+        severity: error
+        then:
+          - field: type
+            function: pattern
+            functionOptions:
+              match: ^apiKey$
+          - field: in
+            function: pattern
+            functionOptions:
+              match: ^header$
+          - field: name
+            function: pattern
+            functionOptions:
+              match: ^X-api-key$
+      github_url: >-
+        https://api.github.com/repos/postman-open-technologies/linting-rules/contents/_rules/openapi-v3-security-scheme-api-key.md?ref=main
+      github_sha: 61a1aaf5d0d7743eae6beec8cbfe9b04f54df753
+      collection_id: 12959542-b5f136de-eef7-43eb-9174-920870ebe87d

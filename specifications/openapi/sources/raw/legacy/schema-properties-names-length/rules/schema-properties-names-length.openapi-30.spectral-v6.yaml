@@ -1,0 +1,11 @@
+rules:
+  schema-properties-names-length:
+    description: Ensuring that property names are no more than 25 characters.
+    message: Schema property names should be less than 25 characters .
+    given: $..properties.*
+    severity: error
+    then:
+      field: '@key'
+      function: length
+      functionOptions:
+        max: 25

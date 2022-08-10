@@ -1,0 +1,12 @@
+rules:
+  security-api-key:
+    description: Requires the usage of an API key for security.
+    message: Must add security definition object with type of apiKey
+    given: $.security.*
+    severity: error
+    then:
+      field: type
+      function: enumeration
+      functionOptions:
+        values:
+          - apiKey
