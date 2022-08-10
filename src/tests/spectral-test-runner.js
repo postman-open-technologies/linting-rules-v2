@@ -21,7 +21,7 @@ export function runTests(tests, rulesets, title){
       });
   
       it('must find no invalid tests', function() {
-        assert.equal(testLoader.getInvalidTests(), [], 'Some invalid tests found');
+        assert.deepEqual(testLoader.getInvalidTests(), [], 'Some invalid tests found');
       });
   
       it('must find a test suite for each ruleset', function() {
