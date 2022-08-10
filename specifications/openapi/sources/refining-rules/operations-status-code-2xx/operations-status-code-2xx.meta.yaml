@@ -24,3 +24,5 @@ sources:
     status: broader-alternative
   - path: ../../sources/raw/legacy/response-put-204-status-code.raw-meta.yaml
     status: broader-alternative
+  - path: ../../sources/raw/legacy/response-patch-204-status-code.raw-meta.yaml
+    status: broader-alternative
