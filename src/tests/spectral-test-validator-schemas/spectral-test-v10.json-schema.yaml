@@ -97,7 +97,6 @@ $defs:
       expected:
         description: The expected result of the test. Hence, the values and their paths which are supposed to be found. 
         type: array
-        minItems: 1
         items:
           $ref: "#/$defs/GivenTestExpected"
       documentTemplate:
