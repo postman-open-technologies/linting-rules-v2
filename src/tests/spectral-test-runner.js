@@ -4,6 +4,23 @@ import SpectralTestWrapper from './spectral-test-wrapper.js';
 import DocumentValidator from './test-document-validator.js';
 import * as SpectralTest from './spectral-test.js';
 
+function sortAgainstPath(values){
+  return values.sort((a,b) => {
+    let result;
+    if(a.path < b.path){
+      result = -1;
+    }
+    else if(b.path < a.path){
+      result = 1
+    }
+    else {
+      result = 0;
+    }
+    return result;
+  });
+}
+
+
 export function runTests(tests, rulesets, title){
 
   describe(`Testing [${title}] rulesets [${rulesets}] with tests [${tests}]`, function() {
@@ -97,8 +114,9 @@ export function runTests(tests, rulesets, title){
                     assert.deepEqual(formatFoundProblems, formatExpectedProblems, `test document is not a valid ${ruleTest.format} document`);
   
                     // 8.2 Checking what is found by path
-                    const foundPathsAndValues = spectralWrapper.getGivenPathsAndValues(rulename, document.document);
-                    const expectedPathsAndValues = givenTest.expected;
+                    // TODO work on "list problems that are not found => expect empty list"
+                    const foundPathsAndValues = sortAgainstPath(spectralWrapper.getGivenPathsAndValues(rulename, document.document));
+                    const expectedPathsAndValues = sortAgainstPath(givenTest.expected);
                     // TODO split assert and add message
                     assert.deepEqual(foundPathsAndValues, expectedPathsAndValues);
                   })  
@@ -118,8 +136,9 @@ export function runTests(tests, rulesets, title){
                     assert.deepEqual(formatFoundProblems, formatExpectedProblems, `test document is not a valid ${ruleTest.format} document`);
   
                     // 9.2 Checking expected problems are found by the rules
-                    const foundProblems = await spectralWrapper.lint(rulename, document.document, thenTest.description);
-                    const expectedProblems = thenTest.expected;
+                    // TODO work on "list problems that are not found => expect empty list"
+                    const foundProblems = sortAgainstPath(await spectralWrapper.lint(rulename, document.document, thenTest.description));
+                    const expectedProblems = sortAgainstPath(thenTest.expected);
                     // TODO split assert and add message
                     assert.deepEqual(foundProblems, expectedProblems);
                   });  
