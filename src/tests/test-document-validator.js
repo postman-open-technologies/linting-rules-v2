@@ -22,6 +22,30 @@ function getRulesetFilename(format) {
   return filename;
 }
 
+const toFilterProblems = [
+  // OpenAPI 3.1 fix: schema is wrong, url and identifier are optional and mutually exclusive
+  // See https://github.com/OAI/OpenAPI-Specification/issues/2975
+  {
+    code: 'oas3-schema',
+    message: "\"license\" property must have required property \"identifier\"."
+  }
+];
+
+function isToBeFilteredProblem(problem){
+  let result = false;
+  toFilterProblems.forEach(toFilter => {
+    if(toFilter.code === problem.code && toFilter.message === problem.message){
+      result = true;
+    }
+  })
+  return result;
+}
+
+function filterProblemList(problems, format) {
+  return problems.filter( problem => {
+    !isToBeFilteredProblem(problem)
+  });
+}
   // TODO fix ugly copy/paste coming from wrapper
 function getSpectralDocument(json, name) {
     const jsonAsString = JSON.stringify(json, null, 2);
@@ -55,7 +79,7 @@ export default class DocumentValidator {
   async validate(documentJson, documentName) {
     const document = getSpectralDocument(documentJson, documentName);
     const problems = await this.spectral.run(document);
-    return problems;
+    return filterProblemList(problems);
   }
 
 }
