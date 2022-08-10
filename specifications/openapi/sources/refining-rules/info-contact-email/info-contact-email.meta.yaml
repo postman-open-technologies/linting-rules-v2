@@ -1,0 +1,13 @@
+name: info-contact-email
+labels:
+  - info
+  - contact
+  - openapi-info-object
+  - openapi-contact-object
+recommendedSeverity: error
+recommended: false
+reason: |
+  Just a contact name is often not enough, consumer will need a way to contact the API owner/support.
+  This email could be a real one and/or dump message in a slack channel. 
+sources:
+  - path: ../../sources/raw/legacy/info-contact-email.raw-meta.yaml

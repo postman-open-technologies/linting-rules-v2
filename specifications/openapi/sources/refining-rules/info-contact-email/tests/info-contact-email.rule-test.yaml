@@ -1,0 +1,47 @@
+testSuiteVersion: spectral-v1.0
+ruleset: info-contact-email.openapi-v2-v3.spectral-v6.yaml
+rules:
+  info-contact-email:  
+    format: openapi
+    versions:
+      - "2.0"
+      - "3.0"
+      - "3.1"
+    severity: error
+    given:
+      - description: must find the contact object
+        expected:
+          - path: "#/info/contact"
+            value:
+              name: a contact name
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an api name
+            version: '1.0'
+            contact:
+              name: a contact name
+          paths: {} 
+    then:
+      - description: must return a problem if there's no email property in info.contact
+        expected:
+          - path: "#/info/contact"
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an api name
+            version: '1.0'
+            contact:
+              name: a contact name
+          paths: {}
+      - description: must return no problem if there's an email property in info.contact
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an api name
+            version: '1.0'
+            contact: 
+              name: a contact name
+              email: contact@somewhere.come
+          paths: {} 
