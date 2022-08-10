@@ -1,6 +1,10 @@
 name: info-contact-name
 labels:
-  - put some labels here
+  - info
+  - contact
+  - ownership
+  - openapi-info-object
+  - openapi-contact-object
 reason: |
   A contact name is important to understand who is the owner and also to force to think about who owns this API.
   It can also be used as text for the link using contact url.

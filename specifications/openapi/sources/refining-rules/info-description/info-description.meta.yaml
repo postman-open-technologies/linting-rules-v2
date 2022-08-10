@@ -1,7 +1,8 @@
 name: info-description
 labels:
   - info
-  - info-object
+  - documentation
+  - openapi-info-object
 reason: |
   From a short description to long explanations of possible use case covered by the API (and more),
   a description is a must have to facilitate the use of an API. Also defining it during design, 
