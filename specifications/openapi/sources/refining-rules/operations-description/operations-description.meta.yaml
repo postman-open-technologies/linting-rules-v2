@@ -1,5 +1,5 @@
 name: operations-description
-category: a category
+category: Operations
 labels:
   - documentation
   - openapi-operation-object
