@@ -1,0 +1,60 @@
+rules:
+  operations-status-code-5xx:
+    description: Ensures that each of the operations returns at least a 5xx HTTP status code.
+    message: Operation should return a 5xx HTTP status code
+    given: $.paths.*.*.responses
+    severity: warn
+    formats:
+      - oas2
+      - oas3
+    then:
+      function: schema
+      functionOptions:
+        # List of 2xx from http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
+        schema:
+          $schema: "https://json-schema.org/draft/2020-12/schema"
+          anyOf:
+            - required:
+                - '500'
+              properties:
+                '500': true
+            - required:
+                - '501'
+              properties:
+                '501': true
+            - required:
+                - '502'
+              properties:
+                '502': true
+            - required:
+                - '503'
+              properties:
+                '503': true
+            - required:
+                - '504'
+              properties:
+                '504': true
+            - required:
+                - '505'
+              properties:
+                '505': true
+            - required:
+                - '506'
+              properties:
+                '506': true
+            - required:
+                - '507'
+              properties:
+                '507': true
+            - required:
+                - '508'
+              properties:
+                '508': true
+            - required:
+                - '510'
+              properties:
+                '510': true
+            - required:
+                - '511'
+              properties:
+                '511': true

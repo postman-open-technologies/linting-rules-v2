@@ -1,7 +1,7 @@
 testSuiteVersion: spectral-v1.0
-ruleset: operations-status-code-2xx.openapi-v2-v3.spectral-v6.yaml
+ruleset: operations-status-code-5xx.openapi-v2-v3.spectral-v6.yaml
 rules:
-  operations-status-code-2xx:
+  operations-status-code-5xx:
     format: openapi
     versions:
       - '2.0'
@@ -44,7 +44,7 @@ rules:
                   '500':
                     description: an unexpected error response
     then:
-      - description: must return a problem if there's no 2xx status
+      - description: must return a problem if there's no 5xx status
         expected:
           - path: '#/paths/~1resources/get/responses'
         documentTemplate:
@@ -58,7 +58,7 @@ rules:
                 responses:
                   default:
                     description: a default response
-      - description: must return no problem if there's a 200 status
+      - description: must return no problem if there's a 500 status
         expected: []
         documentTemplate:
           openapi: "3.1.0"
@@ -69,9 +69,9 @@ rules:
             /resources:
               get:
                 responses:
-                  '200':
+                  '500':
                     description: a success response
-      - description: must return no problem if there's a 201 status
+      - description: must return no problem if there's a 501 status
         expected: []
         documentTemplate:
           openapi: "3.1.0"
@@ -82,9 +82,9 @@ rules:
             /resources:
               get:
                 responses:
-                  '201':
+                  '501':
                     description: a success response
-      - description: must return no problem if there's a 204 status
+      - description: must return no problem if there's a 502 status
         expected: []
         documentTemplate:
           openapi: "3.1.0"
@@ -95,9 +95,9 @@ rules:
             /resources:
               get:
                 responses:
-                  '204':
+                  '502':
                     description: a success response
-      - description: must return no problem if there's a 205 status
+      - description: must return no problem if there's a 503 status
         expected: []
         documentTemplate:
           openapi: "3.1.0"
@@ -108,9 +108,9 @@ rules:
             /resources:
               get:
                 responses:
-                  '205':
+                  '503':
                     description: a success response
-      - description: must return no problem if there's a 206 status
+      - description: must return no problem if there's a 504 status
         expected: []
         documentTemplate:
           openapi: "3.1.0"
@@ -121,9 +121,9 @@ rules:
             /resources:
               get:
                 responses:
-                  '206':
+                  '504':
                     description: a success response
-      - description: must return no problem if there's a 207 status
+      - description: must return no problem if there's a 505 status
         expected: []
         documentTemplate:
           openapi: "3.1.0"
@@ -134,9 +134,9 @@ rules:
             /resources:
               get:
                 responses:
-                  '207':
+                  '505':
                     description: a success response
-      - description: must return no problem if there's a 208 status
+      - description: must return no problem if there's a 506 status
         expected: []
         documentTemplate:
           openapi: "3.1.0"
@@ -147,9 +147,9 @@ rules:
             /resources:
               get:
                 responses:
-                  '208':
+                  '506':
                     description: a success response
-      - description: must return no problem if there's a 226 status
+      - description: must return no problem if there's a 507 status
         expected: []
         documentTemplate:
           openapi: "3.1.0"
@@ -160,5 +160,44 @@ rules:
             /resources:
               get:
                 responses:
-                  '226':
+                  '507':
+                    description: a success response
+      - description: must return no problem if there's a 508 status
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '508':
+                    description: a success response
+      - description: must return no problem if there's a 510 status
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '510':
+                    description: a success response
+      - description: must return no problem if there's a 511 status
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '511':
                     description: a success response

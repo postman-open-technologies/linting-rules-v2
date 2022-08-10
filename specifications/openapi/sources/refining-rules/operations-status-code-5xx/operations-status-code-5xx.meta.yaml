@@ -1,0 +1,26 @@
+name: operations-status-code-5xx
+category: Operations
+labels:
+  - operation
+  - operation-success
+  - http-status-code
+  - openapi-responses
+reason: |
+  Operations may failed unexpectedly and should return a 5xx success HTTP status code.
+recommendedSeverity: warning
+recommended: true
+sources:
+  - comment: |
+      Reused the same JSON Schema technique as in operations-status-code-2xx  
+    status: inspiration
+    path: ../operations-status-code-2xx/operations-status-code-2xx.meta.yaml
+  - path: ../../sources/raw/legacy/response-delete-504-status-code.raw-meta.yaml
+    status: broader-alternative
+  - path: ../../sources/raw/legacy/response-get-500-status-code.raw-meta.yaml
+    status: broader-alternative
+  - path: ../../sources/raw/legacy/response-post-500-status-code.raw-meta.yaml
+    status: broader-alternative
+  - path: ../../sources/raw/legacy/response-put-500-status-code.raw-meta.yaml
+    status: broader-alternative
+  - path: ../../sources/raw/legacy/response-patch-500-status-code.raw-meta.yaml
+    status: broader-alternative
