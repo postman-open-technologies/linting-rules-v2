@@ -1,0 +1,13 @@
+name: info-license
+labels:
+  - info
+  - legal
+  - openapi-info-object
+  - openapi-license-object
+reason: |
+  Under certain circumstances, it is required to tell how the API described in the
+  OpenAPI document can be copied, replicated.
+recommendedSeverity: warn
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/info-license.raw-meta.yaml

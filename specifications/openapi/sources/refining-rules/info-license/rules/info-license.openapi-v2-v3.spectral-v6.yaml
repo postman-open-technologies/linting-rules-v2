@@ -5,6 +5,7 @@ rules:
     given: $.info
     severity: error
     formats:
+      - oas2
       - oas3
     then:
       field: license
