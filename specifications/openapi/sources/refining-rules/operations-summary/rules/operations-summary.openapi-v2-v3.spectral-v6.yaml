@@ -2,8 +2,11 @@ rules:
   operations-summary:
     description: Ensures that each of the operations for an API have a summary.
     message: All of your operations need summaries.
-    given: $.paths.*[get,post,patch,put,delete]
+    given: $.paths.*[get,post,patch,put,delete,options,head,trace]
     severity: error
+    formats:
+      - oas2
+      - oas3
     then:
       - field: summary
         function: truthy

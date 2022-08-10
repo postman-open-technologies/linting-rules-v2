@@ -1,0 +1,135 @@
+testSuiteVersion: spectral-v1.0
+ruleset: operations-summary.openapi-v2-v3.spectral-v6.yaml
+rules:
+  operations-summary:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: error
+    given:
+      - description: must find all possible HTTP methods on all paths
+        expected:
+          - path: '#/paths/~1common-http-methods/get'
+            value:
+              responses:
+                default:
+                  description: a default response
+          - path: '#/paths/~1common-http-methods/put'
+            value:
+              responses:
+                default:
+                  description: a default response
+          - path: '#/paths/~1common-http-methods/post'
+            value:
+              responses:
+                default:
+                  description: a default response
+          - path: '#/paths/~1common-http-methods/delete'
+            value:
+              responses:
+                default:
+                  description: a default response
+          - path: '#/paths/~1common-http-methods/patch'
+            value:
+              responses:
+                default:
+                  description: a default response
+          - path: '#/paths/~1less-common-http-methods/options'
+            value:
+              responses:
+                default:
+                  description: a default response
+          - path: '#/paths/~1less-common-http-methods/head'
+            value:
+              responses:
+                default:
+                  description: a default response
+          - path: '#/paths/~1less-common-http-methods/trace'
+            value:
+              responses:
+                default:
+                  description: a default response
+        documentTemplate: 
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /common-http-methods:
+              get:
+                responses:
+                  default:
+                    description: a default response
+              put:
+                responses:
+                  default:
+                    description: a default response
+              post:
+                responses:
+                  default:
+                    description: a default response
+              delete:
+                responses:
+                  default:
+                    description: a default response
+              patch:
+                responses:
+                  default:
+                    description: a default response
+            /less-common-http-methods:
+              options:
+                responses:
+                  default:
+                    description: a default response
+              head:
+                responses:
+                  default:
+                    description: a default response
+              trace:
+                responses:
+                  default:
+                    description: a default response
+      - description: must ignore paths summary, description, servers, and parameters
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /non-http-method-keys:
+              summary: a path summary
+              description: a path description
+              parameters: []
+              servers: []
+    then:
+      - description: must return a problem if there's no summary property in operation object
+        expected:
+          - path: '#/paths/~1resources/get'
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  default:
+                    description: a default response
+      - description: must return no problem if there's a summary property in operation object
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                summary: a get operation summary
+                responses:
+                  default:
+                    description: a default response

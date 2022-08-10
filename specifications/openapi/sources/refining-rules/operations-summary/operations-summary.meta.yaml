@@ -1,0 +1,16 @@
+name: operations-summary
+category: Operations
+labels:
+  - documentation
+  - openapi-operation-object
+reason: |
+  The couple HTTP method and path doesn't speak to all, a summary is mandatory to help understand
+  what is an operation. Also this summary will often come from the define phase where the API 
+  operations are identified using natural language.
+recommendedSeverity: error
+recommended: true
+sources:
+  - path: ../../sources/raw/legacy/operations-summary.raw-meta.yaml
+    status: fixed
+    comment: Was only targeting a subset of possible HTTP methods
+
