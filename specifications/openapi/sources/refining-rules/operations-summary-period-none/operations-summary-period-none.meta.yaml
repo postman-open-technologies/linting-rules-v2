@@ -1,0 +1,17 @@
+name: operations-summary-period-none
+category: Operations
+labels:
+labels:
+  - documentation
+  - openapi-operation-object
+reason: |
+  A summary is used as a title by API documentation tools and should not end with a period.
+recommendedSeverity: info
+recommended: true
+sources:
+  - path: ../../sources/raw/legacy/operations-summary-period-none.raw-meta.yaml
+    status: normalized
+    comment: |
+      Used same given as in operations-summary and operations-description
+      and add a field: summary in then instead of directly targeting summary 
+      of all grand-children of paths.

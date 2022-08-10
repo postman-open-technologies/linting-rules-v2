@@ -1,0 +1,14 @@
+rules:
+  operations-summary-period-none:
+    description: Ensures that each of the operations summaries do not have an ending period.
+    message: Your operations summaries should not end with a period.
+    given: $.paths.*[get,post,patch,put,delete,options,head,trace]
+    severity: warn
+    formats:
+      - oas2
+      - oas3
+    then:
+      field: summary
+      function: pattern
+      functionOptions:
+        notMatch: \.$
