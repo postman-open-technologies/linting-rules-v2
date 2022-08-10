@@ -1,11 +1,12 @@
 rules:
   info-terms-of-service:
-    description: Ensures that all Swaggers have a information object terms of service.
+    description: Ensures that all OpenAPIs have a information object terms of service.
     message: The info object should have a terms of service.
     given: $.info
-    severity: error
+    severity: warn
     formats:
       - oas2
+      - oas3
     then:
       field: termsOfService
       function: truthy

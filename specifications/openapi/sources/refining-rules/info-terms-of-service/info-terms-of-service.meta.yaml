@@ -1,0 +1,12 @@
+name: info-terms-of-service
+labels:
+  - info
+  - legal
+  - openapi-info-object
+reason: |
+  Mandatory for public APIs, it is also recommended for private one to provide a link
+  to a "terms and conditions" or "terms of service" web page.
+recommendedSeverity: warn
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/info-terms-of-service.raw-meta.yaml
