@@ -11,6 +11,7 @@ mkdirp.sync(targetFolder);
 
 const meta = {
   "name": rulename,
+  "category": "a category",
   "labels": [
     "put some labels here"
   ],
