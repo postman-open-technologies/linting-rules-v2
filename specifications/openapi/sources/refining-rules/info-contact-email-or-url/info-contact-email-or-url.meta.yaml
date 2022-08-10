@@ -2,6 +2,7 @@ name: info-contact-email-or-url
 labels:
   - info
   - contact
+  - ownership
   - openapi-info-object
   - openapi-contact-object
 reason: |
