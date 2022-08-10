@@ -10,3 +10,5 @@ recommendedSeverity: warn
 recommended: false
 sources:
   - path: ../../sources/raw/legacy/operations-description.raw-meta.yaml
+    status: fixed
+    comment: Was only targeting a subset of possible HTTP methods
