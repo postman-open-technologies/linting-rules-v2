@@ -7,7 +7,7 @@ rules:
       - '2.0'
       - '3.0'
       - '3.1'
-    severity: error
+    severity: warn
     given:
       - description: must find the info object
         expected:

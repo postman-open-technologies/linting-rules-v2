@@ -3,7 +3,7 @@ rules:
     description: Ensures that all OpenAPIs have a information object license.
     message: The info object should have a license.
     given: $.info
-    severity: error
+    severity: warn
     formats:
       - oas2
       - oas3
