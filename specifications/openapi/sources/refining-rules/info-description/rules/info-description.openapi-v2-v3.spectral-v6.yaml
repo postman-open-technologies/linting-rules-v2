@@ -1,11 +1,12 @@
 rules:
   info-description:
-    description: Ensures that all Swaggers have a information description.
+    description: Ensures that all OpenAPIs have a information description.
     message: The info object should have a description.
     given: $.info
-    severity: error
+    severity: warn
     formats:
       - oas2
+      - oas3
     then:
       field: description
       function: truthy

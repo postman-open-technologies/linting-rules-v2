@@ -1,0 +1,12 @@
+name: info-description
+labels:
+  - info
+  - info-object
+reason: |
+  From a short description to long explanations of possible use case covered by the API (and more),
+  a description is a must have to facilitate the use of an API. Also defining it during design, 
+  can help set the boundaries of the API.
+recommendedSeverity: warn
+recommended: true
+sources:
+  - path: ../../sources/raw/legacy/info-description.raw-meta.yaml
