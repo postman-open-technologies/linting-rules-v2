@@ -1,9 +1,0 @@
-rules:
-  operations-description:
-    description: Ensures that each of the operations have a description.
-    message: Your operations all need descriptions.
-    given: $.paths.*[get,post,patch,put,delete]
-    severity: error
-    then:
-      - field: description
-        function: truthy

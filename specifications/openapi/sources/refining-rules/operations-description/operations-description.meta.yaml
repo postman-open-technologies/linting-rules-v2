@@ -1,0 +1,12 @@
+name: operations-description
+category: a category
+labels:
+  - documentation
+  - openapi-operation-object
+reason: |
+  When resource path, http method and summary are are not enough, a description can provide the useful
+  information that will help consumers to figure out what is this element.
+recommendedSeverity: warn
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/operations-description.raw-meta.yaml
