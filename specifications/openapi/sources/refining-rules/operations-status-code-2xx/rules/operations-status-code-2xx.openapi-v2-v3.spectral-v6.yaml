@@ -1,0 +1,53 @@
+rules:
+  operations-status-code-2xx:
+    description: Ensures that each of the operations returns at least a 2xx HTTP status code.
+    message: Operation should return a 2xx HTTP status code
+    given: $.paths.*.*.responses
+    severity: warn
+    formats:
+      - oas2
+      - oas3
+    then:
+      function: schema
+      functionOptions:
+        # List of 2xx from http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
+        schema:
+          $schema: "https://json-schema.org/draft/2020-12/schema"
+          anyOf:
+            - required:
+                - '200'
+              properties:
+                '200': true
+            - required:
+                - '201'
+              properties:
+                '201': true
+            - required:
+                - '203'
+              properties:
+                '203': true
+            - required:
+                - '204'
+              properties:
+                '204': true
+            - required:
+                - '205'
+              properties:
+                '205': true
+            - required:
+                - '206'
+              properties:
+                '206': true
+            - required:
+                - '207'
+              properties:
+                '207': true
+            - required:
+                - '208'
+              properties:
+                '208': true
+            - required:
+                - '226'
+              properties:
+                '226': true
+

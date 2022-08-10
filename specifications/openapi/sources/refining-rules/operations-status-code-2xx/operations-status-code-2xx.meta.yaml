@@ -1,0 +1,26 @@
+name: operations-status-code-2xx
+category: Operations
+labels:
+  - operation
+  - operation-success
+  - http-status-code
+  - openapi-responses
+reason: |
+  Operations are expected to succeed and should return a 2xx success HTTP status code.
+  It's only on very rare occasion that an operation won't return such a code. That can
+  happen when a redirection is needed (3XX is returned).
+recommendedSeverity: warning
+recommended: true
+comment: JSON Schema used to replace 
+sources:
+  - comment: |
+      JSON Schema used to replace the 2xx status core function which has been removed in v6
+      can probably be improved
+  - path: ../../sources/raw/legacy/response-delete-204-status-code.raw-meta.yaml
+    status: broader-alternative
+  - path: ../../sources/raw/legacy/response-get-200-status-code.raw-meta.yaml
+    status: broader-alternative
+  - path: ../../sources/raw/legacy/response-post-201-status-code.raw-meta.yaml
+    status: broader-alternative
+  - path: ../../sources/raw/legacy/response-put-204-status-code.raw-meta.yaml
+    status: broader-alternative
