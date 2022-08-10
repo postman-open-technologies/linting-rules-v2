@@ -1,7 +1,0 @@
-openapi: "3.0.3"
-info:
-  title: an api name
-  version: '1.0'
-  contact:
-    name: zurg
-paths: {}
