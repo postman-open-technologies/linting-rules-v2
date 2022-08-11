@@ -1,0 +1,16 @@
+# TODO could be replaced by a single rule with the use of format scoped alias
+# TODO: exclude extensions in responses
+rules:
+  responses-examples-oas3:
+    description: Ensuring all responses have example or examples defined.
+    message: All your responses need to have example or examples defined.
+    given: $.paths.*.*.responses.*.content.*
+    severity: warn
+    formats:
+      - oas3
+    then:
+      function: xor
+      functionOptions:
+        properties:
+          - example
+          - examples

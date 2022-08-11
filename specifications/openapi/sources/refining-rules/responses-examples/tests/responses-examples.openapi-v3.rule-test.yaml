@@ -1,0 +1,123 @@
+testSuiteVersion: spectral-v1.0
+ruleset: responses-examples.openapi-v3.spectral-v6.yaml
+rules:
+  responses-examples-oas3:
+    format: openapi
+    versions:
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find all response content objects of all operations
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/content/application~1json'
+            value:
+              schema:
+                type: object
+          - path: '#/paths/~1resources/get/responses/500/content/application~1json'
+            value:
+              schema:
+                type: object
+          - path: '#/paths/~1other-resources/post/responses/200/content/application~1json'
+            value:
+              schema:
+                type: object
+          - path: '#/paths/~1other-resources/post/responses/500/content/application~1json'
+            value:
+              schema:
+                type: object
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '200':
+                    description: a success response
+                    content:
+                      'application/json':
+                        schema:
+                          type: object
+                  '500':
+                    description: a unexpected error response
+                    content:
+                      'application/json':
+                        schema:
+                          type: object
+            /other-resources:
+              post:
+                responses:
+                  '200':
+                    description: a success response
+                    content:
+                      'application/json':
+                        schema:
+                          type: object
+                  '500':
+                    description: a unexpected error response
+                    content:
+                      'application/json':
+                        schema:
+                          type: object
+    then:
+      - description: must return a problem if there's no examples property in response
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/content/application~1json'
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '200':
+                    description: a success response
+                    content:
+                      'application/json':
+                        schema:
+                          type: object
+      - description: must return no problem if there's an examples property in response
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '200':
+                    description: a success response
+                    content:
+                      'application/json':
+                        schema:
+                          type: object
+                        examples:
+                          anExample:
+                            description: an example description
+                            value: example
+      - description: must return no problem if there's an example property in response
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '200':
+                    description: a success response
+                    content:
+                      'application/json':
+                        schema:
+                          type: object
+                        example:
+                          aProperty: example

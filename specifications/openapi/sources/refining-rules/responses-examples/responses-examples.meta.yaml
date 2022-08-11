@@ -1,0 +1,20 @@
+name: responses-examples
+category: Operation
+labels:
+  - documentation
+  - examples
+  - openapi-operation-object
+  - openapi-response-object
+reason: |
+  Providing examples is important to help people understand the data they will get.
+  It may also help them to generate mocks.
+comment: Comes in 4 different versions, recommended to use universal openapi-v2-v3
+recommendedSeverity: warning
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/responses-examples.raw-meta.yaml
+    status: fixed
+    comment: |
+      Seem to target all "examples" of each property
+      Use deprecrated schemaPath function and don't really sure it was working in V5.
+      Using a path in field which can only be a field name or @key keyword.

@@ -1,0 +1,26 @@
+aliases:
+  ResponseContentDefinition:
+    targets:
+      - formats:
+          - oas2
+        given: 
+          - $.paths.*.*.responses.*
+      - formats:
+          - oas3
+        given: 
+          - $.paths.*.*.responses.*.content.*
+rules:
+  responses-examples:
+    description: Ensuring all responses have examples defined.
+    message: All your responses need to have property examples (OpenAPI 3, Swagger 2) or example (OpenAPI 3) defined.
+    given: "#ResponseContentDefinition"
+    severity: warn
+    formats:
+      - oas2
+      - oas3
+    then:
+      function: xor
+      functionOptions:
+        properties:
+          - example
+          - examples
