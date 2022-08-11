@@ -1,4 +1,4 @@
-name: responses-examples
+name: responses-example-any
 category: Operation
 labels:
   - documentation
@@ -6,8 +6,8 @@ labels:
   - openapi-operation-object
   - openapi-response-object
 reason: |
-  Providing examples is important to help people understand the data they will get.
-  It may also help them to generate mocks.
+  Providing undocumented (OpenAPI 3, Swagger 2) or documented (OpenAPI 3) examples is important
+  to help people understand the data they will get. It may also help them to generate mocks.
 comment: Comes in 4 different versions, recommended to use universal openapi-v2-v3
 recommendedSeverity: warning
 recommended: false
