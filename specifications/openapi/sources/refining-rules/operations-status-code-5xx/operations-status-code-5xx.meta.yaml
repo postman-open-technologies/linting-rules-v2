@@ -14,7 +14,7 @@ sources:
       Reused the same JSON Schema technique as in operations-status-code-2xx  
     status: inspiration
     path: ../operations-status-code-2xx/operations-status-code-2xx.meta.yaml
-  - path: ../../sources/raw/legacy/response-delete-504-status-code.raw-meta.yaml
+  - path: ../../sources/raw/legacy/response-delete-500-status-code.raw-meta.yaml
     status: broader-alternative
   - path: ../../sources/raw/legacy/response-get-500-status-code.raw-meta.yaml
     status: broader-alternative

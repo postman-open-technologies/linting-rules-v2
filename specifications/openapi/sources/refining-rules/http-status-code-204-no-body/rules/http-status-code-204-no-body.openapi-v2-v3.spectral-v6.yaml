@@ -1,0 +1,14 @@
+rules:
+  http-status-code-204-no-body:
+    description: description
+    message: message
+    given: $.paths.*.*.responses.204
+    severity: error
+    formats:
+      - oas2
+      - oas3
+    then:
+      - field: schema # oas 2
+        function: falsy
+      - field: content # oas 3
+        function: falsy

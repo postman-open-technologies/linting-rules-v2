@@ -1,0 +1,103 @@
+testSuiteVersion: spectral-v1.0
+ruleset: http-status-code-204-no-body.openapi-v2-v3.spectral-v6.yaml
+rules:
+  http-status-code-204-no-body:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: error
+    given:
+      - description: must find all 204 responses of all operations
+        expected:
+          - path: '#/paths/~1resources/delete/responses/204'
+            value:
+              description: a delete success response without content
+          - path: '#/paths/~1other-resources/put/responses/204'
+            value:
+              description: a put success response without content
+        documentTemplate: 
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              delete:
+                responses:
+                  '204':
+                    description: a delete success response without content
+            /other-resources:
+              put:
+                responses:
+                  '204':
+                    description: a put success response without content
+    then:
+      - description: must return a problem if there's a response body defined for a 204 in swagger 2
+        expected:
+          - path: '#/paths/~1resources/delete/responses/204/schema'
+        documents:
+          - version: "2.0"
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  delete:
+                    responses:
+                      '204':
+                        description: a success response with unexpected content
+                        schema:
+                          type: object
+      - description: must return a problem if there's a response body defined for a 204 in openapi 3
+        expected:
+          - path: '#/paths/~1resources/delete/responses/204/content'
+        documents:
+          - version: "3.0"
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  delete:
+                    responses:
+                      '204':
+                        description: a success response with unexpected content
+                        content:
+                          'application/json':
+                            schema:
+                              type: object
+          - version: "3.1"
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  delete:
+                    responses:
+                      '204':
+                        description: a success response with unexpected content
+                        content:
+                          'application/json':
+                            schema:
+                              type: object
+      - description: must return no problem if there's no body defined on 204
+        expected: []
+        documentTemplate: 
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              delete:
+                responses:
+                  '204':
+                    description: a success response without content

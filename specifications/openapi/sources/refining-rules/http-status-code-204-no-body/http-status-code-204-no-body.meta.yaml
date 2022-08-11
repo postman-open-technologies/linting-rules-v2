@@ -1,0 +1,13 @@
+name: http-status-code-204-no-body
+category: HTTP
+labels:
+  - http
+  - openapi-response-object
+reason: |
+  A 204 http status means "no content", therefore there must not be a response body defined.
+recommendedSeverity: error
+recommended: true
+sources:
+  - path: ../../sources/raw/legacy/response-delete-204-no-body.raw-meta.yaml
+    status: broader-alternative
+    comment: the given path contains a type ($paths instead of $.paths)
