@@ -1,0 +1,17 @@
+name: request-body-on-post
+category: HTTP
+labels:
+  - http
+  - request-body
+reason: |
+  While authorized by the HTTP protocol, a POST request without body often hides a design problem (RPC-like design).
+recommendedSeverity: warn
+recommended: false
+comment: |
+  The v2-v3 comes with a strange behavior in v2 when there's a parameters list without body, 3 paths are
+  found (method, parameter, first element). It seems to be caused by the allOf, no problem in v2 version
+  which use a similar schema but with a level less (no oneOf).
+sources:
+  - path: ../../sources/raw/legacy/request-body-on-post.raw-meta.yaml
+    status: fixed
+    comment: the v2 of the was absolutely not working, just checking that in was query, header, path or body

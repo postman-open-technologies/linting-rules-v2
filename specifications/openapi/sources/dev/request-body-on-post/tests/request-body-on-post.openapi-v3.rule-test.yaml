@@ -1,0 +1,63 @@
+testSuiteVersion: spectral-v1.0
+ruleset: request-body-on-post.openapi-v3.spectral-v6.yaml
+rules:
+  request-body-on-post-oas3:
+    format: openapi
+    versions:
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find all post operations
+        expected:
+          - path: '#/paths/~1resources/post'
+            value:
+              responses:
+                '201':
+                  description: a success response
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              post:
+                responses:
+                  '201':
+                    description: a success response
+    then:
+      - description: must return a problem if there's no request body on OpenAPI
+        expected:
+          - path: '#/paths/~1resources/post'
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              post:
+                responses:
+                  '201':
+                    description: a success response
+      - description: must return no problem if there's a request body on OpenAPI
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              post:
+                requestBody:
+                  content:
+                    'application/json':
+                      schema:
+                        type: object
+                responses:
+                  '201':
+                    description: a success response
+
+

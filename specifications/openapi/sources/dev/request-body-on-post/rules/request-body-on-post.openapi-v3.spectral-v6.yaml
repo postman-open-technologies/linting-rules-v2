@@ -1,9 +1,11 @@
 rules:
-  request-body-on-post:
+  request-body-on-post-oas3:
     description: Ensures that POST methods have request bodies.
     message: Your POST methods should have request bodies.
     given: $.paths.*.post
-    severity: error
+    severity: warn
+    formats:
+      - oas3
     then:
       field: requestBody
       function: truthy
