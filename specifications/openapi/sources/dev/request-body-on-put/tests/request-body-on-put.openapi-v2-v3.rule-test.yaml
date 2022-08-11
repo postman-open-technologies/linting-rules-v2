@@ -1,0 +1,201 @@
+testSuiteVersion: spectral-v1.0
+ruleset: request-body-on-put.openapi-v2-v3.spectral-v6.yaml
+rules:
+  request-body-on-put:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find all put operations
+        expected:
+          - path: '#/paths/~1resources/put'
+            value:
+              responses:
+                '201':
+                  description: a success response
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              put:
+                responses:
+                  '201':
+                    description: a success response
+    then:
+      - description: must return a problem if there's no parameters at all on Swagger
+        expected:
+          - path: '#/paths/~1resources/put'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  put:
+                    responses:
+                      '201':
+                        description: a success response
+      - description: must return a problem if there's no body or formData parameter in parameters on Swagger
+        # TODO is it possible to get only one problem? -> it seems to be caused by the oneOf (compare v2 vs v2-v3)
+        expected:
+          - path: '#/paths/~1resources/put'
+          - path: '#/paths/~1resources/put/parameters'
+          - path: '#/paths/~1resources/put/parameters/0/in'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  put:
+                    parameters:
+                      - in: header
+                        name: Header-Name
+                        type: string
+                    responses:
+                      '201':
+                        description: a success response
+      - description: must return a problem if there's no request body on OpenAPI
+        expected:
+          - path: '#/paths/~1resources/put'
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  put:
+                    responses:
+                      '201':
+                        description: a success response
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  put:
+                    responses:
+                      '201':
+                        description: a success response
+
+      - description: must return no problem if there's a body parameter on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  put:
+                    parameters:
+                      - in: body
+                        name: body
+                        schema:
+                          type: object
+                    responses:
+                      '201':
+                        description: a success response
+      - description: must return no problem if there's a body parameter among others on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  put:
+                    parameters:
+                      - in: body
+                        name: body
+                        schema:
+                          type: object
+                      - in: header
+                        name: Header-Name
+                        type: string
+                    responses:
+                      '201':
+                        description: a success response
+
+      - description: must return no problem if there's a formData parameter on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  put:
+                    parameters:
+                      - in: formData
+                        name: body
+                        schema:
+                          type: object
+                    responses:
+                      '201':
+                        description: a success response
+      - description: must return no problem if there's a request body on OpenAPI
+        expected: []
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  put:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            type: object
+                    responses:
+                      '201':
+                        description: a success response
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  put:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            type: object
+                    responses:
+                      '201':
+                        description: a success response
+
+

@@ -1,0 +1,18 @@
+name: request-body-on-put
+category: HTTP
+labels:
+  - http
+  - request-body
+reason: |
+  As a PUT is often used to replace or create something, not having a request body is possibly an error.
+  But this use case may make sense sometimes (to link 2 resources with a 
+  PUT /resource-ones/id1/other-resources/id2 for instance)
+recommendedSeverity: warn
+recommended: false
+comment: 
+sources:
+  - path: ../../sources/raw/legacy/request-body-on-put.raw-meta.yaml
+    status: fixed
+    comment: the v2 of the was absolutely not working, just checking that in was query, header, path or body
+  - path: ../request-body-on-post/request-body-on-post.meta.yaml
+    status: similar

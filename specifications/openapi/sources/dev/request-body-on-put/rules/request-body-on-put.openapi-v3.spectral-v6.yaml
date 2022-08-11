@@ -1,9 +1,11 @@
 rules:
-  request-body-on-put:
+  request-body-on-put-oas3:
     description: Ensures that PUT methods have request bodies.
     message: Your PUT methods should have request bodies.
     given: $.paths.*.put
-    severity: error
+    severity: warn
+    formats:
+      - oas3
     then:
       field: requestBody
       function: truthy
