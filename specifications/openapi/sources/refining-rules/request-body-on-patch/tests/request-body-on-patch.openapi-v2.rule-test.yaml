@@ -1,0 +1,131 @@
+testSuiteVersion: spectral-v1.0
+ruleset: request-body-on-patch.openapi-v2.spectral-v6.yaml
+rules:
+  request-body-on-patch-oas2:
+    format: openapi
+    versions:
+      - '2.0'
+    severity: warn
+    given:
+      - description: must find all patch operations
+        expected:
+          - path: '#/paths/~1resources/patch'
+            value:
+              responses:
+                '201':
+                  description: a success response
+        documentTemplate:
+          swagger: "2.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              patch:
+                responses:
+                  '201':
+                    description: a success response
+    then:
+      - description: must return a problem if there's no parameters at all on Swagger
+        expected:
+          - path: '#/paths/~1resources/patch'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  patch:
+                    responses:
+                      '201':
+                        description: a success response
+      - description: must return a problem if there's no body or formData parameter in parameters on Swagger
+        # TODO is it possible to get only one problem? -> it seems to be caused by the oneOf (compare v2 vs v2-v3)
+        expected:
+          #- path: '#/paths/~1resources/patch'
+          - path: '#/paths/~1resources/patch/parameters'
+          #- path: '#/paths/~1resources/patch/parameters/0/in'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  patch:
+                    parameters:
+                      - in: header
+                        name: Header-Name
+                        type: string
+                    responses:
+                      '201':
+                        description: a success response
+      - description: must return no problem if there's a body parameter on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  patch:
+                    parameters:
+                      - in: body
+                        name: body
+                        schema:
+                          type: object
+                    responses:
+                      '201':
+                        description: a success response
+      - description: must return no problem if there's a body parameter among others on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  patch:
+                    parameters:
+                      - in: body
+                        name: body
+                        schema:
+                          type: object
+                      - in: header
+                        name: Header-Name
+                        type: string
+                    responses:
+                      '201':
+                        description: a success response
+
+      - description: must return no problem if there's a formData parameter on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  patch:
+                    parameters:
+                      - in: formData
+                        name: body
+                        schema:
+                          type: object
+                    responses:
+                      '201':
+                        description: a success response

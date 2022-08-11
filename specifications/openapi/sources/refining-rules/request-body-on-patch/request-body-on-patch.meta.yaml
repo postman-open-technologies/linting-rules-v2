@@ -1,10 +1,10 @@
-name: request-body-on-post
+name: request-body-on-patch
 category: HTTP
 labels:
   - http
   - request-body
 reason: |
-  While authorized by the HTTP protocol, a POST request without body often hides a design problem (RPC-like design).
+  PATCH is used to partially update something, not having a request body is most probably an error.
 recommendedSeverity: warn
 recommended: false
 comment: |
@@ -12,10 +12,10 @@ comment: |
   found (method, parameter, first element). It seems to be caused by the allOf, no problem in v2 version
   which use a similar schema but with a level less (no oneOf).
 sources:
-  - path: ../../sources/raw/legacy/request-body-on-post.raw-meta.yaml
+  - path: ../../sources/raw/legacy/request-body-on-patch.raw-meta.yaml
     status: fixed
     comment: the v2 of the was absolutely not working, just checking that in was query, header, path or body
-  - path: ../request-body-on-post/request-body-on-put.meta.yaml
+  - path: ../request-body-on-post/request-body-on-post.meta.yaml
     status: similar
-  - path: ../request-body-on-post/request-body-on-patch.meta.yaml
+  - path: ../request-body-on-post/request-body-on-put.meta.yaml
     status: similar

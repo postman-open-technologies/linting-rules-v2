@@ -9,10 +9,15 @@ reason: |
   PUT /resource-ones/id1/other-resources/id2 for instance)
 recommendedSeverity: warn
 recommended: false
-comment: 
+comment: |
+  The v2-v3 comes with a strange behavior in v2 when there's a parameters list without body, 3 paths are
+  found (method, parameter, first element). It seems to be caused by the allOf, no problem in v2 version
+  which use a similar schema but with a level less (no oneOf).
 sources:
   - path: ../../sources/raw/legacy/request-body-on-put.raw-meta.yaml
     status: fixed
     comment: the v2 of the was absolutely not working, just checking that in was query, header, path or body
   - path: ../request-body-on-post/request-body-on-post.meta.yaml
+    status: similar
+  - path: ../request-body-on-post/request-body-on-patch.meta.yaml
     status: similar

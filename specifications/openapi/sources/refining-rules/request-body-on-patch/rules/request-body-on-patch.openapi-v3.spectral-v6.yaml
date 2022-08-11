@@ -1,9 +1,11 @@
 rules:
-  request-body-on-patch:
+  request-body-on-patch-oas3:
     description: Ensures that PATCH methods have request bodies.
     message: Your PATCH methods should have request bodies.
     given: $.paths.*.patch
-    severity: error
+    severity: warn
+    formats:
+      - oas3
     then:
       field: requestBody
       function: truthy
