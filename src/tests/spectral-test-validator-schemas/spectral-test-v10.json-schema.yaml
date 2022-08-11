@@ -50,6 +50,7 @@ $defs:
         description: The version of the format targeted by this rule
         # TODO conditional enum based on format
         type: array
+        minItems: 1
         items:
           type: string
           enum:
@@ -89,7 +90,16 @@ $defs:
     required:
       - description
       - expected
-      - documentTemplate
+    # documentTemplate and documents are mutually exclusive
+    dependentSchemas:
+      documentTemplate:
+        not:
+          required:
+            - documents
+    # a documentTemplate OR documents must be provided
+    oneOf:
+      - required: [documentTemplate]
+      - required: [documents]
     properties:
       description:
         description: The description of the test
@@ -100,7 +110,12 @@ $defs:
         items:
           $ref: "#/$defs/GivenTestExpected"
       documentTemplate:
-          $ref: "#/$defs/DocumentTemplate"
+        $ref: "#/$defs/DocumentTemplate"
+      documents:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/$defs/Document"
   GivenTestExpected:
     description: An expected element of the response of a given test. The value can be anything.
     type: object
@@ -117,7 +132,16 @@ $defs:
     required:
       - description
       - expected
-      - documentTemplate
+    # documentTemplate and documents are mutually exclusive
+    dependentSchemas:
+      documentTemplate:
+        not:
+          required:
+            - documents
+    # a documentTemplate OR documents must be provided
+    oneOf:
+      - required: [documentTemplate]
+      - required: [documents]
     properties:
       description:
         description: The description of the test
@@ -132,6 +156,11 @@ $defs:
           $ref: "#/$defs/ThenTestExpected"
       documentTemplate:
           $ref: "#/$defs/DocumentTemplate"
+      documents:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/$defs/Document"
   ThenTestExpected:
     description: The path of an expected problem detected when Spectal runs a rule.
     type: object
@@ -147,3 +176,18 @@ $defs:
   DocumentTemplate:
     description: A document that will be used as template to find what is expected across the versions.
     type: object
+  Document:
+    required: 
+      - version
+      - document
+    properties:
+      version:
+        description: The version of the formats targeted by this document
+        type: string
+        enum:
+          - "2.0"
+          - "3.0"
+          - "3.1"
+      document:
+        description: The document to use for the test
+        type: object
