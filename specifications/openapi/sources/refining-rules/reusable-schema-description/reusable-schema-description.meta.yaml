@@ -1,0 +1,16 @@
+name: reusable-schema-description
+category: Models
+labels:
+  - documentation
+  - description
+  - openapi-components-object
+  - openapi-schema-object
+reason: |
+  When name and context are not enough, a description can provide the useful information that
+  will help consumers and designers to figure out what is this reusable schema.
+recommendedSeverity: warn
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/schema-description.raw-meta.yaml
+    status: meta-fixed
+    comment: Renamed and description + message modified to make purpose more clear

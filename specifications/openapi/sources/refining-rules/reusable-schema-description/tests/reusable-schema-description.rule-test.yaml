@@ -1,0 +1,158 @@
+testSuiteVersion: spectral-v1.0
+ruleset: reusable-schema-description.openapi-v2-v3.spectral-v6.yaml
+rules:
+  reusable-schema-description:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find all reusable schemas on Swagger
+        index: 0
+        expected:
+          - path: '#/definitions/aReusableSchema'
+            value:
+              type: object
+          - path: '#/definitions/anotherReusableSchema'
+            value:
+              type: array
+              items:
+                type: object
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              definitions:
+                aReusableSchema:
+                  type: object
+                anotherReusableSchema:
+                  type: array
+                  items:
+                    type: object
+      - description: must find reusable schemas on OpenAPI
+        index: 1
+        expected:
+          - path: '#/components/schemas/aReusableSchema'
+            value:
+              type: object
+          - path: '#/components/schemas/anotherReusableSchema'
+            value:
+              type: array
+              items:
+                type: object
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  aReusableSchema:
+                    type: object
+                  anotherReusableSchema:
+                    type: array
+                    items:
+                      type: object
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              components:
+                schemas:
+                  aReusableSchema:
+                    type: object
+                  anotherReusableSchema:
+                    type: array
+                    items:
+                      type: object
+    then:
+      - description: must return a problem if there's no description on reusable schema on Swagger
+        expected:
+          - path: '#/definitions/aReusableSchema'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              definitions:
+                aReusableSchema:
+                  type: object
+      - description: must return a problem if there's no description on reusable schema on OpenAPI
+        expected:
+          - path: '#/components/schemas/aReusableSchema'
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  aReusableSchema:
+                    type: object
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              components:
+                schemas:
+                  aReusableSchema:
+                    type: object
+      - description: must return no problem if there's a description on reusable schema on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              definitions:
+                aReusableSchema:
+                  description: a reusable schema description
+                  type: object
+      - description: must return no problem if there's a description on reusable schema on OpenAPI
+        expected: []
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  aReusableSchema:
+                    description: a reusable schema description
+                    type: object
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              components:
+                schemas:
+                  aReusableSchema:
+                    description: a reusable schema description
+                    type: object
