@@ -104,6 +104,11 @@ $defs:
       description:
         description: The description of the test
         type: string
+      index:
+        description: The given index to test
+        default: 0
+        type: integer
+        minimum: 0
       expected:
         description: The expected result of the test. Hence, the values and their paths which are supposed to be found. 
         type: array

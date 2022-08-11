@@ -116,10 +116,17 @@ export function runTests(tests, rulesets, title){
   
                     // 8.2 Checking what is found by path
                     // TODO work on "list problems that are not found => expect empty list"
-                    const foundPathsAndValues = sortAgainstPath(spectralWrapper.getGivenPathsAndValues(rulename, document.document));
-                    const expectedPathsAndValues = sortAgainstPath(givenTest.expected);
-                    // TODO split assert and add message
-                    assert.deepEqual(foundPathsAndValues, expectedPathsAndValues);
+                    // TODO rework the given index stuff, test across all given option? always? stop at first that works?
+                    // TODO manage given using aliases (hack Spectral core?): given with aliases test are skipped for now
+                    if(!spectralWrapper.getRuleGiven(rulename, givenTest.index).startsWith('#')){
+                      const foundPathsAndValues = sortAgainstPath(spectralWrapper.getGivenPathsAndValues(rulename, document.document, givenTest.index));
+                      const expectedPathsAndValues = sortAgainstPath(givenTest.expected);
+                      // TODO split assert and add message
+                      assert.deepEqual(foundPathsAndValues, expectedPathsAndValues);  
+                    }
+                    else {
+                      this.skip();
+                    }
                   })  
                 });
               });
