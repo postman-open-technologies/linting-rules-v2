@@ -56,6 +56,7 @@ export function runTests(tests, rulesets, title){
   
       // 3 - Initializing Spectral with ruleset indicated in test file (that's async!)
       before( async function() {
+        // TODO when invalid ruleset it crash everything, need to catch error
         spectralWrapper = await SpectralTestWrapper.getWrapper(rulesetTest.rulesetFilename);
       });
   

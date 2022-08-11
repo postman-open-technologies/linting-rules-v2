@@ -12,7 +12,9 @@
     "test": "npx mocha tests/**/*.test.js",
     "test:rules": "npx mocha tests/rules.test.js",
     "test:refining-rules": "npx mocha tests/refining-rules.test.js",
-    "init:refining-rule": "node src/rules/create-rule-folder.js specifications/openapi/sources/refining-rules"
+    "test:dev": "npx mocha tests/dev.test.js",
+    "init:refining-rule": "node src/rules/create-rule-folder.js specifications/openapi/sources/refining-rules",
+    "init:dev-rule": "node src/rules/create-rule-folder.js specifications/openapi/sources/dev"
   },
   "author": "",
   "license": "ISC",
