@@ -1,7 +1,7 @@
 testSuiteVersion: spectral-v1.0
-ruleset: responses-example-any.openapi-v2.spectral-v6.yaml
+ruleset: responses-examples-any.openapi-v2.spectral-v6.yaml
 rules:
-  responses-example-any-oas2:
+  responses-examples-any-oas2:
     format: openapi
     versions:
       - '2.0'

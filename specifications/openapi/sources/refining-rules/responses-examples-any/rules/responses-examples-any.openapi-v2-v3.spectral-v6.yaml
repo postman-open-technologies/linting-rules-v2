@@ -10,7 +10,7 @@ aliases:
         given: 
           - $.paths.*.*.responses.*.content.*
 rules:
-  responses-example-any:
+  responses-examples-any:
     description: Ensuring all responses have examples (OpenAPI 3, Swagger 2) or example (OpenAPI 3) defined.
     message: All your responses need to have property examples (OpenAPI 3, Swagger 2) or example (OpenAPI 3) defined.
     given: "#ResponseContentDefinition"

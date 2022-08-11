@@ -1,17 +1,7 @@
 # TODO could be replaced by a single rule with the use of format scoped alias
 # TODO: exclude extensions in responses
 rules:
-  responses-example-any-oas2:
-    description: Ensuring all responses have examples defined.
-    message: All your responses need to have examples defined.
-    given: $.paths.*.*.responses.*
-    severity: warn
-    formats:
-      - oas2
-    then:
-      field: examples
-      function: truthy
-  responses-example-any-oas3:
+  responses-examples-any-oas3:
     description: Ensuring all responses have example or examples defined.
     message: All your responses need to have example or examples defined.
     given: $.paths.*.*.responses.*.content.*
