@@ -1,0 +1,391 @@
+testSuiteVersion: spectral-v1.0
+ruleset: schema-reference-reusable.openapi-v2-v3.spectral-v6.yaml
+rules:
+  schema-reference-reusable:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      # TODO When $..schema will be replace, replace by simpler tests targeting a type of element
+      - description: must find all schema properties on Swagger
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/schema'
+            value:
+              $ref: '#/definitions/Resources'
+          - path: '#/paths/~1resources/post/parameters/0/schema'
+            value:
+              $ref: '#/definitions/ResourceCreate'
+          - path: '#/paths/~1resources/post/responses/201/schema'
+            value:
+              $ref: '#/definitions/Resource'
+          - path: '#/paths/~1other-resources/delete/responses/200/schema'
+            value:
+              $ref: '#/definitions/OtherResources'
+          - path: '#/parameters/ReusableBody/schema'
+            value:
+              $ref: '#/definitions/Resource'
+          - path: '#/responses/UnexpectedError/schema'
+            value:
+              $ref: '#/definitions/Error'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a get success response
+                        schema:
+                          $ref: '#/definitions/Resources'
+                  post:
+                    parameters:
+                      - name: a resource to create
+                        in: body
+                        schema:
+                          $ref: '#/definitions/ResourceCreate'
+                    responses:
+                      '201':
+                        description: a post success response
+                        schema:
+                          $ref: '#/definitions/Resource'
+                /other-resources:
+                  delete:
+                    responses:
+                      '200':
+                        description: a get success response
+                        schema:
+                          $ref: '#/definitions/OtherResources'
+              parameters:
+                ReusableBody:
+                  name: a resource to create
+                  in: body
+                  schema:
+                    $ref: '#/definitions/Resource'
+              responses:
+                UnexpectedError:
+                  description: unexpected error response
+                  schema:
+                    $ref: '#/definitions/Error'
+              definitions:
+                Resources:
+                  type: object
+                ResourceCreate:
+                  type: object
+                Resource:
+                  type: object
+                OtherResources:
+                  type: object
+                Error:
+                  type: object
+      - description: must find all schema properties on OpenAPI
+        expected: 
+          - path: '#/paths/~1resources/get/parameters/0/schema'
+            value:
+              type: integer
+          - path: '#/paths/~1resources/get/responses/200/headers/a-header/schema'
+            value:
+              type: string
+          - path: '#/paths/~1resources/get/responses/200/content/application~1json/schema'
+            value:
+              $ref: '#/components/schemas/Resources'
+          - path: '#/paths/~1resources/post/requestBody/content/application~1json/schema'
+            value:
+              $ref: '#/components/schemas/ResourceCreate'
+          - path: '#/paths/~1resources/post/responses/201/content/application~1json/schema'
+            value:
+              $ref: '#/components/schemas/Resource'
+          - path: '#/paths/~1other-resources/delete/responses/200/content/application~1json/schema'
+            value:
+              $ref: '#/components/schemas/OtherResources'
+          - path: '#/components/parameters/ReusableQuery/schema'
+            value:
+              type: string
+          - path: '#/components/requestBodies/ReusableBody/content/application~1json/schema'
+            value:
+              $ref: '#/components/schemas/Resource'
+          - path: '#/components/responses/UnexpectedError/content/application~1json/schema'
+            value:
+              $ref: '#/components/schemas/Error'
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: page
+                        in: query
+                        schema:
+                          type: integer
+                    responses:
+                      '200':
+                        description: a get success response
+                        headers:
+                          a-header:
+                            schema:
+                              type: string
+                        content:
+                          'application/json':
+                            schema:
+                              $ref: '#/components/schemas/Resources'
+                  post:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            $ref: '#/components/schemas/ResourceCreate'
+                    responses:
+                      '201':
+                        description: a post success response
+                        content:
+                          'application/json':
+                            schema:
+                              $ref: '#/components/schemas/Resource'
+                /other-resources:
+                  delete:
+                    responses:
+                      '200':
+                        description: a get success response
+                        content:
+                          'application/json':
+                            schema:
+                              $ref: '#/components/schemas/OtherResources'
+              components:
+                requestBodies:
+                  ReusableBody:
+                    content:
+                      'application/json':
+                        schema:
+                          $ref: '#/components/schemas/Resource'
+                parameters:
+                  ReusableQuery:
+                    name: a resource to create
+                    in: query
+                    schema:
+                      type: string
+                responses:
+                  UnexpectedError:
+                    description: unexpected error response
+                    content:
+                      'application/json':
+                        schema:
+                          $ref: '#/components/schemas/Error'
+                schemas:
+                  Resources:
+                    type: object
+                  ResourceCreate:
+                    type: object
+                  Resource:
+                    type: object
+                  OtherResources:
+                    type: object
+                  Error:
+                    type: object
+          - version: '3.1'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: page
+                        in: query
+                        schema:
+                          type: integer
+                    responses:
+                      '200':
+                        description: a get success response
+                        headers:
+                          a-header:
+                            schema:
+                              type: string
+                        content:
+                          'application/json':
+                            schema:
+                              $ref: '#/components/schemas/Resources'
+                  post:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            $ref: '#/components/schemas/ResourceCreate'
+                    responses:
+                      '201':
+                        description: a post success response
+                        content:
+                          'application/json':
+                            schema:
+                              $ref: '#/components/schemas/Resource'
+                /other-resources:
+                  delete:
+                    responses:
+                      '200':
+                        description: a get success response
+                        content:
+                          'application/json':
+                            schema:
+                              $ref: '#/components/schemas/OtherResources'
+              components:
+                requestBodies:
+                  ReusableBody:
+                    content:
+                      'application/json':
+                        schema:
+                          $ref: '#/components/schemas/Resource'
+                parameters:
+                  ReusableQuery:
+                    name: a resource to create
+                    in: query
+                    schema:
+                      type: string
+                responses:
+                  UnexpectedError:
+                    description: unexpected error response
+                    content:
+                      'application/json':
+                        schema:
+                          $ref: '#/components/schemas/Error'
+                schemas:
+                  Resources:
+                    type: object
+                  ResourceCreate:
+                    type: object
+                  Resource:
+                    type: object
+                  OtherResources:
+                    type: object
+                  Error:
+                    type: object
+    then:
+      - description: must return a problem if there's no $ref in schema on Swagger
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/schema'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        schema:
+                          type: object
+      - description: must return a problem if there's no $ref in schema on OpenAPI
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/content/application~1json/schema'
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              type: object
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              type: object
+      - description: must return no problem if there's a $ref in schema on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        schema:
+                          $ref: '#/definitions/Resources'
+              definitions:
+                Resources:
+                  type: object
+      - description: must return no problem if there's a $ref in schema on OpenAPI
+        expected: []
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              $ref: '#/components/schemas/Resources'
+              components:
+                schemas:
+                  Resources:
+                    type: object
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              $ref: '#/components/schemas/Resources'
+              components:
+                schemas:
+                  Resources:
+                    type: object

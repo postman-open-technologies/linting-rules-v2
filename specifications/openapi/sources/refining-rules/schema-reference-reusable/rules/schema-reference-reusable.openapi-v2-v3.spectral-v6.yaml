@@ -1,0 +1,23 @@
+rules:
+  schema-reference-reusable:
+    description: |
+      Ensures all schema properties use a $ref contain a $ref targeting a reusable schema 
+      defined in definitions (Swagger 2) or components.schema (OpenAPI 3)
+    message: A schema property should have a $ref property referencing a reusable schema 
+    given:
+      - $..schema # TODO: replace by more precise paths, because may 
+                  # target element with name schema which are not the schema we look for
+    resolved: false # Mandatory to avoid $ref being replaced by their value
+    severity: warn
+    formats:
+      - oas2
+      - oas3
+    then:
+      # $ref is present and non empty
+      - field: $ref
+        function: truthy
+      # $ref value is any local or remote reference targeting reusable schema
+      - field: $ref
+        function: pattern
+        functionOptions:
+          match: ^.*#\/(definitions|components\/schemas)\/.*$

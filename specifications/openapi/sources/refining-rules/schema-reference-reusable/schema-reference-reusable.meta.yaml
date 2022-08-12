@@ -1,0 +1,34 @@
+name: schema-reference-reusable
+category: Models
+labels:
+  - schemas
+  - openapi-reference
+  - openapi-components-object
+  - openapi-schema-object
+reason: |
+  Using schema reference ($ref) targeting reusable schemas in definitions for Swagger 2 and 
+  components.schemas in OpenAPI 3 helps to ensuring consistency in design, OpenAPI document 
+  and API documentation readability, and facilitate maintainability by avoiding duplication 
+  of models.
+recommendedSeverity: warn
+recommended: true
+comment: |
+  The original rules do not check that $ref exists and were missing v3 parameters that have
+  schema, only checking v2/3 responses and v3 bodies. Before ensuring $ref targets components,
+  a rule must ensure there's a $ref. It may make sometimes sense to have fine grained rule 
+  to gradually help users, that can be done inside organization when no off/on option is 
+  available. In a "generic set of rules" without dependency management each rule must be 
+  completely meaning full alone. That raises alo the question of rules walking on each 
+  others feet. Starting with a single broader meaningful rule help to keep that question for
+  later.
+sources:
+  - path: ../../sources/raw/legacy/responses-schema-components.raw-meta.yaml
+    status: broadening-perspective
+    comment: |
+      Resolved was not set to false, so $ref were resolved (they are never found in that case).
+      Only v3 and only targeting responses, which don't really make sense (at least for a "generic" first set).
+  - path: ../../sources/raw/legacy/request-body-schema-components.raw-meta.yaml
+    status: broadening-perspective
+    comment: |
+      Resolved was not set to false, so $ref were resolved (they are never found in that case).
+      Only v3 and only targeting responses, which don't really make sense (at least for a "generic" first set).
