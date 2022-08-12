@@ -8,8 +8,9 @@ rules:
       - oas2
       - oas3
     then:
-      function: xor
+      function: schema
       functionOptions:
-        properties:
-          - url
-          - email
+        schema:
+          anyOf:
+            - required: [url]
+            - required: [email]

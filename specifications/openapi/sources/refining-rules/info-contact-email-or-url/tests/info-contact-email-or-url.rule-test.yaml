@@ -56,3 +56,15 @@ rules:
               name: a contact name
               url: https://somewhere.com
           paths: {} 
+      - description: must return no problem if there's a url and email property in info.contact
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an api name
+            version: '1.0'
+            contact: 
+              name: a contact name
+              url: https://somewhere.com
+              email: contact@somewhere.come
+          paths: {} 
