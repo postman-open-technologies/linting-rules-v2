@@ -1,5 +1,5 @@
 name: http-status-code-204-no-body
-category: HTTP
+category: Operations
 labels:
   - http
   - openapi-response-object
