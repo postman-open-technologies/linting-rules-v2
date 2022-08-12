@@ -2,7 +2,13 @@ rules:
   parameters-description:
     description: Ensures that that all parameters have a descriptions.
     message: Your parameters all need descriptions.
-    given: $.paths.*.*.parameters[?(@.in=='query')]
+    given: 
+      - $.paths.*.parameters.* # path level parameters
+      - $.paths.*.*.parameters.* # operation level parameters
+    severity: warn
+    formats:
+      - oas2
+      - oas3
     then:
       field: description
       function: truthy

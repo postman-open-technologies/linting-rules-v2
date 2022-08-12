@@ -1,0 +1,13 @@
+name: parameters-description
+category: Operations
+labels:
+  - put some labels here
+reason: |
+  When name and context are not enough, a description can provide the useful information
+  that will help consumers to figure out what is this element.
+recommendedSeverity: warn
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/parameters-description.raw-meta.yaml
+    status: fixed
+    comment: only target query parameters and was missing path level parameters

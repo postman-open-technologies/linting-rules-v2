@@ -1,0 +1,282 @@
+testSuiteVersion: spectral-v1.0
+ruleset: parameters-description.openapi-v2-v3.spectral-v6.yaml
+rules:
+  parameters-description:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find path level parameters on Swagger
+        index: 0
+        expected:
+          - path: '#/paths/~1resources~1{resourceId}/parameters/0'
+            value:
+              name: resourceId
+              description: the id property of the resource
+              in: path
+              required: true
+              type: string
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources/{resourceId}:
+                  parameters:
+                    - name: resourceId
+                      description: the id property of the resource
+                      in: path
+                      required: true
+                      type: string
+                  delete:
+                    responses:
+                      '204':
+                        description: a delete success response
+      - description: must find operation level parameters on Swagger
+        index: 1
+        expected:
+          - path: '#/paths/~1resources/get/parameters/0'
+            value:
+              name: status
+              description: filters resources on their status 
+              in: query
+              type: string
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: status
+                        description: filters resources on their status 
+                        in: query
+                        type: string
+                    responses:
+                      '200':
+                        description: a get success response
+      - description: must find path level parameters on OpenAPI
+        index: 0
+        expected:
+          - path: '#/paths/~1resources~1{resourceId}/parameters/0'
+            value:
+              name: resourceId
+              description: the id property of the resource
+              in: path
+              required: true
+              schema:
+                type: string
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources/{resourceId}:
+                  parameters:
+                    - name: resourceId
+                      description: the id property of the resource
+                      in: path
+                      required: true
+                      schema:
+                        type: string
+                  delete:
+                    responses:
+                      '204':
+                        description: a delete success response
+          - version: '3.1'
+            document:
+              openapi: "3.1"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources/{resourceId}:
+                  parameters:
+                    - name: resourceId
+                      description: the id property of the resource
+                      in: path
+                      required: true
+                      schema:
+                        type: string
+                  delete:
+                    responses:
+                      '204':
+                        description: a delete success response
+      - description: must find operation level parameters on OpenAPI
+        index: 1
+        expected:
+          - path: '#/paths/~1resources/get/parameters/0'
+            value:
+              name: status
+              description: filters resources on their status 
+              in: query
+              schema:
+                type: string
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: status
+                        description: filters resources on their status 
+                        in: query
+                        schema:
+                          type: string
+                    responses:
+                      '200':
+                        description: a get success response
+          - version: '3.1'
+            document:
+              openapi: "3.1"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: status
+                        description: filters resources on their status 
+                        in: query
+                        schema:
+                          type: string
+                    responses:
+                      '200':
+                        description: a get success response
+    then:
+      - description: must return a problem if there's no description on parameter on Swagger
+        expected:
+          - path: '#/paths/~1resources/get/parameters/0'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: status
+                        in: query
+                        type: string
+                    responses:
+                      '200':
+                        description: a get success response
+      - description: must return a problem if there's no description on parameter on Swagger
+        expected:
+          - path: '#/paths/~1resources/get/parameters/0'
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: status
+                        in: query
+                        schema:
+                          type: string
+                    responses:
+                      '200':
+                        description: a get success response
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: status
+                        in: query
+                        schema:
+                          type: string
+                    responses:
+                      '200':
+                        description: a get success response
+      - description: must return no problem if there's a description on parameter on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: status
+                        description: filters resources on their status 
+                        in: query
+                        type: string
+                    responses:
+                      '200':
+                        description: a get success response
+      - description: must return no problem if there's a description on parameter on OpenAPI
+        expected: []
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: status
+                        description: filters resources on their status 
+                        in: query
+                        schema:
+                          type: string
+                    responses:
+                      '200':
+                        description: a get success response
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: status
+                        description: filters resources on their status 
+                        in: query
+                        schema:
+                          type: string
+                    responses:
+                      '200':
+                        description: a get success response
