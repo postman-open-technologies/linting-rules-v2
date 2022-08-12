@@ -1,0 +1,15 @@
+name: schema-properties-define-array-boundaries
+category: Models
+labels:
+  - array
+reason: |
+  Consumers and providers will never be able to handle an infinite number of elements, 
+  boundaries have to be set (that leads to pagination).
+recommendedSeverity: warn
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/schema-properties-define-array-boundaries.raw-meta.yaml
+    status: fixed
+    comment: |
+      was only targeting first level array properties of
+      reusable schemas instead of all array everywhere 

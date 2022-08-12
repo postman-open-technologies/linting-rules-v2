@@ -1,0 +1,225 @@
+testSuiteVersion: spectral-v1.0
+# TODO add more use cases (array in components, parameters, responses, ...)
+ruleset: schema-properties-define-array-boundaries.openapi-v2-v3.spectral-v6.yaml
+rules:
+  schema-properties-define-array-boundaries:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find arrays on Swagger
+        expected:
+          - path: '#/definitions/anObject/properties/aList'
+            value:
+              type: array
+              items:
+                type: object
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              definitions:
+                anObject:
+                  properties:
+                    aList:
+                      type: array
+                      items:
+                        type: object
+      - description: must ignore non array properties on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              definitions:
+                anObject:
+                  properties:
+                    aProperty:
+                      type: string
+      - description: must find arrays on OpenAPI
+        expected:
+          - path: '#/components/schemas/anObject/properties/aList'
+            value:
+              type: array
+              items:
+                type: object
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  anObject:
+                    properties:
+                      aList:
+                        type: array
+                        items:
+                          type: object
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  anObject:
+                    properties:
+                      aList:
+                        type: array
+                        items:
+                          type: object
+      - description: must ignore non array properties on OpenAPI
+        expected: []
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  anObject:
+                    properties:
+                      aProperty:
+                        type: string
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  anObject:
+                    properties:
+                      aProperty:
+                        type: string
+    then:
+      - description: must return a problem if there's no minItems or maxItems on Swagger
+        expected:
+          - path: '#/definitions/anObject/properties/aList'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              definitions:
+                anObject:
+                  properties:
+                    aList:
+                      type: array
+                      items:
+                        type: object
+      - description: must return a problem if there's no minItems or maxItems on OpenAPI
+        expected:
+          - path: '#/components/schemas/anObject/properties/aList'
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  anObject:
+                    properties:
+                      aList:
+                        type: array
+                        items:
+                          type: object
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  anObject:
+                    properties:
+                      aList:
+                        type: array
+                        items:
+                          type: object
+      - description: must return no problem if there are minItems and maxItems when type is array on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              definitions:
+                anObject:
+                  properties:
+                    aList:
+                      type: array
+                      minItems: 1
+                      maxItems: 100
+                      items:
+                        type: object
+      - description: must return no problem if there are minItems and maxItems when type is array on OpenAPI
+        expected: []
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  anObject:
+                    properties:
+                      aList:
+                        type: array
+                        minItems: 1
+                        maxItems: 100
+                        items:
+                          type: object
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: {}
+              components:
+                schemas:
+                  anObject:
+                    properties:
+                      aList:
+                        type: array
+                        minItems: 1
+                        maxItems: 100
+                        items:
+                          type: object

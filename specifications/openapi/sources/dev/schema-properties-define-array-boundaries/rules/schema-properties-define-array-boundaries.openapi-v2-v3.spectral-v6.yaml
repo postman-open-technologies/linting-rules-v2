@@ -3,9 +3,10 @@ rules:
     description: Requires that arrays have their minimum and maximum boundaries defined.
     message: Arrays must have minItems and maxItems defined.
     given:
-      - $..properties.[?(@.type=="array")]
+      - $..[?(@.type=="array")]
     severity: warn
     formats:
+      - oas2
       - oas3
     then:
       - field: maxItems
