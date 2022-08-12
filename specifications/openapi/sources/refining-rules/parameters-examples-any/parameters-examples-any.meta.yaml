@@ -1,0 +1,21 @@
+name: parameters-examples-any
+category: Operation
+labels:
+  - documentation
+  - examples
+  - openapi-operation-object
+  - openapi-request-body-object
+reason: |
+  Providing undocumented (example property) or documented (examples property) examples is important
+  to help people understand what data to provide. It may also help them to generate mocks or
+  collection.
+comment: Only available for OpenAPI 3
+recommendedSeverity: warn
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/parameters-example.raw-meta.yaml
+    status: fixed
+    comment: |
+      Was for v2 and v3, but parameters examples only in v3. Was targeting only operation l
+      evel query param instead of all param at path and operation levels. Was only making both
+      examples and example required while they are mutually exclusive

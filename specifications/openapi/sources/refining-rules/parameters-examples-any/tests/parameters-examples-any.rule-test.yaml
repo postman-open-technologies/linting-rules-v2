@@ -1,0 +1,132 @@
+testSuiteVersion: spectral-v1.0
+ruleset: parameters-examples-any.openapi-v3.spectral-v6.yaml
+rules:
+  parameters-examples-any:
+    format: openapi
+    versions:
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find path level parameters
+        index: 0
+        expected:
+          - path: '#/paths/~1resources~1{resourceId}/parameters/0'
+            value:
+              name: resourceId
+              description: the id property of the resource
+              in: path
+              required: true
+              schema:
+                type: string
+        documentTemplate:
+            openapi: "3.1"
+            info:
+              title: an API title
+              version: "1.0"
+            paths:
+              /resources/{resourceId}:
+                parameters:
+                  - name: resourceId
+                    description: the id property of the resource
+                    in: path
+                    required: true
+                    schema:
+                      type: string
+                delete:
+                  responses:
+                    '204':
+                      description: a delete success response
+      - description: must find operation level parameters
+        index: 1
+        expected:
+          - path: '#/paths/~1resources/get/parameters/0'
+            value:
+              name: status
+              description: filters resources on their status 
+              in: query
+              schema:
+                type: string
+        documentTemplate:
+              openapi: "3.1"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    parameters:
+                      - name: status
+                        description: filters resources on their status 
+                        in: query
+                        schema:
+                          type: string
+                    responses:
+                      '200':
+                        description: a get success response
+    then:
+      - description: must return a problem if there's no example or examples property
+        expected:
+          - path: '#/paths/~1resources/get/parameters/0'
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                parameters:
+                  - name: status
+                    description: filters resources on their status 
+                    in: query
+                    schema:
+                      type: string
+                responses:
+                  '200':
+                    description: a get success response
+      - description: must return no problem if there's an example property on parameter
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                parameters:
+                  - name: status
+                    description: filters resources on their status 
+                    in: query
+                    example: done
+                    schema:
+                      type: string
+                responses:
+                  '200':
+                    description: a get success response
+      - description: must return no problem if there's an examples property on parameter
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                parameters:
+                  - name: status
+                    description: filters resources on their status 
+                    in: query
+                    examples:
+                      anExample:
+                        summary: an example
+                        description: a description of an example
+                        value: done
+                    schema:
+                      type: string
+                responses:
+                  '200':
+                    description: a get success response
+

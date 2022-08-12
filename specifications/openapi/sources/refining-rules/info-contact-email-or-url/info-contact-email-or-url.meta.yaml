@@ -10,8 +10,8 @@ reason: |
   Just a contact name is often not enough, consumer will need a way to contact the API owner/support.
   A url could lead to the API details on the API portal, a contact form, a slack channel.
   An email could be a real one and/or dump message in a slack channel.
-recommendedSeverity: recommended Spectral severity
-recommended: true or false
+recommendedSeverity: error
+recommended: true
 sources:
   - description: new rule to be less strict then these other twos
   - path: ../../sources/raw/legacy/info-contact-email.raw-meta.yaml

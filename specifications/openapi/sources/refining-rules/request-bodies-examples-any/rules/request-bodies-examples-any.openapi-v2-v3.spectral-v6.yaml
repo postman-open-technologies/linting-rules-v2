@@ -1,0 +1,17 @@
+rules:
+  request-bodies-examples-any:
+    description: Ensures that a example is always present for each request body (schema.example for Swagger 2, examples or example for OpenAPI 3).
+    message: All request bodies should have an example present.
+    given: 
+      - $.paths.*.*.parameters[?(@.in == 'body')].schema # v2
+      - $.paths.*.*.requestBody.content.* # v3
+    severity: warn
+    formats:
+      - oas2
+      - oas3
+    then:
+      function: xor
+      functionOptions:
+        properties:
+          - examples
+          - example

@@ -1,0 +1,19 @@
+name: request-bodies-examples-any
+category: Operation
+labels:
+  - documentation
+  - examples
+  - openapi-operation-object
+  - openapi-request-body-object
+reason: |
+  Providing undocumented (OpenAPI 3, Swagger 2) or documented (OpenAPI 3) examples is important
+  to help people understand the data they will get. It may also help them to generate mocks or
+  collection.
+recommendedSeverity: warn
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/have-request-body-examples.raw-meta.yaml
+    status: fixed
+    comment: |
+      Was only targeting v3. Given path was totally wrong, targeting all sub-elements
+      of requestBody having a type object.

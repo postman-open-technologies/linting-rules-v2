@@ -1,0 +1,16 @@
+rules:
+  parameters-examples-any:
+    description: Ensures that that all parameters have a examples.
+    message: Your parameters all need examples.
+    given: 
+      - $.paths.*.parameters.* # path level parameters
+      - $.paths.*.*.parameters.* # operation level parameters
+    severity: warn
+    formats:
+      - oas3
+    then:
+      function: xor
+      functionOptions:
+        properties:
+          - example
+          - examples

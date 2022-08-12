@@ -1,0 +1,249 @@
+testSuiteVersion: spectral-v1.0
+ruleset: request-bodies-examples-any.openapi-v2-v3.spectral-v6.yaml
+rules:
+  request-bodies-examples-any:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find request body parameters schema on Swagger
+        index: 0
+        expected:
+          - path: '#/paths/~1resources/post/parameters/0/schema'
+            value:
+              type: object
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    parameters:
+                      - in: body
+                        name: body
+                        schema:
+                          type: object
+                    responses:
+                      201:
+                        description: a success post response
+      - description: must find requestBody operation property on OpenAPI
+        index: 1
+        expected:
+          - path: '#/paths/~1resources/post/requestBody/content/application~1json'
+            value:
+              schema:
+                type: object
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            type: object
+                    responses:
+                      201:
+                        description: a success post response
+          - version: '3.1'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            type: object
+                    responses:
+                      201:
+                        description: a success post response
+    then:
+      - description: must return a problem if there's no example property in request body schema on Swagger
+        expected:
+          - path: '#/paths/~1resources/post/parameters/0/schema'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    parameters:
+                      - in: body
+                        name: body
+                        schema:
+                          type: object
+                    responses:
+                      201:
+                        description: a success post response
+      - description: must return a problem if there's no example or examples property in requestBody property on OpenAPI
+        expected:
+          - path: '#/paths/~1resources/post/requestBody/content/application~1json'
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            type: object
+                    responses:
+                      201:
+                        description: a success post response
+          - version: '3.1'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            type: object
+                    responses:
+                      201:
+                        description: a success post response
+      - description: must return no problem if there's an example property in request body schema on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    parameters:
+                      - in: body
+                        name: body
+                        schema:
+                          type: object
+                          example:
+                            aProperty: example value
+                    responses:
+                      201:
+                        description: a success post response
+      - description: must return no problem if there's an example property in requestBody property on OpenAPI
+        expected: []
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            type: object
+                          example:
+                            aProperty: example value
+                    responses:
+                      201:
+                        description: a success post response
+          - version: '3.1'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            type: object
+                          example:
+                            aProperty: example value
+                    responses:
+                      201:
+                        description: a success post response
+      - description: must return no problem if there's an examples property in requestBody property on OpenAPI
+        expected: []
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            type: object
+                          examples:
+                            anExample:
+                              summary: an example
+                              description: this is an example description
+                              value:
+                                aProperty: example value
+                    responses:
+                      201:
+                        description: a success post response
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    requestBody:
+                      content:
+                        'application/json':
+                          schema:
+                            type: object
+                          examples:
+                            anExample:
+                              summary: an example
+                              description: this is an example description
+                              value:
+                                aProperty: example value
+                    responses:
+                      201:
+                        description: a success post response

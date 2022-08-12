@@ -1,0 +1,11 @@
+rules:
+  request-bodies-examples-any-oas2:
+    description: Ensures that a example is always present for each request body (in schema.example).
+    message: All request bodies should have an example present.
+    given: $.paths.*.*.parameters[?(@.in == 'body')].schema # v2
+    severity: warn
+    formats:
+      - oas2
+    then:
+      field: example
+      function: defined

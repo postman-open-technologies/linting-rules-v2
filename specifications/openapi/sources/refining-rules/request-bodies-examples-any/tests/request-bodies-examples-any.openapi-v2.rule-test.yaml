@@ -1,0 +1,76 @@
+testSuiteVersion: spectral-v1.0
+ruleset: request-bodies-examples-any.openapi-v2.spectral-v6.yaml
+rules:
+  request-bodies-examples-any-oas2:
+    format: openapi
+    versions:
+      - '2.0'
+    severity: warn
+    given:
+      - description: must find request body parameters schema on Swagger
+        expected:
+          - path: '#/paths/~1resources/post/parameters/0/schema'
+            value:
+              type: object
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    parameters:
+                      - in: body
+                        name: body
+                        schema:
+                          type: object
+                    responses:
+                      201:
+                        description: a success post response
+    then:
+      - description: must return a problem if there's no example property in request body schema on Swagger
+        expected:
+          - path: '#/paths/~1resources/post/parameters/0/schema'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    parameters:
+                      - in: body
+                        name: body
+                        schema:
+                          type: object
+                    responses:
+                      201:
+                        description: a success post response
+      - description: must return no problem if there's an example property in request body schema on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths: 
+                /resources:
+                  post:
+                    parameters:
+                      - in: body
+                        name: body
+                        schema:
+                          type: object
+                          example:
+                            aProperty: example value
+                    responses:
+                      201:
+                        description: a success post response
