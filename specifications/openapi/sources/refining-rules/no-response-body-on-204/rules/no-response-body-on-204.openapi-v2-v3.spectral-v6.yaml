@@ -1,5 +1,5 @@
 rules:
-  http-status-code-204-no-body:
+  no-response-body-on-204:
     description: description
     message: message
     given: $.paths.*.*.responses.204

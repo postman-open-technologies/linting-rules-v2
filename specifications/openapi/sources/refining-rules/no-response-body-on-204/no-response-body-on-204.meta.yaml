@@ -1,4 +1,4 @@
-name: http-status-code-204-no-body
+name: no-response-body-on-204
 category: Operations
 labels:
   - http
