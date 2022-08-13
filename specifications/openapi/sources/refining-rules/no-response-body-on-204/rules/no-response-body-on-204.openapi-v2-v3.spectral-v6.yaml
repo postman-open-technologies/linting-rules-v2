@@ -1,7 +1,7 @@
 rules:
   no-response-body-on-204:
-    description: description
-    message: message
+    description: Ensures that no 204 No Content response has a body.
+    message: A 204 No Content response can't have a body.
     given: $.paths.*.*.responses.204
     severity: error
     formats:
