@@ -1,0 +1,9 @@
+name: schema-properties-camel-case
+category: design style
+labels:
+  - properties
+  - casing
+reason: |
+  All property names should share the same casing to be consistent
+recommendedSeverity: warn
+recommended: false

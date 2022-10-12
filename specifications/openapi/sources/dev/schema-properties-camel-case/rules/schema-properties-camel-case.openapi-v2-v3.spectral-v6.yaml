@@ -1,0 +1,14 @@
+rules:
+  schema-properties-camel-case:
+    description: Ensure that all schemas property names are camelCased.
+    message: All schema property names should be camelCased.
+    given: $..properties
+    severity: warn
+    formats:
+      - oas2
+      - oas3
+    then:
+      field: "@key"
+      function: casing
+      functionOptions:
+        type: camel

@@ -1,0 +1,233 @@
+testSuiteVersion: spectral-v1.0
+ruleset: schema-properties-descriptions.openapi-v2-v3.spectral-v6.yaml
+rules:
+  schema-properties-descriptions:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find all properties on Swagger
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/schema/properties/aProperty'
+            value:
+              type: string
+          - path: '#/paths/~1resources/get/responses/200/schema/properties/anObjectProperty'
+            value:
+              $ref: "#/definitions/SomeModel"
+          - path: '#/definitions/SomeModel/properties/anotherProperty'
+            value:
+              type: string          
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        schema:
+                          properties:
+                            aProperty:
+                              type: string
+                            anObjectProperty:
+                              $ref: "#/definitions/SomeModel"
+              definitions:
+                SomeModel:
+                  properties:
+                    anotherProperty:
+                      type: string
+      - description: must find all properties on OpenAPI
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/content/application~1json/schema/properties/aProperty'
+            value:
+              type: string
+          - path: '#/paths/~1resources/get/responses/200/content/application~1json/schema/properties/anObjectProperty'
+            value:
+              $ref: "#/components/schemas/SomeModel"
+          - path: '#/components/schemas/SomeModel/properties/anotherProperty'
+            value:
+              type: string          
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                aProperty:
+                                  type: string
+                                anObjectProperty:
+                                  $ref: "#/components/schemas/SomeModel"
+              components:
+                schemas:
+                  SomeModel:
+                    properties:
+                      anotherProperty:
+                        type: string
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                aProperty:
+                                  type: string
+                                anObjectProperty:
+                                  $ref: "#/components/schemas/SomeModel"
+              components:
+                schemas:
+                  SomeModel:
+                    properties:
+                      anotherProperty:
+                        type: string
+
+    then:
+      - description: must return a problem if there's no property description on Swagger
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/schema/properties/aProperty'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        schema:
+                          properties:
+                            aProperty:
+                              type: string
+      - description: must return no problem if there's a property description on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        schema:
+                          properties:
+                            aProperty:
+                              description: a property description
+                              type: string
+      - description: must return a problem if there's no property description on OpenAPI
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/content/application~1json/schema/properties/aProperty'
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                aProperty:
+                                  type: string
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                aProperty:
+                                  type: string
+      - description: must return no problem if there's a property description on Swagger
+        expected: []
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                aProperty:
+                                  description: a property description
+                                  type: string
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                aProperty:
+                                  description: a property description
+                                  type: string

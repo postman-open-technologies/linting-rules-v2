@@ -1,0 +1,12 @@
+rules:
+  given-path-debug:
+    description: A debug rule to test a JSON Path
+    message: The expected element has been found by the given JSON Path!
+    given: $.paths.*.get.responses
+    severity: error
+    formats:
+      - oas2
+      - oas3
+    then:
+      field: x-dummy
+      function: undefined

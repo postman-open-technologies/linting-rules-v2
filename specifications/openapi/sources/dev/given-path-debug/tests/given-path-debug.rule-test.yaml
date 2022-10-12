@@ -1,0 +1,52 @@
+testSuiteVersion: spectral-v1.0
+ruleset: given-path-debug.openapi-v2-v3.spectral-v6.yaml
+rules:
+  given-path-debug:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: error
+    given:
+      - description: must find something
+        expected:
+          - path: '#/paths/~1resources/get/responses'
+            value:
+              x-dummy: true
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  x-dummy: true
+    then:
+      - description: must return a problem if there's an x-dummy field
+        expected:
+          - path: '#/paths/~1resources/get/responses/x-dummy'
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  x-dummy: true
+      - description: must return no problem if there's no x-dummy field
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  x-dummy-no: true

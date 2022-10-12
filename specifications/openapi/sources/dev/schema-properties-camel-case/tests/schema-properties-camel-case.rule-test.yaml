@@ -1,0 +1,232 @@
+testSuiteVersion: spectral-v1.0
+ruleset: schema-properties-camel-case.openapi-v2-v3.spectral-v6.yaml
+rules:
+  schema-properties-camel-case:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find all properties on Swagger
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/schema/properties'
+            value:
+              aProperty:
+                type: string
+              anObjectProperty:
+                $ref: "#/definitions/SomeModel"
+          - path: '#/definitions/SomeModel/properties'
+            value:
+              anotherProperty:
+                type: string          
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        schema:
+                          properties:
+                            aProperty:
+                              type: string
+                            anObjectProperty:
+                              $ref: "#/definitions/SomeModel"
+              definitions:
+                SomeModel:
+                  properties:
+                    anotherProperty:
+                      type: string
+      - description: must find all properties on OpenAPI
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/content/application~1json/schema/properties'
+            value:
+              aProperty:
+                type: string
+              anObjectProperty:
+                $ref: "#/components/schemas/SomeModel"
+          - path: '#/components/schemas/SomeModel/properties'
+            value:
+              anotherProperty:
+                type: string          
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                aProperty:
+                                  type: string
+                                anObjectProperty:
+                                  $ref: "#/components/schemas/SomeModel"
+              components:
+                schemas:
+                  SomeModel:
+                    properties:
+                      anotherProperty:
+                        type: string
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                aProperty:
+                                  type: string
+                                anObjectProperty:
+                                  $ref: "#/components/schemas/SomeModel"
+              components:
+                schemas:
+                  SomeModel:
+                    properties:
+                      anotherProperty:
+                        type: string
+
+    then:
+      - description: must return a problem if property name is not camel cased on Swagger
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/schema/properties/a_property'
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        schema:
+                          properties:
+                            a_property:
+                              type: string
+      - description: must return no problem if property name is camel cased on Swagger
+        expected: []
+        documents:
+          - version: '2.0'
+            document:
+              swagger: "2.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        schema:
+                          properties:
+                            aProperty:
+                              type: string
+      - description: must return a problem if property name is not camel cased on OpenAPI
+        expected:
+          - path: '#/paths/~1resources/get/responses/200/content/application~1json/schema/properties/a_property'
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                a_property:
+                                  type: string
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                a_property:
+                                  type: string
+      - description: must return no problem if property name is camel cased on OpenAPI
+        expected: []
+        documents:
+          - version: '3.0'
+            document:
+              openapi: "3.0.3"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                aProperty:
+                                  type: string
+          - version: '3.1'
+            document:
+              openapi: "3.1.0"
+              info:
+                title: an API title
+                version: "1.0"
+              paths:
+                /resources:
+                  get:
+                    responses:
+                      '200':
+                        description: a success response
+                        content:
+                          'application/json':
+                            schema:
+                              properties:
+                                aProperty:
+                                  type: string

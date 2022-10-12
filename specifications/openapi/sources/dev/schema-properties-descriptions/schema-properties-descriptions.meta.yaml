@@ -1,0 +1,15 @@
+name: schema-properties-descriptions
+category: Models
+labels:
+  - models
+  - documentation
+  - openapi-schema-object
+reason: |
+  When name and context are not enough, a description can provide the useful information
+  that will help consumers to figure out what is this element.
+  It may also help to create better APIs: if describing a property is complicated, there's
+  probably a problem in definition or design.
+recommendedSeverity: warn
+recommended: false
+sources:
+  - path: ../../sources/raw/legacy/schema-properties-descriptions.raw-meta.yaml

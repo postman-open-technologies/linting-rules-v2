@@ -1,0 +1,7 @@
+name: given-path-debug
+category: debug
+labels: []
+reason: |
+  A test rule to debug JSON path 
+recommendedSeverity: warn
+recommended: false
