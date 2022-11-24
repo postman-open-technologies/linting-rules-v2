@@ -223,3 +223,23 @@ rules:
                         maxItems: 100
                         items:
                           type: object
+      - description: must not crash if there's a null value in the document.
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          x-dummy:
+            nullValue:
+          info:
+            title: an API title
+            version: "1.0"
+          paths: {}
+          components:
+            schemas:
+              anObject:
+                properties:
+                  aList:
+                    type: array
+                    minItems: 1
+                    maxItems: 100
+                    items:
+                      type: object

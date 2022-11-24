@@ -3,7 +3,7 @@ rules:
     description: Requires that arrays have their minimum and maximum boundaries defined.
     message: Arrays must have minItems and maxItems defined.
     given:
-      - $..[?(@.type=="array")]
+      - $..[?(@ != null && @.type=="array")]
     severity: warn
     formats:
       - oas2
