@@ -15,6 +15,10 @@ rules:
           $schema: "https://json-schema.org/draft/2020-12/schema"
           anyOf:
             - required:
+                - '2XX'
+              properties:
+                '2XX': true
+            - required:
                 - '200'
               properties:
                 '200': true
@@ -22,6 +26,10 @@ rules:
                 - '201'
               properties:
                 '201': true
+            - required:
+                - '202'
+              properties:
+                '202': true
             - required:
                 - '203'
               properties:

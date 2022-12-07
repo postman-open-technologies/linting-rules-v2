@@ -58,6 +58,19 @@ rules:
                 responses:
                   default:
                     description: a default response
+      - description: must return no problem if there's a 2XX status
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '2XX':
+                    description: a success response
       - description: must return no problem if there's a 200 status
         expected: []
         documentTemplate:
@@ -83,6 +96,32 @@ rules:
               get:
                 responses:
                   '201':
+                    description: a success response
+      - description: must return no problem if there's a 202 status
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '202':
+                    description: a success response
+      - description: must return no problem if there's a 203 status
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '203':
                     description: a success response
       - description: must return no problem if there's a 204 status
         expected: []
