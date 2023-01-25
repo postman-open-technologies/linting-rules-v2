@@ -46,3 +46,12 @@ rules:
             version: "1.0"
           paths:
             /a-path: {}
+      - description: must return no problem if path is a single slash
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an api
+            version: "1.0"
+          paths:
+            /: {}
