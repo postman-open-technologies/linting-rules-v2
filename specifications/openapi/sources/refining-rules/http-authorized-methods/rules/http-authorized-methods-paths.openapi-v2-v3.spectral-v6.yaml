@@ -1,0 +1,15 @@
+rules:
+  http-authorized-path-methods:
+    documentationUrl: https://www.rfc-editor.org/rfc/rfc9110#name-overview
+    description: Any http methods specified should be one of the supported list.
+    message: "{{property}} is not a supported method: {{error}}"
+    given: 
+      - $.paths[*].*~
+    severity: warn
+    formats:
+      - oas2
+      - oas3
+    then:
+      function: pattern
+      functionOptions:
+        match: /^(options|get|head|post|put|delete|trace|connect|patch)$/i

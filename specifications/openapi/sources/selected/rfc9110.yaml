@@ -168,7 +168,7 @@ rules:
     - oas2
     given: 
     - $.paths[*].*~
-    - $.callbacks[*].*~
+    - $.paths[*][*].callbacks[*][*].*~
     - $.webhooks[*].*~
     then:
       function: pattern

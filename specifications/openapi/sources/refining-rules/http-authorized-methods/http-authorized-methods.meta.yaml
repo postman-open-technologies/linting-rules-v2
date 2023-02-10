@@ -1,9 +1,10 @@
 name: http-authorized-methods
-category: HTTP Ruleset
+category: HTTP Ruleset 
+labels:
   - http
 reason: |
-  Put a multine
-  reason here
+  HTTP provides a recommendation on the methods that should be supported within HTTP requests.
+  This is applicable to paths, webhooks and callbacks.
 recommendedSeverity: warn
 recommended: true
 sources:

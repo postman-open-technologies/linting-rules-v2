@@ -1,0 +1,49 @@
+testSuiteVersion: spectral-v1.0
+ruleset: http-authorized-methods-webhooks.openapi-v2-v3.spectral-v6.yaml
+rules:
+  http-authorized-webhook-methods:  
+    format: openapi
+    versions:
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must have a webhooks object
+        expected:
+          - path: '#/webhooks/test/get'
+            value: 'get'
+          - path: '#/webhooks/test/post'
+            value: 'post'
+          - path: '#/webhooks/test/foo'
+            value: 'foo'
+        documentTemplate:
+          openapi: "3.1.0"
+          webhooks:
+            test:
+              get: {}
+              post: {}
+              foo: {}
+    then:
+      - description: must return a problem if one of the methods isn't supported
+        expected:
+          - path: "#/webhooks/test/foo"
+        documentTemplate:
+          openapi: "3.1.0"
+          webhooks:
+            test:
+              foo: {}
+      - description: must return no problem if all paths are OK
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          webhooks:
+            test:
+              get: {}
+              post: {}
+              put: {}
+              patch: {}
+              connect: {}
+              head: {}
+              options: {}
+              trace: {}
+              delete: {}

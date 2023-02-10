@@ -1,16 +1,13 @@
 rules:
-  http-authorized-methods:
+  http-authorized-callback-methods:
     documentationUrl: https://www.rfc-editor.org/rfc/rfc9110#name-overview
     description: Any http methods specified should be one of the supported list.
     message: "{{property}} is not a supported method: {{error}}"
     given: 
-      - $.paths[*].*~
-      - $.callbacks[*].*~
-      - $.webhooks[*].*~
+      - $.paths..callbacks[*][*].*~
     severity: warn
     formats:
       - oas3
-      - oas2
     then:
       function: pattern
       functionOptions:

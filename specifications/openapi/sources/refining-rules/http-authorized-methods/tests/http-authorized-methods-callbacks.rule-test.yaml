@@ -1,0 +1,55 @@
+testSuiteVersion: spectral-v1.0
+ruleset: http-authorized-methods-callbacks.openapi-v2-v3.spectral-v6.yaml
+rules:
+  http-authorized-callback-methods:  
+    format: openapi
+    versions:
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must have a callbacks object
+        expected: 
+          - path: '#/paths/~1test/post/callbacks/test_callback/{$request.body#~1callbackUrl}/foo'
+            value: 'foo'
+        documentTemplate:
+          openapi: "3.1.0"
+          paths:
+            /test:
+              post:
+                callbacks:
+                  test_callback:
+                    '{$request.body#/callbackUrl}':
+                      foo: {}
+    then:
+      - description: must return a problem if one of the methods isn't supported
+        expected:
+          - path: '#/paths/~1test/post/callbacks/test_callback/{$request.body#~1callbackUrl}/foo'
+        documentTemplate:
+          openapi: "3.1.0"
+          paths:
+            /test:
+              post:
+                callbacks:
+                  test_callback:
+                    '{$request.body#/callbackUrl}':
+                      foo: {}
+      - description: must return no problem if all paths are OK
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          paths:
+            /test:
+              post:
+                callbacks:
+                  test_callback:
+                    '{$request.body#/callbackUrl}':
+                      get: {}
+                      post: {}
+                      put: {}
+                      patch: {}
+                      connect: {}
+                      head: {}
+                      options: {}
+                      trace: {}
+                      delete: {}
