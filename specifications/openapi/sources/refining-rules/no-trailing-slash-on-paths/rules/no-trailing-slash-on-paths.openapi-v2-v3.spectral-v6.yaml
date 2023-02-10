@@ -10,4 +10,4 @@ rules:
     then:
       function: pattern
       functionOptions:
-        notMatch: /$
+        notMatch: .+\/$

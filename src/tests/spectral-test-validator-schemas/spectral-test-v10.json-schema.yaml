@@ -182,6 +182,7 @@ $defs:
     description: A document that will be used as template to find what is expected across the versions.
     type: object
   Document:
+    type: object
     required: 
       - version
       - document
