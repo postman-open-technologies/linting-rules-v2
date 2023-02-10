@@ -1,0 +1,44 @@
+testSuiteVersion: spectral-v1.0
+ruleset: http-get-recommended-200-response.openapi-v2-v3.spectral-v6.yaml
+rules:
+  http-get-recommended-200-response:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find get requests in the paths object
+        expected:
+          - path: '#/paths/~1test/get/responses'
+            value:
+              '200': {}
+        documentTemplate: 
+          openapi: "3.1.0"
+          paths:
+            /test:
+              get:
+                responses:
+                  '200': {}
+    then:
+      - description: must return a problem if there's no 200 response
+        expected:
+          - path: '#/paths/~1test/get/responses'
+        documentTemplate: 
+          openapi: "3.1.0"
+          paths:
+            /test:
+              get:
+                responses:
+                  '500': {}
+
+      - description: must return no problem if there's a 200 response
+        expected: []
+        documentTemplate: 
+          openapi: "3.1.0"
+          paths:
+            /test:
+              get:
+                responses:
+                  '200': {}

@@ -1,0 +1,10 @@
+name: http-get-recommended-200-response
+category: HTTP Ruleset 
+labels:
+  - http
+reason: |
+  HTTP provides a recommendation that any GET request should return a 200 OK response.
+recommendedSeverity: warn
+recommended: true
+sources:
+  - path: ../../sources/raw/legacy/http-get-recommended-200-response.raw-meta.yaml

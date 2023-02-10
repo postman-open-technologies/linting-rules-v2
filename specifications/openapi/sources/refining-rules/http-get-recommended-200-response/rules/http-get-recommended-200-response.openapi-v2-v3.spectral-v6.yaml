@@ -1,0 +1,15 @@
+rules:
+  http-get-recommended-200-response:
+    documentationUrl: https://www.rfc-editor.org/rfc/rfc9110#name-get
+    description: HTTP GET requests should supply a 200 OK response.
+    severity: warn
+    recommended: true
+    message: "{{path}} does not supply a 200 OK response."
+    formats:
+    - oas2
+    - oas3
+    given: 
+    - $.paths.*.get.responses
+    then:
+      field: "200"
+      function: truthy
