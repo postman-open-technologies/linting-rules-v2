@@ -1,0 +1,10 @@
+name: http-authorized-methods
+category: HTTP Ruleset
+  - http
+reason: |
+  Put a multine
+  reason here
+recommendedSeverity: warn
+recommended: true
+sources:
+  - path: ../../sources/raw/legacy/http-authorized-methods.raw-meta.yaml
