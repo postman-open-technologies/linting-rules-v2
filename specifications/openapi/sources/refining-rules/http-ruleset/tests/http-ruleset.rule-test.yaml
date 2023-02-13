@@ -1,0 +1,268 @@
+testSuiteVersion: spectral-v1.0
+ruleset: http-ruleset.openapi-v2-v3.spectral-v6.yaml
+rules:
+  http-get-recommended-200-response:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find all get operations (and only them)
+        expected:
+          - path: '#/paths/~1resources/get/responses'
+            value:
+              '200':
+                description: a success response
+              '500':
+                description: an unexpected error response
+        documentTemplate: 
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '200':
+                    description: a success response
+                  '500':
+                    description: an unexpected error response
+            /other-resources:
+              post:
+                responses:
+                  '200':
+                    description: a success response
+                  '500':
+                    description: an unexpected error response
+    then:
+      - description: must return a problem if there's no 200 status
+        expected:
+          - path: '#/paths/~1resources/get/responses'
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  default:
+                    description: a default response
+      - description: must return no problem if there's a 200 status
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '200':
+                    description: a success response
+  http-authorized-methods:
+    format: openapi
+    versions:
+      - '2.0'
+      - '3.0'
+      - '3.1'
+    severity: warn
+    given:
+      - description: must find all paths Operations object
+        expected:
+          - path: '#/paths/~1resources/get'
+            value: get
+          - path: '#/paths/~1other-resources/post'
+            value: post
+          - path: '#/paths/~1operation-with-callback/post'
+            value: post
+          - path: '#/paths/~1operation-with-callback/post/callbacks/someCallback/{$request.header.callback-url}/get'
+            value: get
+          - path: '#/webhooks/~1webhook-resources/get'
+            value: get
+          - path: '#/webhooks/~1webhook-other-resources/post'
+            value: post
+        documentTemplate: 
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '200':
+                    description: a success get resources response
+            /other-resources:
+              post:
+                responses:
+                  '200':
+                    description: a success post other-resources response
+            /operation-with-callback:
+              post:
+                responses:
+                  '200':
+                    description: a success post operation-with-callback response
+                callbacks:
+                  someCallback:
+                      '{$request.header.callback-url}':
+                        get:
+                          responses:
+                            '200':
+                              description: a success get resources response
+          webhooks:
+            /webhook-resources:
+              get:
+                responses:
+                  '200':
+                    description: a success get webhook-resources response
+            /webhook-other-resources:
+              post:
+                responses:
+                  '200':
+                    description: a success post webhook-other-resources response
+# document end
+    then:
+      - description: must return a problem if unsupported HTTP method
+        expected:
+          - path: '#/paths/~1resources/unknown'
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              unknown:
+                responses:
+                  '200':
+                    description: a success response
+      - description: must return no problem if there are path parameters.
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              parameters: []
+      - description: must return no problem if there are path extensions.
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              x-tension: true
+      - description: must return no problem if there's a GET HTTP method
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              get:
+                responses:
+                  '200':
+                    description: a success response
+      - description: must return no problem if there's a HEAD HTTP method
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              head:
+                responses:
+                  '200':
+                    description: a success response
+      - description: must return no problem if there's a POST HTTP method
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              post:
+                responses:
+                  '200':
+                    description: a success response
+      - description: must return no problem if there's a PUT HTTP method
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              put:
+                responses:
+                  '200':
+                    description: a success response
+      - description: must return no problem if there's a DELETE HTTP method
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              delete:
+                responses:
+                  '200':
+                    description: a success response
+      - description: must return no problem if there's a CONNECT HTTP method
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              connect:
+                responses:
+                  '200':
+                    description: a success response
+      - description: must return no problem if there's a OPTIONS HTTP method
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              options:
+                responses:
+                  '200':
+                    description: a success response
+      - description: must return no problem if there's a TRACE HTTP method
+        expected: []
+        documentTemplate:
+          openapi: "3.1.0"
+          info:
+            title: an API title
+            version: "1.0"
+          paths:
+            /resources:
+              trace:
+                responses:
+                  '200':
+                    description: a success response

@@ -1,0 +1,11 @@
+name: http-ruleset
+category: a category
+labels:
+  - put some labels here
+reason: |
+  Put a multine
+  reason here
+recommendedSeverity: recommended Spectral severity
+recommended: true or false
+sources:
+  - path: ../../sources/raw/legacy/http-ruleset.raw-meta.yaml
