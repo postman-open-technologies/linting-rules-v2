@@ -9,27 +9,41 @@ function mapTestsAndRulesets(testFilenames, rulesetFilenames){
     withoutRulesetTests: [],
     invalidTests: []
   }
-  const notFoundRulesetFilenames = JSON.parse(JSON.stringify(rulesetFilenames));
+  // List telling which test file exist for which ruleset file
+  const rulesetVsTests = rulesetFilenames.map( filename => { return { rulesetFilename: filename, testFilenames: [], test: null } });
+  // Looping on test files
   testFilenames.forEach(testFilename => {
+    // Loading and validating test file against the JSON schema
     const test = FileUtils.loadYaml(testFilename);
     const testValidatorProblems = validator.validate(test);
+    // Test file is not valid against schema
     if(testValidatorProblems.length > 0){
       results.invalidTests.push({
         testFilename: testFilename,
         problems: testValidatorProblems
       })
     }
+    // Test file is loaded and valid against schema
     else {
-      const rulesetFilename = notFoundRulesetFilenames.find(item => item.endsWith(test.ruleset));
-      if(rulesetFilename){
-        const rulesetFilenameIndex = notFoundRulesetFilenames.findIndex(item => item.endsWith(test.ruleset));
-        notFoundRulesetFilenames.splice(rulesetFilenameIndex, 1);
-        results.runnableTests.push({
-          rulesetFilename: rulesetFilename,
-          testFilename: testFilename,
-          test: test
-        });
+      // Looking for matching ruleset
+      // TODO Rely on relative filepath in test
+      const rulesetVsTest = rulesetVsTests.find(item => item.rulesetFilename.endsWith(test.ruleset));
+      if(rulesetVsTest){
+        // Merging tests from different test files targeting the same ruleset
+        // TODO manage duplicate tests (same rule of a ruleset tested in different files)
+        if(rulesetVsTest.test === null){
+          rulesetVsTest.test = test;  
+        }
+        else {
+          rulesetVsTest.test.rules = {
+            ...rulesetVsTest.test.rules,
+            ...test.rules
+          }
+        }
+        // Logging test filename
+        rulesetVsTest.testFilenames.push(testFilename);
       }
+      // No ruleset found, this test file targets a non existing ruleset file
       else {
         results.withoutRulesetTests.push({
           testFilename: testFilename,
@@ -38,10 +52,22 @@ function mapTestsAndRulesets(testFilenames, rulesetFilenames){
       }
     }
   });
-  notFoundRulesetFilenames.forEach(rulesetFilename => {
-    results.withoutTestRulesets.push({rulesetFilename: rulesetFilename});
+  rulesetVsTests.forEach(item => {
+    // Listing rulesets without any test
+    if(item.test === null){
+      results.withoutTestRulesets.push({rulesetFilename: item.rulesetFilename});
+    }
+    // Runnable tests
+    else {
+      // Adding test to runnable test list
+      /*results.runnableTests.push({
+        rulesetFilename: rulesetVsTest.rulesetFilename,
+        testFilename: testFilename,
+        test: test
+      });*/
+      results.runnableTests.push(item);
+    }
   });
-  // Will add unmapped test
   return results;
 }
 
@@ -76,6 +102,8 @@ export default class SpectralTestLoader {
 
 //const tests = '**/*.rule-test.yaml';
 //const rulesets = '**/*.spectral-v6.yaml';
+//const tests = './specifications/openapi/sources/refining-rules/**/*.rule-test.yaml';
+//const rulesets = './specifications/openapi/sources/refining-rules/**/*.spectral-v6.yaml';
 /*
 const loader = new SpectralTestLoader(tests, rulesets);
 console.log('runnable tests', loader.getRunnableTests());
