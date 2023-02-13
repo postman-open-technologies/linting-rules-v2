@@ -81,8 +81,8 @@ export function runTests(tests, rulesets, title){
         describe('Checking ruleset configuration', function() {
           it('all rules of ruleset must have tests', function() {
             // TODO put test loader stuff in a class
-            const foundTestedRules = SpectralTest.getRuleNames(rulesetTest.test);
-            const expectedTestedRules = spectralWrapper.getRuleNames();
+            const foundTestedRules = SpectralTest.getRuleNames(rulesetTest.test).sort();
+            const expectedTestedRules = spectralWrapper.getRuleNames().sort();
             assert.deepEqual(foundTestedRules, expectedTestedRules, 'some rules have no tests');
           });
           

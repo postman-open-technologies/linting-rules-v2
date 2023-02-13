@@ -73,12 +73,25 @@ export default class SpectralTestWrapper {
     return this.getRuleGivens(rulename)[index];
   }
 
-  getGivenPathsAndValues(rulename, document, givenIndex=0) {
-    const given = this.getRuleGiven(rulename, givenIndex);
-    // TODO handle aliases by hacking Spectral inner code/functions
-    const results = JSONPath({ resultType: 'all', path: given, json: document });
-    const pathsAndValues = results.map( result => ({ path: `#${result.pointer}`, value: result.value}));
-    return pathsAndValues;
+  // TODO handle aliases by hacking Spectral inner code/functions or running a dummy rule with then.function: undefined
+  // TODO Add given to result?
+  getGivenPathsAndValues(rulename, document, givenIndex=null) {
+    if(givenIndex !== null) { // keeping old behavior just in case
+      const given = this.getRuleGiven(rulename, givenIndex);
+      const results = JSONPath({ resultType: 'all', path: given, json: document });
+      const pathsAndValues = results.map( result => ({ path: `#${result.pointer}`, value: result.value}));
+      return pathsAndValues;
+    }
+    else {
+      let pathsAndValues = [];
+      this.getRuleGivens(rulename).forEach(given => {
+        const jsonPathResults = JSONPath({ resultType: 'all', path: given, json: document });
+        const givenResults = jsonPathResults.map( result => ({ path: `#${result.pointer}`, value: result.value}))
+        pathsAndValues = pathsAndValues.concat(givenResults);
+      });
+      return pathsAndValues;
+    }
+
   }
 
   /*******************/
