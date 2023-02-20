@@ -1,4 +1,4 @@
-import * as SpectralTestRunner from '../src/tests/spectral-test-runner.js';
+const SpectralTestRunner = require('spectral-test-suite').SpectralTestRunner;
 
 // Optional --rule=a-rule-name parameter to test only one rule instead of all
 const rule = process.env.npm_config_rule; 
