@@ -1,6 +1,6 @@
-import mkdirp from 'mkdirp';
-import fs from 'fs';
-import * as yaml from '../utils/yaml.js';
+const mkdirp = require('mkdirp');
+const fs = require('fs');
+const yaml = require('../utils/yaml.js');
 
 const args = process.argv.slice(2);
 const directory = args[0];

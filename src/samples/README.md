@@ -1,1 +1,0 @@
-Experimental OpenAPI sample generator prototype

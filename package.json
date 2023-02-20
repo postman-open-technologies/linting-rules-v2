@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "directories": {
     "test": "tests"
   },
@@ -16,17 +15,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@stoplight/spectral-core": "^1.13.0",
-    "@stoplight/spectral-functions": "^1.7.0",
-    "@stoplight/spectral-parsers": "^1.0.1",
-    "@stoplight/spectral-ruleset-bundler": "^1.3.1",
-    "@stoplight/spectral-runtime": "^1.1.2",
-    "ajv": "^8.11.0",
-    "glob": "^8.0.3",
-    "js-yaml": "^4.1.0",
-    "jsonpath-plus": "^7.0.0",
     "mocha": "^10.0.0",
-    "csv": "^6.2.0",
+    "spectral-test-suite": "github:postman-open-technologies/spectral-test-suite#caf58f2434be7c142ccfde51efbda17398ca6f18",
     "mkdirp": "^1.0.4"
   }
 }

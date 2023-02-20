@@ -1,8 +1,10 @@
 //import mkdirp from 'mkdirp';
-import fs  from 'fs';
-import yaml from 'js-yaml';
+const fs = require('fs');
+const yaml = require('js-yaml');
 
-export function saveYaml(data, filename){
+function saveYaml(data, filename){
   let content = yaml.dump(data);
   fs.writeFileSync(filename, content, 'utf8');
 }
+
+exports.saveYaml = saveYaml;
