@@ -1,5 +1,5 @@
 testSuiteVersion: spectral-v1.0
-ruleset: schema-reference-reusable.openapi-v2-v3.spectral-v6.yaml
+ruleset: ../rules/schema-reference-reusable.openapi-v2-v3.spectral-v6.yaml
 rules:
   schema-reference-reusable:
     format: openapi

@@ -1,6 +1,6 @@
 testSuiteVersion: spectral-v1.0
 # TODO add more use cases (array in components, parameters, responses, ...)
-ruleset: schema-properties-define-array-boundaries.openapi-v2-v3.spectral-v6.yaml
+ruleset: ../rules/schema-properties-define-array-boundaries.openapi-v2-v3.spectral-v6.yaml
 rules:
   schema-properties-define-array-boundaries:
     format: openapi

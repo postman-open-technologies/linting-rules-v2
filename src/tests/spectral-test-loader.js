@@ -1,14 +1,18 @@
 import * as FileUtils from './file.js';
 import SpectralTestValidator from './spectral-test-validator.js';
+import * as path from 'path';
 
 function mapTestsAndRulesets(testFilenames, rulesetFilenames){
+  
   const validator = new SpectralTestValidator();
+  
   const results = {
     runnableTests: [],
     withoutTestRulesets: [],
     withoutRulesetTests: [],
     invalidTests: []
   }
+  
   // List telling which test file exist for which ruleset file
   const rulesetVsTests = rulesetFilenames.map( filename => { return { rulesetFilename: filename, testFilenames: [], test: null } });
   // Looping on test files
@@ -26,8 +30,17 @@ function mapTestsAndRulesets(testFilenames, rulesetFilenames){
     // Test file is loaded and valid against schema
     else {
       // Looking for matching ruleset
-      // TODO Rely on relative filepath in test
-      const rulesetVsTest = rulesetVsTests.find(item => item.rulesetFilename.endsWith(test.ruleset));
+      const testDirname = path.dirname(testFilename);
+      let rulesetFilename;
+      if(path.isAbsolute(test.ruleset)) {
+        rulesetFilename = test.ruleset;
+      }
+      else {
+        rulesetFilename = path.join(testDirname, test.ruleset);
+      }
+      rulesetFilename = path.resolve(rulesetFilename);
+      
+      const rulesetVsTest = rulesetVsTests.find(item => item.rulesetFilename === rulesetFilename);
       if(rulesetVsTest){
         // Merging tests from different test files targeting the same ruleset
         // TODO manage duplicate tests (same rule of a ruleset tested in different files)
@@ -47,7 +60,7 @@ function mapTestsAndRulesets(testFilenames, rulesetFilenames){
       else {
         results.withoutRulesetTests.push({
           testFilename: testFilename,
-          testRuleset: test.ruleset
+          testRuleset: rulesetFilename,
         });
       }
     }
