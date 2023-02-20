@@ -1,5 +1,5 @@
 testSuiteVersion: spectral-v1.0
-ruleset: request-body-on-post.openapi-v2-v3.spectral-v6.yaml
+ruleset: ../rules/request-body-on-post.openapi-v2-v3.spectral-v6.yaml
 rules:
   request-body-on-post:
     format: openapi

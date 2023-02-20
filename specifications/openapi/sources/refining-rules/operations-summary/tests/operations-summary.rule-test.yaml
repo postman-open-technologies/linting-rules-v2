@@ -1,5 +1,5 @@
 testSuiteVersion: spectral-v1.0
-ruleset: operations-summary.openapi-v2-v3.spectral-v6.yaml
+ruleset: ../rules/operations-summary.openapi-v2-v3.spectral-v6.yaml
 rules:
   operations-summary:
     format: openapi
