@@ -168,7 +168,7 @@ rules:
     - oas2
     given: 
     - $.paths[*].*~
-    - $.paths[*][*].callbacks[*][*].*~
+    - $.paths..callbacks[*][*].*~
     - $.webhooks[*].*~
     then:
       function: pattern
@@ -194,7 +194,7 @@ rules:
     - oas2
     given: 
     - $.paths.*.get.responses
-    - $.callbacks.*.get.responses
+    - $.paths[*][*].callbacks[*][*].get.responses
     - $.webhooks.*.get.responses
     then:
       field: "200"
@@ -796,22 +796,39 @@ rules:
   #--------------------------------------------------------------
   # 10.1.1.  Expect
   #--------------------------------------------------------------
+  
+  # Insert a rule here that validates the only allowed value of an 'Expect' request header is '100-continue'.
+  # Also:
+  # - Expect must only be used on requests that generate content 
 
   #--------------------------------------------------------------
   # 10.1.2.  From
   #--------------------------------------------------------------
 
+  # Insert a rule that states the From header should conform to a valid email address.
+
+
   #--------------------------------------------------------------
   # 10.1.3.  Referer
   #--------------------------------------------------------------
+
+  # MUST NOT include the fragment and userinfo components of the URI 
+  # Must be either blank, contain a URL or the string 'about:blank'
+
+
 
   #--------------------------------------------------------------
   # 10.1.4.  TE
   #--------------------------------------------------------------
 
+  # TODO
+
   #--------------------------------------------------------------
   # 10.1.5.  User-Agent
   #--------------------------------------------------------------
+
+  # TODO
+
 
   #--------------------------------------------------------------
   # 10.2.  Response Context Fields
@@ -821,17 +838,29 @@ rules:
   # 10.2.1.  Allow
   #--------------------------------------------------------------
 
+  # 405 responses must specify an allow header with appropriate methods specified.
+
   #--------------------------------------------------------------
   # 10.2.2.  Location
   #--------------------------------------------------------------
+
+  # 3xx responses should specify a location header
+  # 2xx responses that should also have been catered for in the method level locations.
+  # Responses must not contain both Content-Location and Location headers
 
   #--------------------------------------------------------------
   # 10.2.3.  Retry-After
   #--------------------------------------------------------------
 
+  # Retry after can be sent with 503 or 3xx responses
+  # Retry after must either be a non-negative integer, or an HTTP date (e.g. Fri, 31 Dec 1999 23:59:59 GMT)
+
   #--------------------------------------------------------------
   # 10.2.4.  Server
   #--------------------------------------------------------------
+
+  # TODO
+
 
   #--------------------------------------------------------------
   # 11. HTTP Authentication
@@ -865,6 +894,10 @@ rules:
   # 11.6.1.  WWW-Authenticate
   #--------------------------------------------------------------
 
+  # A 401 response MUST specify a WWW-Authenticate response header containing at least one challenge.
+  # 
+
+
   #--------------------------------------------------------------
   # 11.6.2.  Authorization
   #--------------------------------------------------------------
@@ -877,9 +910,13 @@ rules:
   # 11.7.  Authenticating Clients to Proxies
   #--------------------------------------------------------------
 
+  # I think the proxy section should be moved to it's own ruleset.
+
   #--------------------------------------------------------------
   # 11.7.1.  Proxy-Authenticate
   #--------------------------------------------------------------
+
+  # A proxy MUST send at least one Proxy-Authenticate header field in each 407 (Proxy Authentication Required) response that it generates.
 
   #--------------------------------------------------------------
   # 11.7.2.  Proxy-Authorization
